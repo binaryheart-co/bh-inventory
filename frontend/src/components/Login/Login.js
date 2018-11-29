@@ -16,14 +16,14 @@ class Login extends Component {
                     </p>
                     <form>
                         <div className="field">
-                                <input className="input" type="text" placeholder="Email" />
+                            <input className="input" type="text" placeholder="Email" />
                         </div>
                         <div className="field">
-                                <input className="input" type="password" placeholder="Password" />
+                            <input className="input" type="password" placeholder="Password" />
                         </div>
                         <div className="field">
-                                <button className="button is-link">Login</button>
-                                <button className="button is-text">Create Account</button>
+                            <button className="button is-link">Login</button>
+                            <button className="button is-text">Create Account</button>
                         </div>
                     </form>
                 </div>
