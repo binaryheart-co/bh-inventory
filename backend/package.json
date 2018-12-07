@@ -18,6 +18,7 @@
   "homepage": "https://github.com/marzukr/bh-inventory#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "mongoose": "^5.3.14"
+    "mongoose": "^5.3.14",
+    "passport": "^0.4.0"
   }
 }
