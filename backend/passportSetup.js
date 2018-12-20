@@ -3,18 +3,18 @@ const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
 const bcrypt = require('bcrypt');
 
-const { secret } = require('./keys');
+const secret = "secret"
 
 const UserModel = require('./models/user');
 
 passport.use(new LocalStrategy({
-	usernameField: username,
-	passwordField: password,
+	usernameField: "username",
+	passwordField: "password",
 }, async (username, password, done) => {
 	try {
 		const userDocument = await UserModel.findOne({username: username}).exec();
 		const passwordsMatch = await bcrypt.compare(password, userDocument.passwordHash);
-
+        console.log(username);
 		if (passwordsMatch) {
 			return done(null, userDocument);
 		} else {
@@ -25,8 +25,17 @@ passport.use(new LocalStrategy({
 	}
 }));
 
+var cookieExtractor = function(req) {
+    var token = null;
+    if (req && req.cookies)
+    {
+        token = req.cookies['jwt'];
+    }
+    return token;
+};
+
 passport.use(new JWTStrategy({
-		jwtFromRequest: req => req.cookies.jwt,
+		jwtFromRequest: cookieExtractor,
 		secretOrKey: secret,
 	},
 	(jwtPayload, done) => {
