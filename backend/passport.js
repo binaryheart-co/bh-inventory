@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
 const bcrypt = require('bcrypt');
 
-const secret = "secret"
+const secret = "secret" // change to something more secure!!
 
 const UserModel = require('./models/user');
 
@@ -21,7 +21,7 @@ passport.use(new LocalStrategy({
 			return done('Incorrect Username / Password');
 		}
 	} catch (error) {
-		done(error);
+		return done(error);
 	}
 }));
 
@@ -39,6 +39,7 @@ passport.use(new JWTStrategy({
 		secretOrKey: secret,
 	},
 	(jwtPayload, done) => {
+        console.log("JWT payload");
 		if (jwtPayload.expires > Date.now()) {
 			return done('jwt expired');
 		}

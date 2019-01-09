@@ -31,6 +31,7 @@ router.post('/register', async (req, res) => {
     } catch (error) {
         res.status(400).send({
             error: 'req body should take the form { username, password }',
+            message: error,
         });
     }
 });
@@ -40,38 +41,40 @@ router.post('/login', (req, res) => {
         'local',
         { session: false },
         (error, user) => {
-            if (!user) {
-                res.status(400).json({ error });
+            if (error || !user) {
+                res.status(400).json({ 
+                    message: "Something went wrong :(", 
+                });
             }
 
-            /** This is what ends up in our JWT */
-            const payload = {
-                username: user.username,
-                expires: Date.now() + parseInt(process.env.JWT_EXPIRATION_MS),
-            };
-            //FIX EXPIRES, NAN
+            // /** This is what ends up in our JWT */
+            // const payload = {
+            //     username: user.username,
+            //     expires: Date.now() + parseInt(process.env.JWT_EXPIRATION_MS),
+            // };
+            // //FIX EXPIRES, NAN
 
-            /** assigns payload to req.user */
-            req.login(payload, {session: false}, (error) => {
-                if (error) {
-                    res.status(400).send({ error });
-                }
+            // /** assigns payload to req.user */
+            // req.login(payload, {session: false}, (error) => {
+            //     if (error) {
+            //         res.status(400).send({ error });
+            //     }
 
-                /** generate a signed json web token and return it in the response */
-                const token = jwt.sign(JSON.stringify(payload), secret);
-                /** assign our jwt to the cookie */
-                res.cookie('jwt', token, { httpOnly: true, secure: true });
-                res.status(200).send(payload.username);
+            //     /** generate a signed json web token and return it in the response */
+            //     const token = jwt.sign(JSON.stringify(payload), secret);
+            //     /** assign our jwt to the cookie */
+            //     res.cookie('jwt', token, { httpOnly: true, secure: true });
+            //     res.status(200).send(payload.username);
             });
-        },
-    )(req, res);
+        })(req, res);
 });
 
 router.get(
     "/protected", 
     passport.authenticate("jwt", {session: false}),
     (req, res) => {
-        const user = req; // change to req.user?
+        const user = req.user; // change to req.user?
+        console.log(user);
         res.status(200).send({ user });
     }
 );

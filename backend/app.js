@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
-const passportSetup = require("./passportSetup");
-const passportLogin = require("./passportLogin");
+const passportSetup = require("./passport");
+const passportLogin = require("./auth");
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
