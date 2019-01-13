@@ -1,33 +1,43 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-import logo from  "./binary.svg";
+import logo from  "./binaryHeartLogo80.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "./style.scss";
 
 class Login extends Component {
     render() {
         return (
-            <section className="section">
-                <div className="container">
-                    <h1 className="title">
-                        <img src={logo} width="50" alt="BinaryHeart Logo"/> BinaryHeart
-                    </h1>
-                    <p className="custom-css">
-                        This is a <u><strong>lame</strong></u> login page :(
+            <div class="card">
+                <a href="https://binaryheart.org"><img src={logo} alt="binaryheart.org"/></a>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input id="emailInput" class="input is-size-4" type="email" placeholder="Email"/>
+                        <span id="emailIcon" class="icon is-size-4 is-left">
+                            <FontAwesomeIcon icon="envelope"/>
+                        </span>
                     </p>
-                    <form>
-                        <div className="field">
-                            <input className="input" type="text" placeholder="Email" />
-                        </div>
-                        <div className="field">
-                            <input className="input" type="password" placeholder="Password" />
-                        </div>
-                        <div className="field">
-                            <button className="button is-link">Login</button>
-                            <button className="button is-text">Create Account</button>
-                        </div>
-                    </form>
                 </div>
-            </section>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input id="passwordInput" class="input is-size-4" type="password" placeholder="Password"/>
+                        <span id="passwordIcon" class="icon is-size-4 is-left">
+                            <FontAwesomeIcon icon="lock"/>
+                        </span>
+                    </p>
+                </div>
+                <p class="buttons is-centered">
+                    <div id="backButton" class="button is-size-4 is-rounded">
+                        <span id="backIcon" class="icon">
+                            <FontAwesomeIcon icon="angle-double-left"/>
+                        </span>
+                        <span>Back</span>
+                    </div>
+                    <div id="loginButton" class="button is-size-4 is-rounded">
+                        Login
+                    </div>
+                </p>
+            </div>
         );
     }
 }

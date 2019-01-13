@@ -1,0 +1,103 @@
+@import "~bulma/sass/utilities/mixins";
+@import '~bulma/sass/utilities/initial-variables.sass';
+
+.card {
+    box-shadow: 0 0 5px gray;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+
+    @include until($tablet) {
+        margin-left: 2em;
+        margin-right: 2em;
+        padding: 1em;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    @include from($tablet) {
+        width: 30em;
+        padding: 4em;
+        margin-top: 6em;
+        margin-bottom: 6em;
+    }
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.field {
+    margin-top: 2em;
+}
+
+.input {
+    border-radius: 20px;
+    border: 2px solid #aaa;
+
+    &:focus {
+        border-color: dodgerBlue;
+        box-shadow: 0 0 3px 0 dodgerBlue;
+    }
+
+    &:focus + .icon {
+        color: dodgerBlue;
+    }
+}
+
+#emailInput:focus + #emailIcon {
+    color: dodgerBlue;
+}
+
+#passwordInput:focus + #passwordIcon {
+    color: dodgerBlue;
+}
+
+.buttons {
+    margin-top: 3em;
+}
+
+#backIcon {
+    opacity: 0;
+    right: -1em;
+    margin-right: -1em;
+    transition: .3s;
+}
+
+#backButton:hover #backIcon {
+    opacity: 1;
+    right: 0em;
+    margin-right: 0em;
+}
+
+#backButton {
+    transition: .3s;
+    background-color: #1B395C;
+    color: White;
+    border: 1px solid;
+    outline: none;
+    opacity: 0.85;
+    @include from($tablet) {
+        margin-right: 2em;
+    }
+}
+
+#backButton:hover {
+    background-color: #132942;
+}
+
+#loginButton {
+    transition: .3s;
+    background-color: #FF003E;
+    color: White;
+    border: 1px solid;
+    outline: none;
+    opacity: 0.85;
+}
+
+#loginButton:hover {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}

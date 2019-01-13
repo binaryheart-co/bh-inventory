@@ -7,10 +7,14 @@ import "./theme.scss";
 // import App from "./components/App/App";
 import Login from './components/Login/Login';
 
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faEnvelope, faLock, faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faEnvelope, faLock, faAngleDoubleLeft);
+
 ReactDOM.render(
     <Provider store={configureStore()}>
         <Login/>
-        {/* <App/> */}
     </Provider>
     , document.getElementById('root')
 );
