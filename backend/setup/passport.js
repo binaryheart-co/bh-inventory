@@ -38,6 +38,6 @@ passport.use(new JWTStrategy({
 		// if (jwtPayload.expires > Date.now()) {
 		// 	return done('jwt expired');
 		// }
-		return done(null, jwtPayload);
+		return done(null, jwtPayload.user);
 	}
 ));

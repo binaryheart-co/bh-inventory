@@ -18,6 +18,7 @@ const userSchema = new Schema({
     },
 });
 
+//use regular function and not arrow function to work properly
 userSchema.pre("save", async function(next) {
     const hashed = await bcrypt.hash(this.passwordHash, hashCost);
     this.passwordHash = hashed;

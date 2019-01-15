@@ -40,10 +40,10 @@ router.post('/login', (req, res) => {
             // /** assigns user to req.user */
             req.login(user, {session: false}, (err) => {
                 if(err) {
-                    res.send(err);
+                    return res.send(err);
                 }
-
-                const token = jwt.sign(user, secret);
+                
+                const token = jwt.sign({user}, secret);
                 return res.json({user, token});
             });
         }
