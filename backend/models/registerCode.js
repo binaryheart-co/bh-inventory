@@ -9,7 +9,7 @@ const registerCodeSchema = new Schema({
         code: {
             type: Number,
             required: true,
-            min: 111111,
+            min: 100000,
             max: 999999,
             default: defaultCode(),
         }
