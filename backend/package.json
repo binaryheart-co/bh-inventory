@@ -20,6 +20,7 @@
   "homepage": "https://github.com/marzukr/bh-inventory#readme",
   "dependencies": {
     "bcrypt": "^3.0.2",
+    "bloomfilter": "0.0.18",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.3.14",

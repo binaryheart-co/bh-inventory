@@ -1,13 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const passportJWT = require('passport-jwt');
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
+// const passportJWT = require('passport-jwt');
+// const JWTStrategy = passportJWT.Strategy;
+// const ExtractJWT = passportJWT.ExtractJwt;
 
 const bcrypt = require('bcrypt');
-
-const secret = require("../config").jwtSecret;
-
+// const secret = require("../config").jwtSecret;
 const UserModel = require('../models/user');
 
 
@@ -30,14 +28,14 @@ passport.use(new LocalStrategy({
     }
 ));
 
-passport.use(new JWTStrategy({
-		jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-		secretOrKey: secret,
-	},
-	(jwtPayload, done) => {
-		// if (jwtPayload.expires > Date.now()) {
-		// 	return done('jwt expired');
-		// }
-		return done(null, jwtPayload.user);
-	}
-));
+// passport.use(new JWTStrategy({
+// 		jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+// 		secretOrKey: secret,
+// 	},
+// 	(jwtPayload, done) => {
+// 		// if (jwtPayload.expires > Date.now()) {
+// 		// 	return done('jwt expired');
+// 		// }
+// 		return done(null, jwtPayload.user);
+// 	}
+// ));

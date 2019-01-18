@@ -2,6 +2,8 @@ var mongoose = require("mongoose");
 
 var dbURL = require("../config").dbURL;
 
+mongoose.promise = global.Promise;
+
 mongoose.connect(dbURL, {
     useCreateIndex: true,
     useNewUrlParser: true,
