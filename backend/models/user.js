@@ -42,43 +42,31 @@ const userSchema = new Schema({
 });
 
 //use regular function and not arrow function to work properly
-userSchema.pre("save", async function(next) {
+userSchema.pre("save", async function() {
 
     try {
         //only hash password if it has been modified (or is new)
-        if(!this.isModified("password")) return next();
+        if(!this.isModified("password")) return;
         //generate a salt
         const salt = await bcrypt.genSalt(hashCost)
         //hash with the generated salt
         const hash = await bcrypt.hash(this.password, salt);
         //override the cleartext password with the hashed one
         this.password = hash;
-        return next();
+        return;
     }
-    catch (e) {
-        return next(e);
+    catch(e) {
+        throw new Error(e);
     }
-    //generate a salt
-    // bcrypt.genSalt(hashCost, function(err, salt) {
-    //     if(err) return next(err);
-
-    //     //hash with the generated salt
-    //     bcrypt.hash(this.password, salt, function(err, hash) {
-    //         if(err) return next(err);
-
-    //         //override the cleartext password with the hashed one
-    //         this.password = hash;
-    //         next();
-    //     })
-    // })
-    // next();
 });
 
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if(err) return cb(err);
-        cb(null, isMatch);
-    })
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    try {
+        return await bcrypt.compare(candidatePassword, this.password);
+    }
+    catch(e) {
+        throw new Error(e);
+    }
 }
 
 module.exports = mongoose.model("User", userSchema);

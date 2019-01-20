@@ -23,6 +23,7 @@
     "bloomfilter": "0.0.18",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "mongoose": "^5.3.14",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",

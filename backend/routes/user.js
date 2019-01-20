@@ -1,14 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
+const { ensureAuthenticated } = require("../setup/passport");
 
-router.get(
-    "/protected", 
-    passport.authenticate("jwt", {session: false}),
-    (req, res, next) => {
-        const user = req.user;
-        res.status(200).send({user});
-    }
-);
+router.get("/protected", ensureAuthenticated, (req, res) => {
+    res.json({email: req.user.email});
+});
 
 module.exports = router;

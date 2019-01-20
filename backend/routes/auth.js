@@ -1,9 +1,5 @@
 const express = require('express');
 const passport = require('passport');
-// const jwt = require('jsonwebtoken');
-// const mongoose = require("mongoose");
-
-// const secret = require("../config").jwtSecret;
 const UserModel = require('../models/user');
 
 const router = express.Router();
@@ -15,7 +11,7 @@ router.post('/register', async (req, res) => {
         const userDocument = new UserModel({ email, password, firstName, lastName });
         await userDocument.save();
         return res.status(200).send({email});
-    } 
+    }
     catch (error) {
         if(error.name === "ValidationError") {
             let errors = {};
@@ -31,32 +27,13 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/login', passport.authenticate('local'));
+router.post('/login', passport.authenticate('local'), (req, res) => {
+    res.json({email: req.user.email});
+});
 
-// router.post('/login', (req, res) => {
-//     passport.authenticate(
-//         'local',
-//         {session: false},
-//         (error, user) => {
-//             if (error || !user) {
-//                 return res.status(400).json({ 
-//                     message: "Something went wrong :(",
-//                     user: user,
-//                     error: error,
-//                 });
-//             }
-
-//             // /** assigns user to req.user */
-//             req.login(user, {session: false}, (err) => {
-//                 if(err) {
-//                     return res.send(err);
-//                 }
-                
-//                 const token = jwt.sign({user}, secret);
-//                 return res.json({user, token});
-//             });
-//         }
-//     )(req, res);
-// });
+router.post("/logout", (req, res) => {
+    req.logout();
+    res.json({message: "Logged out."});
+})
 
 module.exports = router;
