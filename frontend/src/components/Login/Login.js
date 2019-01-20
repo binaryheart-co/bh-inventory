@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-import config from "../../config";
-
 import logo from  "./binaryHeartLogo80.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./style.scss";
+import Notification from "../Notification/Notification";
 
 class Login extends Component {
     constructor(props) {
@@ -13,32 +12,47 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
+            message: "",
+            hideNotify: true,
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
+        this.hideNotification = this.hideNotification.bind(this);
     }
 
     handleChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    login() {
-        const data = {username: this.state.email, password: this.state.password};
-        fetch(config.serverLocation + "/auth/login", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json"
+    hideNotification() {
+        this.setState({ hideNotify: true });
+    }
+
+    async login() {
+        try {
+            const data = {email: this.state.email, password: this.state.password};
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const resData = await response.json();
+            if(resData.error) {
+                this.setState({ hideNotify: false, message: resData.error });
             }
-        }).then(res => res.json())
-        .then(res => console.log(JSON.stringify(res)))
-        .catch(err => console.error("Error: " + err));
+        }
+        catch(e) {
+            console.error("Error: " + e);
+        }
     }
 
     render() {
         return (
             <div className="card">
+                <Notification isHidden={this.state.hideNotify} type={"is-danger"} message={this.state.message} hideFunc={this.hideNotification}/>
                 <a href="https://binaryheart.org"><img src={logo} alt="binaryheart.org"/></a>
                 <div className="field">
                     <p className="control has-icons-left">

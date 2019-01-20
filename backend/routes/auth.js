@@ -21,14 +21,25 @@ router.post('/register', async (req, res) => {
             return res.status(400).json(errors);
         }
         else if (error.name === "MongoError" && (error.code === 11000 || error.code === 11001)) {
-            return res.status(400).json({email: "That email is already used."});
+            return res.status(400).json({email: "That email is already used"});
         }
-        return res.status(400).send({error: "There was an error. Please try again."});
+        return res.status(500).json({error: "There was a server error :("});
     }
 });
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-    res.json({email: req.user.email});
+// router.post('/login', passport.authenticate('local'), (req, res) => {
+//     res.json({email: req.user.email});
+// });
+
+router.post('/login', (req, res, next) => {
+    passport.authenticate("local", (err, user) => {
+        if(err === 500) return res.status(500).json({error: "There was a server error :("});
+        if(err === 400 || !user) return res.status(400).json({error: "Incorrect username or password"});
+        req.logIn(user, (err) => {
+            if(err) return res.status(500).json({error: "There was a server error :("});
+            return res.json({email: req.user.email});
+        });
+    })(req, res, next);
 });
 
 router.post("/logout", (req, res) => {

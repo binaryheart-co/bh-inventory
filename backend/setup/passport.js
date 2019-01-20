@@ -13,10 +13,10 @@ passport.use(new LocalStrategy({
                 const isMatch = await userDocument.comparePassword(password);
                 if (isMatch) return done(null, userDocument);
             }
-            return done("Incorrect username or password");
+            return done(400);
         } 
         catch (error) {
-            return done("There was an error :(");
+            return done(500);
         }
     }
 ));

@@ -39,11 +39,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Routes
+//API Routes
+const router = express.Router();
+app.use("/api", router);
+
 const auth = require("./routes/auth");
-app.use("/auth", auth);
+router.use("/auth", auth);
 
 const user = require("./routes/user");
-app.use("/user", user);
+router.use("/user", user);
 
 app.listen(serverPort, () => console.log(`Example app listening on port ${serverPort}!`))
