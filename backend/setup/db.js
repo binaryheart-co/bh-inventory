@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var dbURL = require("../config").dbURL;
+const dbURL = require("../config").dbURL;
 
 mongoose.promise = global.Promise;
 

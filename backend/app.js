@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 // const cors = require("cors");
 const session = require("express-session");
 const passport = require('passport');
+const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo")(session);
 
 //Constants
 const { serverPort, sessionSecret } = require("./config");
@@ -30,6 +32,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }, //CHANGE FOR PRODUCTION
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }))
 
 //Passport Middleware
