@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import logo from  "./binaryHeartLogo80.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./style.scss";
-import Notification from "../Notification/Notification";
 
 class Login extends Component {
     constructor(props) {
@@ -43,16 +42,22 @@ class Login extends Component {
             if(resData.error) {
                 this.setState({ hideNotify: false, message: resData.error });
             }
+            else if(response.status === 200) {
+                this.props.history.push("/inventory");
+            }
         }
         catch(e) {
-            console.error("Error: " + e);
+            this.setState({ hideNotify: false, message: e });
         }
     }
 
     render() {
         return (
             <div className="card">
-                <Notification isHidden={this.state.hideNotify} type={"is-danger"} message={this.state.message} hideFunc={this.hideNotification}/>
+                <div className="notification is-danger" style={{display: this.state.hideNotify ? "none" : "block"}}>
+                    <button className="delete" onClick={this.hideNotification}></button>
+                    <strong>{this.state.message}</strong>
+                </div>
                 <a href="https://binaryheart.org"><img src={logo} alt="binaryheart.org"/></a>
                 <div className="field">
                     <p className="control has-icons-left">
