@@ -95,7 +95,7 @@ class Inventory extends Component {
                 </table>
                 <table class="head" id="head">
                   <thead>
-                    <tr>
+                    <tr class="tableHead">
                       <th width="10%">Date</th>
                       <th width="16%">ID</th>
                       <th width="5%">Status Code</th>

@@ -139,7 +139,7 @@ table{
 
 th{
   color:#ffffff;
-  background-color:#9ac1ea;
+  background-color:#1B395C;
   border:none;
   height:50px;
   font-size:2vh;
@@ -214,4 +214,9 @@ img:hover{
 html,body{
   margin:0;
   padding:0;
+}
+
+table thead tr th{
+  color:white;
+
 }
