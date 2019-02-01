@@ -23,7 +23,7 @@ class Inventory extends Component {
             }
         }
         catch(e) {
-            return this.setState({ data: e });
+            return this.setState({ data: String(e) });
         }
     }
 
