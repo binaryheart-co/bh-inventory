@@ -24,7 +24,7 @@ router.post("/register", ensureAuthenticated, async (req, res, next) => {
             notes, description, estValue
         });
         await device.save();
-        res.json(device);
+        res.json({fullID});
     }
     catch(e) {
         next(e);
