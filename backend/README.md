@@ -2,7 +2,7 @@
 
 After `cd` into the backend directory, run `npm run start` to start the backend server.
 
- All endpoints are accessed off of  `http://localhost:3001/api/`
+ All endpoints are accessed off of  `http://localhost:3001/api/` For example: the login endpoint is at `http://localhost:3001/api/auth/login`
 
 purpose | endpoint | required parameters | optional parameters
 --- | --- | --- | ---
