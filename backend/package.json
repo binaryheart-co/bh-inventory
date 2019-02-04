@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./app.js",
-    "debug": "nodemon --inspect ./app.js"
+    "debug": "nodemon --inspect ./app.js",
+    "production": "NODE_ENV=production node ./app.js"
   },
   "repository": {
     "type": "git",

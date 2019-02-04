@@ -49,4 +49,7 @@ router.use("/auth", auth);
 const user = require("./routes/user");
 router.use("/user", user);
 
+const inventory = require("./routes/inventory");
+router.use("/inventory", inventory);
+
 app.listen(serverPort, () => console.log(`Example app listening on port ${serverPort}!`))
