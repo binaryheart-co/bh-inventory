@@ -10,24 +10,10 @@ const userSchema = new Schema({
         index: true,
         unique: true,
         required: [true, "An email is required."],
-        // validate: {
-        //     validator: (v) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v),
-        //     message: "Please enter a valid email address."
-        // }
     },
     password: {
         type: String,
         required: [true, "A password is required."],
-        // validate: [
-        //     {
-        //         validator: (v) => v.length >= 8 && v.length <= 64,
-        //         message: "The password must be between 8 and 64 characters long."
-        //     },
-        //     {
-        //         validator: (v) => !commonList.test(v),
-        //         message: "We need a more secure password. Try something memorable but unique."
-        //     }
-        // ]
     },
     firstName: {
         type: String,
@@ -41,7 +27,6 @@ const userSchema = new Schema({
 
 //use regular function and not arrow function to work properly
 userSchema.pre("save", async function() {
-
     try {
         //only hash password if it has been modified (or is new)
         if(!this.isModified("password")) return;
