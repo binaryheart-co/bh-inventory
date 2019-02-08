@@ -52,4 +52,11 @@ router.use("/user", user);
 const inventory = require("./routes/inventory");
 router.use("/inventory", inventory);
 
+app.use(function(err, req, res, next) {
+    if(err.validation) {
+        return res.status(400).json({errors: err.validation});
+    }
+    return res.status(500).json({errors: ["There was a server error :("]});
+});
+
 app.listen(serverPort, () => console.log(`Example app listening on port ${serverPort}!`))

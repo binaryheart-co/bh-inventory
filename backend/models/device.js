@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+const escapeStringRegexp = require('escape-string-regexp');
+
 const notesSchema = new Schema({
         note: {
             type: String,
@@ -100,7 +102,7 @@ Date.prototype.getWeekYr = function() {
 }
 
 //generate unique ID method
-deviceSchema.statics.getUniqueID = async function() {
+deviceSchema.statics.getUniqueID = async function(next) {
     try {
         const weekYr = (new Date()).getWeekYr();
         const maxDevice = await this.findOne({weekYr: weekYr}).sort("-weekDevice").exec();
@@ -114,8 +116,57 @@ deviceSchema.statics.getUniqueID = async function() {
         return {weekYr, weekDevice, uniqueID};
     }
     catch(error) {
-        throw new Error(error);
+        return next(error);
     }
 }
+
+// generate inventory list
+// {
+//     "sort": "date",
+//     "order": "asc",
+//     "items": 50,
+//     "filters": {
+//         "search": "battery",
+//         "date": {
+//             "min" : "2019-02-07T23:51:58.479Z",
+//             "max" : "2019-02-07T23:53:37.554Z",
+//         },
+//         "code": [2,3,4,5],
+//         "type": ["A", "W", "I"],
+//         "subtype": ["L", "D"],
+//         "receiver": ["D2817001", "D2318003"],
+//         "value": {
+//             "min": 150,
+//             "max": 1200
+//         }
+//     }
+// }
+
+deviceSchema.query.search = function(search) {
+    const searchRgx = new RegExp(escapeStringRegexp(search), "i");
+    return this.where({
+        $or: [
+            {fullID: searchRgx},
+            {description: searchRgx},
+            {"notes.note": searchRgx},
+        ]
+    });
+}
+
+// deviceSchema.query.date = function(min, max) {
+//     const sear
+// }
+
+// deviceSchema.statics.listDevices = async function(sort, order, items, page, filter) {
+//     try {
+//         const searchRgx = new RegExp(escapeStringRegexp(filter.search), "i");
+//         const devices = await this.find({
+//             fullID: searchRgx,
+//         })
+//     }
+//     catch(error) {
+
+//     }
+// }
 
 module.exports = mongoose.model("Device", deviceSchema);

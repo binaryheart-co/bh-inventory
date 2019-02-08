@@ -13,7 +13,7 @@ router.post("/register", ensureAuthenticated, async (req, res, next) => {
         type = String(type).toUpperCase();
         subtype = String(subtype).toUpperCase();
 
-        const {weekYr, weekDevice, uniqueID} = await DeviceModel.getUniqueID();
+        const {weekYr, weekDevice, uniqueID} = await DeviceModel.getUniqueID(next);
         const fullID = uniqueID + type + subtype;
 
         let notes;
@@ -27,15 +27,15 @@ router.post("/register", ensureAuthenticated, async (req, res, next) => {
         res.json({fullID});
     }
     catch(e) {
-        next(e);
+        return next(e);
     }
 });
 
 router.post("/list", ensureAuthenticated, async (req, res, next) => {
     // try {
-    //     let {sort, order, } = req.body;
-    //     if(!type || !subtype || !code || !description || !estValue) {
-    //         next(new Error("type, subtype, code, description and estValue are required."));
+    //     let {sort, order, items, page, filter} = req.body;
+    //     if(!sort || !order || !items || !page) {
+    //         next(new Error("sort, order, items, and page are required"));
     //     }
     
     //     type = String(type).toUpperCase();
@@ -55,7 +55,7 @@ router.post("/list", ensureAuthenticated, async (req, res, next) => {
     //     res.json({fullID});
     // }
     // catch(e) {
-    //     next(e);
+    //     return next(e);
     // }
 });
 
