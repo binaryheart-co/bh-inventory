@@ -47,25 +47,25 @@ const deviceSchema = new Schema({
         type: {
             type: String,
             required: [true, "A device type is required."],
-            validate: {
-                validator: (v) => /^([ACIW])$/.test(v),
-                message: "A,C,I, and W are valid device types."
-            },
+            // validate: {
+            //     validator: (v) => /^([ACIW])$/.test(v),
+            //     message: "A,C,I, and W are valid device types."
+            // },
         },
         subtype: {
             type: String,
-            validate: {
-                validator: (v) => /^([LD])$/.test(v),
-                message: "L and D are valid device subtypes."
-            }
+            // validate: {
+            //     validator: (v) => /^([LD])$/.test(v),
+            //     message: "L and D are valid device subtypes."
+            // }
         },
         code: {
             type: Number,
             required: [true, "A status code is required."],
             index: true,
-            min: -4,
-            max: 5,
-            default: 0,
+            // min: -4,
+            // max: 5,
+            // default: 0,
         },
         notes: [notesSchema],
         description: {
@@ -82,8 +82,8 @@ const deviceSchema = new Schema({
         estValue: {
             type: Number,
             required: [true, "A price estimate is required."],
-            min: 0,
-            default: 0,
+            // min: 0,
+            // default: 0,
         },
         user: String,
         donor: String,
