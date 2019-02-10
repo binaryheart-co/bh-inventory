@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const escapeStringRegexp = require('escape-string-regexp');
+// const escapeStringRegexp = require('escape-string-regexp');
 
 const notesSchema = new Schema({
         note: {
@@ -67,7 +67,10 @@ const deviceSchema = new Schema({
             // max: 5,
             // default: 0,
         },
-        notes: [notesSchema],
+        notes: {
+            type: [notesSchema],
+            index: true,
+        },
         description: {
             type: String,
             required: [true, "A device description is required."],
@@ -92,6 +95,8 @@ const deviceSchema = new Schema({
         timestamps: true,
     }
 );
+
+deviceSchema.index({ fullID: "text", description: "text", "notes.note": "text", receiver: "text" });
 
 Date.prototype.getWeekYr = function() {
     const onejan = new Date(this.getFullYear(),0,1);
@@ -122,7 +127,6 @@ deviceSchema.statics.getUniqueID = async function(next) {
 
 // generate inventory list
 // {
-//     "sort": "date",
 //     "order": "asc",
 //     "items": 50,
 //     "filters": {
@@ -134,7 +138,6 @@ deviceSchema.statics.getUniqueID = async function(next) {
 //         "code": [2,3,4,5],
 //         "type": ["A", "W", "I"],
 //         "subtype": ["L", "D"],
-//         "receiver": ["D2817001", "D2318003"],
 //         "value": {
 //             "min": 150,
 //             "max": 1200
@@ -142,31 +145,67 @@ deviceSchema.statics.getUniqueID = async function(next) {
 //     }
 // }
 
-deviceSchema.query.search = function(search) {
-    const searchRgx = new RegExp(escapeStringRegexp(search), "i");
-    return this.where({
-        $or: [
-            {fullID: searchRgx},
-            {description: searchRgx},
-            {"notes.note": searchRgx},
-        ]
-    });
+deviceSchema.query.searchFields = function(search) {
+    return this.where(
+        { $text: { $search: search } },
+        { score: { $meta: "textScore" } }
+    )
+    .sort(
+        { score: { $meta: "textScore" } }
+    );
 }
 
-// deviceSchema.query.date = function(min, max) {
-//     const sear
-// }
+deviceSchema.query.date = function(min, max) {
+    return this.where({ createdAt: { $gte: min, $lte: max } });
+}
 
-// deviceSchema.statics.listDevices = async function(sort, order, items, page, filter) {
-//     try {
-//         const searchRgx = new RegExp(escapeStringRegexp(filter.search), "i");
-//         const devices = await this.find({
-//             fullID: searchRgx,
-//         })
-//     }
-//     catch(error) {
+deviceSchema.query.codes = function(codes) {
+    return this.where({ code: { $in: codes } });
+}
 
-//     }
-// }
+deviceSchema.query.types = function(types) {
+    return this.where({ type: { $in: types } });
+}
+
+deviceSchema.query.subtype = function(subtypes) {
+    return this.where({ subtype: { $in: subtypes } });
+}
+
+deviceSchema.query.valueRange = function(min, max) {
+    return this.where({ estValue: { $gte: min, $lte: max } });
+}
+
+deviceSchema.statics.listDevices = async function(order, items, before, after, filter) {
+    try {
+        let query;
+        if(filter.search) {
+            query = this.find(
+                { $text: { $search: filter.search } },
+                { score: { $meta: "textScore" } }
+            ).sort(
+                { score: { $meta: "textScore" } }
+            );
+        } else query = this.find();
+
+        if(filter.date) {
+            const minD = new Date(filter.date.min);
+            const maxD = new Date(filter.date.max);
+            query.date(minD, maxD);
+        }
+        if(filter.code) query.codes(filter.code);
+        if(filter.type) query.types(filter.type);
+        if(filter.subtype) query.subtype(filter.subtype);
+        if(filter.value) query.valueRange(+filter.value.min, +filter.value.max);
+
+        const orderN = order === "asc" ? 1 : -1;
+        query.sort({ createdAt: orderN });
+
+        query.limit(items);
+        return await query.exec();
+    }
+    catch(error) {
+        throw new Error(error);
+    }
+}
 
 module.exports = mongoose.model("Device", deviceSchema);
