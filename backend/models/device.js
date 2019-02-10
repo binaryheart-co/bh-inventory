@@ -156,7 +156,10 @@ deviceSchema.query.searchFields = function(search) {
 }
 
 deviceSchema.query.date = function(min, max) {
-    return this.where({ createdAt: { $gte: min, $lte: max } });
+    const params = {}
+    if(+min) params.$gte = min;
+    if(+max) params.$lte = max;
+    return this.where({ createdAt: params });
 }
 
 deviceSchema.query.codes = function(codes) {
@@ -172,30 +175,36 @@ deviceSchema.query.subtype = function(subtypes) {
 }
 
 deviceSchema.query.valueRange = function(min, max) {
-    return this.where({ estValue: { $gte: min, $lte: max } });
+    const params = {}
+    if(min) params.$gte = min;
+    if(max) params.$lte = max;
+    return this.where({ estValue: params });
 }
 
 deviceSchema.statics.listDevices = async function(order, items, before, after, filter) {
     try {
-        let query;
-        if(filter.search) {
-            query = this.find(
-                { $text: { $search: filter.search } },
-                { score: { $meta: "textScore" } }
-            ).sort(
-                { score: { $meta: "textScore" } }
-            );
-        } else query = this.find();
+        let query = this.find();
+        
+        if(filter) {
+            if(filter.search) {
+                query = this.find(
+                    { $text: { $search: filter.search } },
+                    { score: { $meta: "textScore" } }
+                ).sort(
+                    { score: { $meta: "textScore" } }
+                );
+            }
 
-        if(filter.date) {
-            const minD = new Date(filter.date.min);
-            const maxD = new Date(filter.date.max);
-            query.date(minD, maxD);
+            if(filter.date) {
+                const minD = new Date(filter.date.min);
+                const maxD = new Date(filter.date.max);
+                query.date(minD, maxD);
+            }
+            if(filter.code) query.codes(filter.code);
+            if(filter.type) query.types(filter.type);
+            if(filter.subtype) query.subtype(filter.subtype);
+            if(filter.value) query.valueRange(+filter.value.min, +filter.value.max);
         }
-        if(filter.code) query.codes(filter.code);
-        if(filter.type) query.types(filter.type);
-        if(filter.subtype) query.subtype(filter.subtype);
-        if(filter.value) query.valueRange(+filter.value.min, +filter.value.max);
 
         const orderN = order === "asc" ? 1 : -1;
         query.sort({ createdAt: orderN });

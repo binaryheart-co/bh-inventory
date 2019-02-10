@@ -76,11 +76,11 @@ router.get("/list",
         body("filters.date").optional().custom(v => {
             let min, max;
             try { min = new Date(v.min); max = new Date(v.max); }
-            catch { throw new Error("A valid min and max date are needed."); }
+            catch { throw new Error("A valid min or max date are needed."); }
             
             //check for NaN, + tries to convert to number
-            if(!+min || !+max) throw new Error("A valid min and max date are needed.");
-            if(min > max) throw new Error("The min date must be before the max date.");
+            if(!+min && !+max) throw new Error("A valid min or max date is needed.");
+            // if(min > max) throw new Error("The min date must be before the max date.");
             return true;
         }),
         body("filters.code", "An array with valid status codes is needed.").optional({nullable: false})
@@ -93,10 +93,10 @@ router.get("/list",
         body("filters.value").optional({nullable: false}).custom(v => {
             let min, max;
             try { min = v.min; max = v.max; }
-            catch { throw new Error("Valid min and max values are needed."); }
+            catch { throw new Error("Valid min or max values are needed."); }
 
-            if(!+min || !+max) throw new Error("Valid min and max values are needed.");
-            if(min > max) throw new Error("The min value must be greater than the max value.");
+            if(!+min && !+max) throw new Error("Valid min or max values are needed.");
+            // if(min > max) throw new Error("The min value must be greater than the max value.");
             return true;
         })
     ],
