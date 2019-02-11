@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require("../setup/passport");
 const DeviceModel = require("../models/device");
 const { body, validationResult } = require('express-validator/check');
+const ObjectId = require("mongoose").Types.ObjectId;
 
 router.post("/register", 
     [
@@ -51,8 +52,13 @@ router.post("/register",
 );
 
 // {
-//     "order": "asc",
 //     "items": 50,
+//     "token": {
+//         "direction": "before",
+//         "date": "2019-02-07T23:51:58.479Z",
+//         "score": 1.1,
+//         "id": "5c5fc12e52466eb092738529",
+//     }
 //     "filters": {
 //         "search": "battery",
 //         "date": {
@@ -70,17 +76,13 @@ router.post("/register",
 // }
 router.get("/list", 
     [
-        body("order", "Order asc or dsc.").isIn(["asc", "dsc"]),
         body("items", "Item limit must be between 10 and 100").isInt({min: 10, max: 100}),
         body("filters.search").optional().isString().isLength({min: 1}),
         body("filters.date").optional().custom(v => {
             let min, max;
             try { min = new Date(v.min); max = new Date(v.max); }
             catch { throw new Error("A valid min or max date are needed."); }
-            
-            //check for NaN, + tries to convert to number
-            if(!+min && !+max) throw new Error("A valid min or max date is needed.");
-            // if(min > max) throw new Error("The min date must be before the max date.");
+            if(!+min && !+max) throw new Error("A valid min or max date is needed."); //check for NaN, + tries to convert to number
             return true;
         }),
         body("filters.code", "An array with valid status codes is needed.").optional({nullable: false})
@@ -89,14 +91,22 @@ router.get("/list",
             .isArray().isLength({min: 1}),
         body("filters.subtype", "An array with valid subtypes is needed.").optional({nullable: false})
             .isArray().isLength({min: 1}),
-        // body("filters.receiver", "A valid receiver string is needed.").optional().isString().isLength({min: 1}),
         body("filters.value").optional({nullable: false}).custom(v => {
             let min, max;
             try { min = v.min; max = v.max; }
             catch { throw new Error("Valid min or max values are needed."); }
-
             if(!+min && !+max) throw new Error("Valid min or max values are needed.");
-            // if(min > max) throw new Error("The min value must be greater than the max value.");
+            return true;
+        }),
+        body("token").optional({nullable: false}).custom(v => {
+            try {
+                if(!["before", "after"].includes(v.direction)) throw new Error();
+                if(v.score && !+v.score) throw new Error();
+                if(!ObjectId(v.id)) throw new Error();
+            }
+            catch {
+                throw new Error("Token requires valid direction, date, score, and id.");
+            }
             return true;
         })
     ],
@@ -105,10 +115,10 @@ router.get("/list",
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
 
-        let {order, items, filters} = req.body;
+        let { items, token, filters } = req.body;
 
         try {
-            const devices = await DeviceModel.listDevices(order, items, undefined, undefined, filters);
+            const devices = await DeviceModel.listDevices(items, token, filters);
             return res.json(devices);
         }
         catch(e) {

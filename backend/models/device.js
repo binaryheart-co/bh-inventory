@@ -125,10 +125,13 @@ deviceSchema.statics.getUniqueID = async function(next) {
     }
 }
 
-// generate inventory list
 // {
-//     "order": "asc",
 //     "items": 50,
+//     "token": {
+//         "direction": "before",
+//         "score": 1.1,
+//         "id": "5c5fc12e52466eb092738529",
+//     }
 //     "filters": {
 //         "search": "battery",
 //         "date": {
@@ -145,72 +148,96 @@ deviceSchema.statics.getUniqueID = async function(next) {
 //     }
 // }
 
-deviceSchema.query.searchFields = function(search) {
-    return this.where(
-        { $text: { $search: search } },
-        { score: { $meta: "textScore" } }
-    )
-    .sort(
-        { score: { $meta: "textScore" } }
-    );
-}
-
-deviceSchema.query.date = function(min, max) {
-    const params = {}
-    if(+min) params.$gte = min;
-    if(+max) params.$lte = max;
-    return this.where({ createdAt: params });
-}
-
-deviceSchema.query.codes = function(codes) {
-    return this.where({ code: { $in: codes } });
-}
-
-deviceSchema.query.types = function(types) {
-    return this.where({ type: { $in: types } });
-}
-
-deviceSchema.query.subtype = function(subtypes) {
-    return this.where({ subtype: { $in: subtypes } });
-}
-
-deviceSchema.query.valueRange = function(min, max) {
-    const params = {}
-    if(min) params.$gte = min;
-    if(max) params.$lte = max;
-    return this.where({ estValue: params });
-}
-
-deviceSchema.statics.listDevices = async function(order, items, before, after, filter) {
+deviceSchema.statics.listDevices = async function(items, token, filter) {
     try {
-        let query = this.find();
-        
+        let query = this.aggregate([]);
+
+        //apply the filters
         if(filter) {
+            //Do mongo full-text search, add resultant score field
             if(filter.search) {
-                query = this.find(
-                    { $text: { $search: filter.search } },
-                    { score: { $meta: "textScore" } }
-                ).sort(
-                    { score: { $meta: "textScore" } }
-                );
+                query = this.aggregate([
+                    { $match: { $text: { $search: filter.search } } },
+                    { $addFields: { score: { $meta: "textScore" } } }
+                ]);
             }
 
+            //Filter the resultant devices
             if(filter.date) {
                 const minD = new Date(filter.date.min);
                 const maxD = new Date(filter.date.max);
-                query.date(minD, maxD);
+                const params = {}
+                if(+minD) params.$gte = minD;
+                if(+maxD) params.$lte = maxD;
+                query.match({ createdAt: params });
             }
-            if(filter.code) query.codes(filter.code);
-            if(filter.type) query.types(filter.type);
-            if(filter.subtype) query.subtype(filter.subtype);
-            if(filter.value) query.valueRange(+filter.value.min, +filter.value.max);
+            if(filter.code) query.match({ code: { $in: filter.code } });
+            if(filter.type) query.match({ type: { $in: filter.type } });
+            if(filter.subtype) query.match({ subtype: { $in: filter.subtype } });
+            if(filter.value) {
+                const params = {}
+                if(+filter.value.min) params.$gte = +filter.value.min;
+                if(+filter.value.max) params.$lte = +filter.value.max;
+                query.match({ estValue: params });
+            }
         }
 
-        const orderN = order === "asc" ? 1 : -1;
-        query.sort({ createdAt: orderN });
+        //Deal with tokens/paging if it is requested
+        if(token) {
+            const id = new mongoose.Types.ObjectId(token.id); //convert token id to valid mongo ObjectId
 
-        query.limit(items);
-        return await query.exec();
+            //Define query params depend on after or before token
+            let queryParams;
+            if(token.direction === "after") queryParams = { order: -1, compare: "$lt" };
+            else if(token.direction === "before") queryParams = { order: 1, compare: "$gt" };
+
+            //Perform page query
+            query.sort({ score: queryParams.order , _id: queryParams.order });
+            if(token.score) {
+                //Filter by token score, use token id if multiple documents same score
+                query.match({ 
+                    $or: [
+                        { score: { [queryParams.compare]: token.score } },
+                        {
+                            score: token.score,
+                            _id: { [queryParams.compare]: id },
+                        }
+                    ]
+                });
+            }
+            else {
+                query.match({ _id: { [queryParams.compare]: id } }); //Filter by token id
+            }
+        }
+        else {
+            query.sort({ score: -1, _id: -1 }); //default sorting
+        }
+
+        query.limit(items); //limit to requested number of devices
+
+        const devices = await query.exec();
+        if(token && token.direction === "before") devices.reverse(); //put docs back in right order if scrolling up
+        const data = { devices: devices };
+
+        // generate the tokens
+        if(devices.length > 1) {
+            const before = { 
+                direction: "before", 
+                id: devices[0]._id.toString(),
+            }
+            const after = {
+                direction: "after",
+                id: devices[devices.length - 1]._id.toString(),
+            }
+            if(filter && filter.search) {
+                before.score = devices[0].score;
+                after.score = devices[devices.length - 1].score;
+            }
+            data.before = before;
+            data.after = after;
+        }
+
+        return data;
     }
     catch(error) {
         throw new Error(error);
