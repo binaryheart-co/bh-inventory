@@ -55,7 +55,6 @@ router.post("/register",
 //     "items": 50,
 //     "token": {
 //         "direction": "before",
-//         "date": "2019-02-07T23:51:58.479Z",
 //         "score": 1.1,
 //         "id": "5c5fc12e52466eb092738529",
 //     }
