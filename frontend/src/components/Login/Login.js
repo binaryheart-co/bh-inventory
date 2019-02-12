@@ -39,8 +39,9 @@ class Login extends Component {
                 }
             });
             const resData = await response.json();
-            if(resData.error) {
-                this.setState({ hideNotify: false, message: resData.error });
+            console.log(resData);
+            if(resData.errors) {
+                this.setState({ hideNotify: false, message: resData.errors[0].msg });
             }
             else if(response.status === 200) {
                 this.props.history.push("/inventory");
