@@ -28,7 +28,7 @@ module.exports = {
             
             //ZNS
             path : '/home/marzukr/zns',
-            'post-deploy' : "cd frontend && npm install && cd .. && cd backend && npm install"
+            'post-deploy' : "cd frontend && npm install && npm run build && cd .. && cd backend && npm install"
         }
     }
 };
