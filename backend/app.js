@@ -4,14 +4,19 @@ const app = express();
 
 //Modules
 const bodyParser = require("body-parser");
-// const cors = require("cors");
 const session = require("express-session");
 const passport = require('passport');
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
+const path = require("path");
+const helmet = require("helmet");
 
 //Constants
-const { serverPort, sessionSecret } = require("./config");
+const { serverPort } = require("./config");
+const isProduction = process.env.NODE_ENV === "production";
+
+//Helmet - for security
+app.use(helmet());
 
 //Setup
 require("./setup/passport");
@@ -21,23 +26,28 @@ require("./setup/db");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-//CORS
-// app.use(cors({
-//     origin: "http://localhost:3000",
-// }));
-
 //Express Session
 app.use(session({
-    secret: sessionSecret,
+    secret: process.env.SESSION_SECRET,
+    name: "session1",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }, //CHANGE FOR PRODUCTION
+    cookie: { 
+        secure: isProduction,
+        httpOnly: isProduction,
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        domain: isProduction ? "binaryheart.org" : undefined,
+        sameSite: isProduction,
+    },
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-}))
+}));
 
 //Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Static files from React build
+app.use(express.static(path.join(__dirname, "build")));
 
 //API Routes
 const router = express.Router();
@@ -51,6 +61,10 @@ router.use("/user", user);
 
 const inventory = require("./routes/inventory");
 router.use("/inventory", inventory);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build/index.html"));
+})
 
 app.use(function(err, req, res, next) {
     if(err.validation) {
