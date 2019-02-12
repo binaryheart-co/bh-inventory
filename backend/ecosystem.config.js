@@ -15,20 +15,4 @@ module.exports = {
             NODE_ENV: 'production'
         }
     }],
-
-    deploy : {
-        production : {
-            key: "~/.ssh/digitalOcean_rsa",
-            user : 'marzukr', //SSH user
-            host : '159.203.123.64', //SSH host
-
-            //Git stuff
-            ref  : 'origin/zuk',
-            repo : 'git@github.com:marzukr/bh-inventory.git',
-            
-            "post-setup": "ls -la",
-            path : '/home/marzukr/zns',
-            "post-deploy": "mkdir yo"
-        }
-    }
 };
