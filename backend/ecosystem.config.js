@@ -18,6 +18,7 @@ module.exports = {
 
     deploy : {
         production : {
+            key: "~/.ssh/digitalOcean_rsa",
             user : 'marzukr', //SSH user
             host : '159.203.123.64', //SSH host
 
@@ -27,7 +28,7 @@ module.exports = {
             
             //ZNS
             path : '/home/marzukr/zns',
-            'post-deploy' : 'npm install'
+            'post-deploy' : "cd frontend && npm install && cd .. && cd backend && npm install"
         }
     }
 };
