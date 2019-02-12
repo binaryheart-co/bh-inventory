@@ -26,9 +26,9 @@ module.exports = {
             ref  : 'origin/zuk',
             repo : 'git@github.com:marzukr/bh-inventory.git',
             
-            //ZNS
+            "post-setup": "ls -la",
             path : '/home/marzukr/zns',
-            'post-deploy' : "cd frontend && npm install && npm run build && cd .. && cd backend && npm install"
+            "post-deploy": "mkdir yo"
         }
     }
 };
