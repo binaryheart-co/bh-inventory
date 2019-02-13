@@ -73,44 +73,35 @@ class Inventory extends Component {
             <div>
                 {this.state.data}
 
-                <div class="bar">
+                <div className="bar">
                   <img src={logo}></img>
                   <img src={inventoryIcon}></img>
                   <img src={tasksIcon}></img>
                 </div>
-                <table class="scrollable">
-                  <tbody>
-                    <tr>
-                      <td width="10%">Example</td>
-                      <td width="16%">Example</td>
-                      <td width="5%">Example</td>
-                      <td width="15%">Example</td>
-                      <td width="22%">Example</td>
-                      <td width="14%">Example</td>
-                      <td width="10%">Example</td>
-                      <td width="8%">Example</td>
-                    </tr>
-                    {rows}
-                  </tbody>
-                </table>
-                <table class="head" id="head">
-                  <thead>
-                    <tr class="tableHead">
-                      <th width="10%">Date</th>
-                      <th width="16%">ID</th>
-                      <th width="5%">Status Code</th>
-                      <th width="15%">Notes</th>
-                      <th width="22%">Description</th>
-                      <th width="14%">Donor</th>
-                      <th width="10%">Reciever</th>
-                      <th width="8%">Money</th>
-                    </tr>
-                  </thead>
-                </table>
-                <div class="down">
-                  <i class="fas fa-angle-down" id="downArrow" onclick="organizationPopup"></i>
+				<table className="mainTable">
+				  <thead>
+					<tr>
+					  <th width="6%">Date</th>
+					  <th width="10%">ID</th>
+					  <th width="5%">Code</th>
+					  <th>User</th>
+					  <th>Status</th>
+					  <th width="30%">Notes</th>
+					  <th>Description</th>
+					  <th width="5%">Donor</th>
+					  <th width="7%">Reciever</th>
+					  <th>Money</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					{rows}
+				  </tbody>
+				</table>
+
+                <div className="down">
+                  <i className="fas fa-angle-down" id="downArrow" onClick="organizationPopup that Nikita was working on"></i>
                 </div>
-                <div class="dim" id="dim">
+                <div className="dim" id="dim">
                 </div>
             </div>
         );
