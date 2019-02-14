@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //Express Session
+app.set("trust proxy", true);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     name: "session1",
@@ -36,8 +37,8 @@ app.use(session({
         secure: isProduction,
         httpOnly: isProduction,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        // domain: isProduction ? "binaryheart.org" : undefined,
-        // sameSite: isProduction,
+        domain: isProduction ? "binaryheart.org" : undefined,
+        sameSite: isProduction,
     },
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
