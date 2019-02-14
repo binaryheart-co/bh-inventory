@@ -1,0 +1,165 @@
+
+      .dim{
+        position:absolute;
+        top:0;
+        width:100%;
+        height:100vh;
+        background-color:black;
+        opacity:0.8;
+        visibility:hidden;
+      }
+
+      .popup{
+        position:absolute;
+        top:25vh;
+        left:32%;
+        width:30%;
+        height:50vh;
+        background-color: white;
+        border-radius:30px;
+        visibility:visible;
+      }
+
+      .popup  p{
+        font-size:40px;
+        text-align:center;
+        color:#183A5F;
+        margin-left:auto;
+        margin-right:auto;
+        font-family: 'Lato', sans-serif;
+        transition:1s;
+        box-shadow:0 0 25px gray;
+      }
+
+      .organization{
+        visibility:hidden;
+      }
+
+      .organization button{
+        position:relative;
+        display:block;
+        margin-top:2vh;
+        height:60px;
+        width:190px;
+        border-radius:50px;
+        border:none;
+        color:white;
+        font-size:30px;
+      }
+
+      .popup button{
+        margin-left:auto;
+        margin-right:auto;
+        background-color:#FF0141;
+        outline:none;
+        cursor:pointer;
+        transition:.1s;
+        opacity:0.85;
+      }
+
+      .popup button:hover{
+        width:210px;
+        transition:.3s;
+        opacity:1;
+      }
+
+      .popup button:active{
+        background-color:#ce0031;
+      }
+
+      .down{
+        position:absolute;
+        margin-left:300px;
+        top:10px;
+      }
+
+      .bar{
+        position:fixed;
+        background-color:#FF0141;
+        width:6em;
+		top:0;
+        height:100vh;
+        box-shadow:0 0 25px black;
+        border-radius: 0px 30px 30px 0px;
+      }
+
+      ::-webkit-scrollbar{
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track{
+        background:#d6d6d6;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+
+      table{
+        font-family: 'Lato', sans-serif;
+		position:absolute;
+        top:4vh;
+        left:8em;
+        min-width:40em;
+		max-width:90%;
+      }
+
+      th{
+        background-color: #183A5F;
+        height:3.5em;
+		padding: 1em;
+        font-size:1em;
+      }
+
+      td{
+        padding:1em;
+		border:1px solid black;
+      }
+
+      tbody{
+        box-shadow:0 0 25px black;
+        border-radius: 0px 0px 2em 2em;
+      }
+
+      th:first-child {
+        border-radius: 2em 0 0 0;
+      }
+
+      th:last-child {
+        border-radius: 0 2em 0 0;
+      }
+
+      img{
+        position:relative;
+        cursor:pointer;
+		height:8vh;
+      }
+
+      img:hover{
+		transition:.4s;
+        height:10vh;
+      }
+
+      .ico{
+        position:absolute;
+        top:4vh;
+		text-align:center;
+        font-size:7vh;
+        cursor:pointer;
+      }
+	  
+	  .iconic:hover{
+		transition:.4s;
+		font-size:9vh;
+	  }
+
+      body{
+        /*background-color:#ff3f6e;*/
+      }
+
+table thead tr th{
+  color:white;
+
+}
