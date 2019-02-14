@@ -5,12 +5,6 @@ import logo from  "./binaryHeartLogo80.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./style.scss";
 
-
-//const bcrypt = require('bcrypt-nodejs');
-//const hashCost = 10;
-//const secureStuff = bcrypt.hashSync("binaryheart", bcrypt.genSaltSync(hashCost))
-
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +12,7 @@ class Login extends Component {
             email: "",
             password: "",
             message: "",
-            hideNotify: true
+            hideNotify: true,
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -54,7 +48,7 @@ class Login extends Component {
             }
         }
         catch(e) {
-            this.setState({ hideNotify: false, message: String(e) });
+            this.setState({ hideNotify: false, message: e });
         }
     }
 
@@ -68,7 +62,7 @@ class Login extends Component {
                 <a href="https://binaryheart.org"><img src={logo} alt="binaryheart.org"/></a>
                 <div className="field">
                     <p className="control has-icons-left">
-                        <input value={this.state.email} name="email" onChange={this.handleChange} id="emailInput" className="input is-size-4" type="email" placeholder="Login"/>
+                        <input value={this.state.email} name="email" onChange={this.handleChange} id="emailInput" className="input is-size-4" type="email" placeholder="Email"/>
                         <span id="emailIcon" className="icon is-size-4 is-left">
                             <FontAwesomeIcon icon="envelope"/>
                         </span>
