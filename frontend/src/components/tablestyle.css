@@ -67,20 +67,17 @@
         background-color:#ce0031;
       }
 
-      .down i{
+      .down{
         position:absolute;
         margin-left:300px;
-        top:120px;
-        color: white;
-        opacity:1;
+        top:10px;
       }
 
       .bar{
         position:fixed;
         background-color:#FF0141;
         width:6em;
-        top:0;
-        left:0;
+		top:0;
         height:100vh;
         box-shadow:0 0 25px black;
         border-radius: 0px 30px 30px 0px;
@@ -101,14 +98,12 @@
 
 
       table{
-        border-collapse:collapse;
         font-family: 'Lato', sans-serif;
-        border-spacing: 0;
 		position:absolute;
-        top:8vh;
-        left:10em;
-        width:80em;
-		table-layout:fixed;
+        top:4vh;
+        left:8em;
+        min-width:40em;
+		max-width:90%;
       }
 
       th{
@@ -120,13 +115,10 @@
 
       td{
         padding:1em;
-        background-color: #96bde8;
+		border:1px solid black;
       }
 
       tbody{
-        overflow-y:auto;
-        overflow-x:hidden;
-        height:80vh;
         box-shadow:0 0 25px black;
         border-radius: 0px 0px 2em 2em;
       }
@@ -139,66 +131,33 @@
         border-radius: 0 2em 0 0;
       }
 
-
       img{
-        top:3%;
-        height:8vh;
-        left:1.7vh;
         position:relative;
-        display:block;
-        transition:.4s;
         cursor:pointer;
+		height:8vh;
       }
 
       img:hover{
+		transition:.4s;
         height:10vh;
-        left:0.7vh;
-        top:2%;
       }
 
-      .boxIcon i{
-        color:#ffffff;
+      .ico{
         position:absolute;
-        display:block;
-        top:15vh;
-        left:1.7vh;
+        top:4vh;
+		text-align:center;
         font-size:7vh;
-        transition:.4s;
         cursor:pointer;
       }
-
-      .boxIcon i:hover{
-        font-size:8.5vh;
-        left:.9vh;
-        top:14.5vh;
-      }
-
-      .tasksIcon i{
-        color:#ffffff;
-        position:absolute;
-        display:block;
-        top:25vh;
-        left:1.6vh;
-        font-size:8vh;
-        transition:.4s;
-        cursor:pointer;
-      }
-
-      .tasksIcon i:hover{
-        font-size:9.9vh;
-        left:1vh;
-        top:24.3vh;
-      }
+	  
+	  .iconic:hover{
+		transition:.4s;
+		font-size:9vh;
+	  }
 
       body{
         /*background-color:#ff3f6e;*/
       }
-
-      html,body{
-        margin:0;
-        padding:0;
-      }
-
 
 table thead tr th{
   color:white;

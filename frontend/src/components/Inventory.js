@@ -2,9 +2,50 @@ import React, { Component } from 'react';
 import './tablestyle.css';
 import './binary.svg';
 import logo from './binaryheartWhite.png';
-import tasksIcon from './tasks-solid.svg';
-import inventoryIcon from './box-open-solid.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import bhInventory from './nikita.json';
+
+
+class Inventrow extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			clicked: false
+        }
+    }
+	render() {
+		const i = this.props.i;
+		const coding = i.code === 1
+			? <td bgcolor="#57BB8A">1</td>
+			: ( i.code === 2
+				? <td bgcolor="#F7B96A">2</td>
+				: ( i.code === 3
+					? <td bgcolor="#EF9B6E">3</td>
+					: ( i.code === 4
+						? <td bgcolor="#E67C73">4</td>
+						: <td>{i.code}</td>
+					)
+				)
+			)
+		const note = this.state.clicked === true ? <input class="input" type="text" value={i.notes}/> : i.notes;
+		
+		return (
+			<tr bgcolor="#96bde8">
+				<td>{i.date}</td>
+				<td>{i.id}</td>
+				{coding}
+				<td>{i.user}</td>
+				<td>{i.status}</td>
+				<td onClick={() => this.setState({clicked:true}) }>{note}</td>
+				<td>{i.description}</td>
+				<td>{i.receiver}</td>
+				<td>{i.money}</td>
+			</tr>
+		);
+	}
+}
+
+
 
 
 class Inventory extends Component {
@@ -40,33 +81,10 @@ class Inventory extends Component {
 
     render() {
       const rows = [];
-  		bhInventory.forEach((tt) => {
-  			const coding = tt.code === 1
-  				? <td bgcolor="#57BB8A">1</td>
-  				: ( tt.code === 2
-  					? <td bgcolor="#F7B96A">2</td>
-  					: ( tt.code === 3
-  						? <td bgcolor="#EF9B6E">3</td>
-  						: ( tt.code === 4
-  							? <td bgcolor="#E67C73">4</td>
-  							: <td>{tt.code}</td>
-  						)
-  					)
-  				)
-  			rows.push(
-  				<tr>
-            <td>{tt.date}</td>
-            <td>{tt.id}</td>
-  					{coding}
-  					<td>{tt.user}</td>
-            <td>{tt.status}</td>
-            <td>{tt.notes}</td>
-            <td>{tt.description}</td>
-            <td>{tt.donor}</td>
-            <td>{tt.receiver}</td>
-            <td>{tt.money}</td>
-  				</tr>
-  			);
+  		bhInventory.forEach((i) => {
+			rows.push(
+				<Inventrow i={i} key={i.id} />
+			);
   		});
 
         return (
@@ -74,9 +92,12 @@ class Inventory extends Component {
                 {this.state.data}
 
                 <div className="bar">
-                  <img src={logo}></img>
-                  <img src={inventoryIcon}></img>
-                  <img src={tasksIcon}></img>
+					<div className="ico">
+					<img src={logo}/>
+					<FontAwesomeIcon icon="tasks" color="white" className="iconic"/>
+					<br/>
+					<FontAwesomeIcon icon="box-open" color="white" className="iconic"/>
+					</div>
                 </div>
 				<table className="mainTable">
 				  <thead>
@@ -88,8 +109,7 @@ class Inventory extends Component {
 					  <th>Status</th>
 					  <th width="30%">Notes</th>
 					  <th>Description</th>
-					  <th width="5%">Donor</th>
-					  <th width="7%">Reciever</th>
+					  <th width="7%">Receiver</th>
 					  <th>Money</th>
 					</tr>
 				  </thead>
@@ -99,7 +119,7 @@ class Inventory extends Component {
 				</table>
 
                 <div className="down">
-                  <i className="fas fa-angle-down" id="downArrow" onClick="organizationPopup that Nikita was working on"></i>
+                  <FontAwesomeIcon icon="angle-down" id="downArrow" onClick="organizationPopup that Nikita was working on"/>
                 </div>
                 <div className="dim" id="dim">
                 </div>

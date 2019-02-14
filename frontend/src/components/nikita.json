@@ -7,8 +7,7 @@
    "status": "Device & Charger Stickered",
    "notes": "10/24/18: N/A\n10/31/18: Os is activate\n11/7/18: Screen is not centered",
    "description": "Compaq CQ5210Y Desktop",
-   "donor": "",
-   "reciever": "D5118005",
+   "receiver": "D5118005",
    "money": "$100 "
  },
  {
@@ -19,8 +18,7 @@
    "status": "Salvaged",
    "notes": "11/7/18: none",
    "description": "HP Compaq ms6000\n",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$2,000 "
  },
  {
@@ -31,8 +29,7 @@
    "status": "Needs Repair",
    "notes": "10/24/18: Need charger for Chromebook \n11/28/18: Missing\n11/28/18: Charger was not found, computer won't turn on.",
    "description": "Asus C201P notebook\n",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$500 "
  },
  {
@@ -43,8 +40,7 @@
    "status": "Device & Charger Stickered",
    "notes": "11/28/18: Device has been set up (IN ENGLISH) and works perfectly (no passcode)",
    "description": "Apple ipad A1458",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,000 "
  },
  {
@@ -55,8 +51,7 @@
    "status": "Unknown",
    "notes": "11/28/18: Mark Kaplan owned this computer and has a folder labeled �Katy perry�\n12/5/18: cant install os\n1/9/19: Can't find",
    "description": "Apple laptop a1133",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$250 "
  },
  {
@@ -67,8 +62,7 @@
    "status": "Works",
    "notes": "12/3/18: os being installed, left out on table\n12/5/18: OS needs to be installed",
    "description": "Apple desktop a1278",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,000 "
  },
  {
@@ -79,8 +73,7 @@
    "status": "OS Activated",
    "notes": "11/28/18: Turns on\n12/5/18: Installed OS and activated \n12/5/18: Had to wipe previous user data in order to install new OS",
    "description": "Apple desktop a1312",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$3,000 "
  },
  {
@@ -91,8 +84,7 @@
    "status": "Unknown",
    "notes": "Apple desktop A1316\n12/5/18: This is a monitor not regular desktop (needs desktop to connect)",
    "description": "Apple desktop A1316",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$3,000 "
  },
  {
@@ -103,8 +95,7 @@
    "status": "Works",
    "notes": "11/28/18: Need os installed\n12/5/18: No driver detected\n12/12/18: Update OS to Win10",
    "description": "Dell inspiron 537S desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$700 "
  },
  {
@@ -115,8 +106,7 @@
    "status": "Needs Repair",
    "notes": "11/28/18: Needs os\n12/5/18: OS could not be installed",
    "description": "Acerpower fh desktop \n",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$150 "
  },
  {
@@ -127,8 +117,7 @@
    "status": "Needs Repair",
    "notes": "12/5/18: No OS found, possible dead HDD\n12/12/18: It just needs some simple setup and troubleshooting to work. I installed the missing hard drive and removed the friend CD box.",
    "description": "Lenovo ibm thinkcentre zk5 desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,000 "
  },
  {
@@ -139,8 +128,7 @@
    "status": "Salvaged",
    "notes": "11/28/18: Needs OS\n12/5/18: Need OS install (CD)\n12/12/18: Horribly slow and won�t boot from usb\n1/16/19: Completed salvage successfully.\n1/16/19: I can't find it\n1/16/19: Update on this computer: it was in the pile, someone forgot to log it",
    "description": "HP Compaq DXX2300 microtower desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,500 "
  },
  {
@@ -151,8 +139,7 @@
    "status": "Unknown",
    "notes": "11/28/18: Bad hard drive\n12/5/18: HDD installed\n\n12/5/18: Installed Hard Drive and replaced RAM\n12/12/18: Does not post",
    "description": "HP Pavillion 6535 desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$100 "
  },
  {
@@ -163,8 +150,7 @@
    "status": "Unknown",
    "notes": "12/5/18: Doesn�t acknowledge usb drive\n12/12/18: Doesnt exist",
    "description": "Lenovo IBM Thnkcentre sk5 desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$3,000 "
  },
  {
@@ -175,8 +161,7 @@
    "status": "Works",
    "notes": "11/28/18: Needs os install.\n12/5/18: Problems installing OS",
    "description": "Dell Dimension 2400 Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$119 "
  },
  {
@@ -187,8 +172,7 @@
    "status": "Unknown",
    "notes": "11/28/18: No hard drive\n12/12/18: Installed HDD",
    "description": "Dell Optiplex 740 Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$195 "
  },
  {
@@ -199,8 +183,7 @@
    "status": "Needs Repair",
    "notes": "11/28/18: No OS, no hard drive\n12/5/18: Needs OS install \n12/5/18: Needs OS install \n12/12/18: Ran into an error with the floppy disk drive upon startup each time\n1/30/19: Floppy diskette failure",
    "description": "Dell Optiplex GX 620 Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$199 "
  },
  {
@@ -211,8 +194,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: Lacks Hard drive. seems to need unique video cable\n12/5/18: Put in hard drive. Not tested yet. Added a Gb of RAM.\n12/12/18: Needs new hard drive:(\n1/16/19: Install os\n1/16/19: OS installed",
    "description": "HP Pavillion A1747C desktop computer",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$22 "
  },
  {
@@ -223,8 +205,7 @@
    "status": "Needs Repair",
    "notes": "11/28/18: This computer does not turn on",
    "description": "Dell Studio Slim 540s desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$199 "
  },
  {
@@ -235,8 +216,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: Lacks hard drive. couldnt boot for this reason. seems to work otherwise\n12/12/18: Needs hard drive to be connected, but sata cable is too short.\n12/12/18: HDD installed\n1/9/19: OS installed, on getting ready screen",
    "description": "Dell Vostro 200\n",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$340 "
  },
  {
@@ -247,8 +227,7 @@
    "status": "Works",
    "notes": "11/28/18: works but is a tad slow, also still logged in on previous owner login.",
    "description": "Apple Macbook A1181",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$75 "
  },
  {
@@ -259,8 +238,7 @@
    "status": "Unknown",
    "notes": "11/28/18: OS needs to be installed \n11/28/18: Needs OS installation\n12/12/18: No hard drive installed\n1/16/19: Might need Graphics card, VGA port not working\n1/16/19: Missing",
    "description": "Dell Optiplex 320",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$30 "
  },
  {
@@ -271,8 +249,7 @@
    "status": "Unknown",
    "notes": "12/5/18: Refuses to display anything\n1/9/19: Missing",
    "description": "HP Compaq NX7400 Laptop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$76 "
  },
  {
@@ -283,8 +260,7 @@
    "status": "Works",
    "notes": "11/28/18: won't turn on and key board N key has broken off and some letter keys have scrached off the letter name. \n1/9/19: World fine, needs data wiped",
    "description": "Apple Maxbook Model A1181",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$199 "
  },
  {
@@ -295,8 +271,7 @@
    "status": "OS Activated",
    "notes": "11/28/18: OS was not present when turned on\n11/28/18: Boots to Vista Buisness\n1/9/19: OS Activated",
    "description": "LEnovo ThinkCentre M58e 7279",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$125 "
  },
  {
@@ -307,8 +282,7 @@
    "status": "Works",
    "notes": "12/5/18: Won�t turn on. Plugged into monitor but monitor stays black.\n1/16/19: Yeet\n1/16/19: Using windows XP. Says system voltage low\n1/16/19: needs os update",
    "description": "Dell Optiplex GX520 Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$24 "
  },
  {
@@ -319,8 +293,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: Works good\n12/5/18: Runs very, very slow",
    "description": "HP Pavillion M9252p desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$125 "
  },
  {
@@ -331,8 +304,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: runs windows 7\n1/16/19: None\n1/16/19: OS was installed on the computer, needs to be activated",
    "description": "Dell Optiplex 7010",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$350 "
  },
  {
@@ -343,8 +315,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: Has windows 7 professional installed, seems like the person who donated this attempted to wipe all of their data\n12/5/18: Was already activated.\n1/16/19: K",
    "description": "Dell Optiplex 7010 desktop\n",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$190 "
  },
  {
@@ -355,8 +326,7 @@
    "status": "OS Activated",
    "notes": "Sattellite L305-S5919\n12/5/18: Everything works",
    "description": "Sattellite L305-S5919",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$125 "
  },
  {
@@ -367,8 +337,7 @@
    "status": "Unknown",
    "notes": "11/28/18: Refuses to turn on for any length of time. suspect battery damage\n1/9/19: Unable to locate",
    "description": "Gateway Model 450Rog",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$150 "
  },
  {
@@ -379,8 +348,7 @@
    "status": "Salvaged",
    "notes": "11/28/18: Will not display\n1/16/19: Power supply wasn't working; no replacement; okayed by Simon",
    "description": "Dell Vostro 230",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$7 "
  },
  {
@@ -391,8 +359,7 @@
    "status": "Works",
    "notes": "11/28/18: unable to find a suitable converter for one of the plugs because had a different port than the plug provided.\n1/16/19: installed a vga card, needs os update",
    "description": "Dell XPS 410",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$90 "
  },
  {
@@ -403,8 +370,7 @@
    "status": "OS Activated",
    "notes": "11/28/18: Works\n12/5/18: Worked without an issue, had to leave urgently so computer is sitting at the table.\n1/9/19: Yes",
    "description": "Dell optiplex 380 dekstop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$60 "
  },
  {
@@ -415,8 +381,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: No display shown when computer connected\n12/5/18: It didnt have any ram so we installed some ram\n1/9/19: J",
    "description": "Dell Optiplex 3010",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$130 "
  },
  {
@@ -427,8 +392,7 @@
    "status": "OS Installed",
    "notes": "11/28/18: not appropriate graphics cable\n12/5/18: No graphics card\n12/12/18: OS needs to be activated",
    "description": "Dell optiplex 780 desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$165 "
  },
  {
@@ -439,8 +403,7 @@
    "status": "Unknown",
    "notes": "1/16/19: Laptop, AC Adapter missing",
    "description": "Hp Pavillion dv9000 laptop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,000 "
  },
  {
@@ -451,8 +414,7 @@
    "status": "Works",
    "notes": "1/9/19: None",
    "description": "HP chromebook 2 laptop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$700 "
  },
  {
@@ -463,8 +425,7 @@
    "status": "Works",
    "notes": "1/16/19: The battery still works.",
    "description": "Apple A1133 laptop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$250 "
  },
  {
@@ -475,8 +436,7 @@
    "status": "Unknown",
    "notes": "1/9/19: computer works, can log in\n1/16/19: Cannot find computer. Another computer exists with the ID 5018011w and isn't logged and doesnt have a sticker so maybe it was a misprint?",
    "description": "Computer works, can log in",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$200 "
  },
  {
@@ -487,8 +447,7 @@
    "status": "Needs Repair",
    "notes": "1/16/19: PC turns on but does not post",
    "description": "Dell Inspiron 530",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$45 "
  },
  {
@@ -499,8 +458,7 @@
    "status": "Unknown",
    "notes": "1/16/19: would turn on after it being plugged in for a while and the apple loading screen would show, but would turn off whenever the cord was moved. screen too dim to see very clearly.",
    "description": "Apple Macbook Air A1466",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$500 "
  },
  {
@@ -511,8 +469,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "IPad 16GB A1416",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$100 "
  },
  {
@@ -523,8 +480,7 @@
    "status": "Works",
    "notes": "1/16/19: Windows 7 already installed. Needs Windows 10\n1/30/19: Works, needs OS installed",
    "description": "N150 Plus",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$70 "
  },
  {
@@ -535,8 +491,7 @@
    "status": "OS Installed",
    "notes": "1/9/19: Needs windows installed\n1/30/19: Resolution is very small",
    "description": "Dell Vostro i3 3700",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,000 "
  },
  {
@@ -547,8 +502,7 @@
    "status": "Works",
    "notes": "1/16/19: computer turns on, can log in using \"guest user\" w/o password, OS is lubuntu",
    "description": "HP Pavillon g6",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$587 "
  },
  {
@@ -559,8 +513,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Samsung Series 5 Ultra NP540U3C",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$128 "
  },
  {
@@ -571,8 +524,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Toshiba Satellite R15-S822",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$1,250 "
  },
  {
@@ -583,8 +535,7 @@
    "status": "Unknown",
    "notes": "Can be detached from Keyboard\n1/16/19: it's an old asus tablet laptop, we can't find the charger.",
    "description": "ASUS Transformer Series TF101",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$160 "
  },
  {
@@ -595,8 +546,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "computer works, can log in",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$300 "
  },
  {
@@ -607,8 +557,7 @@
    "status": "Unknown",
    "notes": "1/16/19: I couldnt find it",
    "description": "Kindle Fire 7 with USB brick and cable",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$200 "
  },
  {
@@ -619,8 +568,7 @@
    "status": "Works",
    "notes": "1/30/19: Very slow",
    "description": "Lenovo IdeaPad z575",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$70 "
  },
  {
@@ -631,8 +579,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell DMC Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$70 "
  },
  {
@@ -643,8 +590,7 @@
    "status": "Works",
    "notes": "1/16/19: Need to wipe hard drive",
    "description": "Dell DMC Desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$70 "
  },
  {
@@ -655,8 +601,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$450 "
  },
  {
@@ -667,8 +612,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$450 "
  },
  {
@@ -679,8 +623,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$450 "
  },
  {
@@ -691,8 +634,7 @@
    "status": "Works",
    "notes": "1/16/19: Works, needs OS installed.",
    "description": "Dell Optiplex 990",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$750 "
  },
  {
@@ -703,8 +645,7 @@
    "status": "Works",
    "notes": "1/16/19: works. needs OS installed",
    "description": "Dell Optiplex 990",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$770 "
  },
  {
@@ -715,8 +656,7 @@
    "status": "Needs Repair",
    "notes": "1/30/19: Needs a new graphics card, VGA port won't work",
    "description": "Dell Optiplex 980",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$449 "
  },
  {
@@ -727,8 +667,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell Laptop PP08L",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$600 "
  },
  {
@@ -739,8 +678,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Gateway MFATXNIN ES3 3000 desktop",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$0 "
  },
  {
@@ -751,8 +689,7 @@
    "status": "Works",
    "notes": "1/16/19: No video out",
    "description": "IBCM x Series 100 E4U\nIBM x Series 100 E4U",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$964 "
  },
  {
@@ -763,8 +700,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Lenovo Thinsktation S30 4L0\nLenovo Thinkstation S30 4L0",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$3,170 "
  },
  {
@@ -775,8 +711,7 @@
    "status": "Salvaged",
    "notes": "1/16/19: Was almost completely empty upon induction. Only had a cd drive and some cables inside",
    "description": "HP Pavillion a250y",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$150 "
  },
  {
@@ -787,8 +722,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Dell studio 1537 PP33L",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$60 "
  },
  {
@@ -799,8 +733,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Apple laptop A1181",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$880 "
  },
  {
@@ -811,8 +744,7 @@
    "status": "Unknown",
    "notes": "",
    "description": "Apple laptop A1055",
-   "donor": "",
-   "reciever": "",
+   "receiver": "",
    "money": "$68 "
  }
 ]
