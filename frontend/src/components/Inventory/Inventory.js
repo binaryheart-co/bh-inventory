@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './tablestyle.css';
+import './tablestyle.scss';
 import './binary.svg';
 import logo from './binaryheartWhite.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -94,7 +94,7 @@ class Inventory extends Component {
 
                 <div className="bar">
 					<div className="ico">
-					<img src={logo}/>
+					<img className="icon" src={logo}/>
 					<FontAwesomeIcon icon="tasks" color="white" className="iconic"/>
 					<br/>
 					<FontAwesomeIcon icon="box-open" color="white" className="iconic"/>

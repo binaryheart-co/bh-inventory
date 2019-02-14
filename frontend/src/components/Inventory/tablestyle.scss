@@ -131,13 +131,13 @@
         border-radius: 0 2em 0 0;
       }
 
-      img{
+      .icon{
         position:relative;
         cursor:pointer;
 		height:8vh;
       }
 
-      img:hover{
+      .icon:hover{
 		transition:.4s;
         height:10vh;
       }
