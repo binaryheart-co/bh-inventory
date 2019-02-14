@@ -23,7 +23,7 @@ class Inventory extends Component {
             }
         }
         catch(e) {
-            return this.setState({ data: e });
+            return this.setState({ data: String(e) });
         }
     }
 
@@ -35,7 +35,15 @@ class Inventory extends Component {
         return (
             <div>
                 {this.state.data}
-            </div>
+				<h1 className="title is-1" style={{fontFamily:'Garamond'}}> >> log() new Device</h1>
+				<div className="control" style={{display:'inline-flex'}}>
+					<input className="input is-primary" type="text" placeholder="type" />
+					<input className="input is-info" type="text" placeholder="subtype" />
+					<input className="input is-success" type="text" placeholder="Donor?" />
+					<input className="input is-warning" type="text" placeholder="status" />
+				</div>
+				<input className="button is-dark is-fullwidth" type="submit" value="Add" />
+			</div>
         );
     }
 }
