@@ -4,6 +4,7 @@ import './binary.svg';
 import logo from './binaryheartWhite.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import bhInventory from './nikita.json';
+import { Link } from "react-router-dom";
 
 
 class Inventrow extends Component {
@@ -89,7 +90,7 @@ class Inventory extends Component {
 
         return (
             <div>
-                {this.state.data}
+                {this.state.data} <Link to="/logdevice">Log new Device</Link>
 
                 <div className="bar">
 					<div className="ico">

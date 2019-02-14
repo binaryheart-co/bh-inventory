@@ -36,8 +36,8 @@ app.use(session({
         secure: isProduction,
         httpOnly: isProduction,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        domain: isProduction ? "binaryheart.org" : undefined,
-        sameSite: isProduction,
+        // domain: isProduction ? "binaryheart.org" : undefined,
+        // sameSite: isProduction,
     },
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
