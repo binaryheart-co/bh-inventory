@@ -13,10 +13,10 @@ passport.use(new LocalStrategy({
                 const isMatch = await userDocument.comparePassword(password);
                 if (isMatch) return done(null, userDocument);
             }
-            return done(400);
+            return done({validation: [{msg: "Incorrect username or password :("}]});
         } 
         catch (error) {
-            return done(500);
+            return done({catch: error});
         }
     }
 ));
@@ -38,6 +38,9 @@ passport.deserializeUser(async (id, done) => {
 module.exports = {
     ensureAuthenticated: function(req, res, next) {
         if(req.isAuthenticated()) return next();
-        res.status(401).json({error: "Ah ah ah, you didn't say the magic word!"});
+        return next({
+            validation: [{msg: "Ah ah ah, you didn't say the magic word!"}],
+            code: 401,
+        });
     }
 }
