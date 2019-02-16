@@ -5,7 +5,8 @@ const DeviceModel = require("../models/device");
 const { body, validationResult } = require('express-validator/check');
 const ObjectId = require("mongoose").Types.ObjectId;
 
-router.post("/register", 
+//{ type, subtype, code, note, description, estValue }
+router.post("/", 
     [
         body("type", "A,C,I, and W are valid device types.").isIn(["A", "a", "C", "c", "I", "i", "W", "w"]),
         body("subtype").custom((v, { req }) => {
@@ -51,6 +52,7 @@ router.post("/register",
     }
 );
 
+
 // {
 //     "items": 50,
 //     "token": {
@@ -73,7 +75,22 @@ router.post("/register",
 //         }
 //     }
 // }
-router.get("/list", 
+// {
+//     "items": 50,
+//     "tokenDirection": "before",
+//     "tokenScore": 1.1,
+//     "tokenID": "5c5fc12e52466eb092738529",
+//     "search": "battery",
+//     "minDate": "2019-02-07T23:51:58.479Z",
+//     "maxDate": "2019-02-07T23:53:37.554Z",
+//     "code": [2,3,4,5],
+//     "type": ["A", "W", "I"],
+//     "subtype": ["L", "D"],
+//     "minValue": 150,
+//     "maxValue": 1200
+// }
+// Return: { devices: [], before: {direction, score, id}, after: {direction, score, id} }
+router.get("/", 
     [
         body("items", "Item limit must be between 10 and 100").isInt({min: 10, max: 100}),
         body("filters.search").optional().isString().isLength({min: 1}),

@@ -132,7 +132,7 @@ deviceSchema.statics.getUniqueID = async function(next) {
 //         }
 //     }
 // }
-
+// Return: { devices: [], before: {direction, score, id}, after: {direction, score, id} }
 deviceSchema.statics.listDevices = async function(items, token, filter) {
     try {
         let query = this.aggregate([]);

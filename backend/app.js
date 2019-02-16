@@ -60,8 +60,8 @@ router.use("/auth", auth);
 const user = require("./routes/user");
 router.use("/user", user);
 
-const inventory = require("./routes/inventory");
-router.use("/inventory", inventory);
+const devices = require("./routes/devices");
+router.use("/devices", devices);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));

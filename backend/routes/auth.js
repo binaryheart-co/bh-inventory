@@ -60,7 +60,7 @@ router.post('/login',
     }
 );
 
-router.post("/logout", (req, res) => {
+router.delete("/logout", (req, res) => {
     req.logout();
     res.json({message: "Logged out."});
 })
