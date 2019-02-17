@@ -84,18 +84,20 @@ const isValidNumber = v => {
 
 router.get("/", 
     [
-        query("items", "Item limit must be int between 10 and 100").custom(v => {
-            //Check that items is valid int between 10 and 100
-            if(Number.isInteger(+v)) return +v >= 10 && +v <= 100;
-            return false;
-        }),
+        query("items", "Item limit must be int between 10 and 100").optional({nullable: false})
+            .custom(v => {
+                //Check that items is valid int between 10 and 100
+                if(Number.isInteger(+v)) return +v >= 10 && +v <= 100;
+                return false;
+            }),
         query("tokenDirection").optional({nullable: false}).isIn(["before", "after"]),
-        query("tokenID").custom((v, { req }) => {
-            //Check that tokenID is valid if a tokenDirection is supplied
-            try { if(req.query.tokenDirection && (!v || !ObjectId(v))) return false }
-            catch { return false }
-            return true;
-        }),
+        query("tokenID")
+            .custom((v, { req }) => {
+                //Check that tokenID is valid if a tokenDirection is supplied
+                try { if(req.query.tokenDirection && (!v || !ObjectId(v))) return false }
+                catch { return false }
+                return true;
+            }),
         query("tokenScore", "Must be valid number").optional({nullable: false}).custom(isValidNumber),
         query("search").optional().isString(),
         query("minDate").optional().custom(isValidDate),
@@ -119,6 +121,7 @@ router.get("/",
             maxDate, code, type, subtype, minValue, maxValue
         } = req.query;
         if(code) code = code.map(Number);
+        if(!items) items = 50;
 
         try {
             const devices = await DeviceModel.listDevices(

@@ -10,7 +10,7 @@ class LogDevice extends Component {
 
     async getData() {
         try {
-            const response = await fetch("/api/user/protected", {
+            const response = await fetch("/api/devices/protected", {
                 method: "GET",
             });
             const resData = await response.json();
@@ -39,8 +39,10 @@ class LogDevice extends Component {
 				<div className="control" style={{display:'inline-flex'}}>
 					<input className="input is-primary" type="text" placeholder="type" />
 					<input className="input is-info" type="text" placeholder="subtype" />
-					<input className="input is-success" type="text" placeholder="Donor?" />
-					<input className="input is-warning" type="text" placeholder="status" />
+                    <input className="input is-warning" type="text" placeholder="status" />
+                    <input className="input is-info" type="text" placeholder="note" />
+                    <input className="input is-info" type="text" placeholder="description" />
+					<input className="input is-success" type="text" placeholder="estimated value" />
 				</div>
 				<input className="button is-dark is-fullwidth" type="submit" value="Add" />
 			</div>

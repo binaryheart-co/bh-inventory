@@ -16,17 +16,10 @@ class Inventory extends Component {
 
     async getData() {
         try {
-            const data = { items: 50 }
-            const response = await fetch("/api/inventory/list", {
-                method: "GET",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                }
+            const response = await fetch("/api/devices", {
+                method: "GET"
             });
             const resData = await response.json();
-            console.log("getting data");
-            console.log(resData);
             if(response.status === 401) {
                 this.props.history.push("/");
             }
@@ -35,7 +28,6 @@ class Inventory extends Component {
             }
         }
         catch(e) {
-            console.error(e);
             return this.setState({ data: String(e) });
         }
     }
@@ -45,11 +37,10 @@ class Inventory extends Component {
     }
 
     render() {
-        console.log(this.state.devices);
         const rows = [];
   		this.state.devices.forEach((i) => {
 			rows.push(
-				<Inventrow i={i} key={i.id} />
+				<Inventrow i={i} key={i.fullID} />
 			);
   		});
 
