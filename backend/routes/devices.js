@@ -6,6 +6,7 @@ const { body, query, validationResult } = require('express-validator/check');
 const ObjectId = require("mongoose").Types.ObjectId;
 
 //{ type, subtype, code, note, description, estValue }
+//RETURN: { fullID: 0119001A }
 router.post("/", 
     [
         body("type", "A,C,I, and W are valid device types.").isIn(["A", "a", "C", "c", "I", "i", "W", "w"]),

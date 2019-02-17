@@ -28,7 +28,7 @@ class Inventory extends Component {
             }
         }
         catch(e) {
-            return this.setState({ data: String(e) });
+            console.error(e);
         }
     }
 
@@ -46,8 +46,7 @@ class Inventory extends Component {
 
         return (
             <div>
-                {this.state.data} <Link to="/logdevice">Log new Device</Link>
-
+                <div className="button" style={{float: "right"}}><Link to="/logdevice">Log new Device</Link></div>
                 <div className="bar">
 					<div className="ico">
 					<img alt="BinaryHeart logo" className="icon" src={logo}/>
@@ -74,7 +73,6 @@ class Inventory extends Component {
 					{rows}
 				  </tbody>
 				</table>
-
                 <div className="down">
                   <FontAwesomeIcon icon="angle-down" id="downArrow"/>
                 </div>
