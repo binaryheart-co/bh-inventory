@@ -110,81 +110,60 @@ deviceSchema.statics.getUniqueID = async function(next) {
     }
 }
 
-// {
-//     "items": 50,
-//     "token": {
-//         "direction": "before",
-//         "score": 1.1,
-//         "id": "5c5fc12e52466eb092738529",
-//     }
-//     "filters": {
-//         "search": "battery",
-//         "date": {
-//             "min" : "2019-02-07T23:51:58.479Z",
-//             "max" : "2019-02-07T23:53:37.554Z",
-//         },
-//         "code": [2,3,4,5],
-//         "type": ["A", "W", "I"],
-//         "subtype": ["L", "D"],
-//         "value": {
-//             "min": 150,
-//             "max": 1200
-//         }
-//     }
-// }
-// Return: { devices: [], before: {direction, score, id}, after: {direction, score, id} }
-deviceSchema.statics.listDevices = async function(items, token, filter) {
+deviceSchema.statics.listDevices = async function(
+    items, tokenDirection, tokenScore, tokenID, search, minDate, maxDate, 
+    code, type, subtype, minValue, maxValue
+){
     try {
-        let query = this.aggregate([]);
+        let query;
 
-        //apply the filters
-        if(filter) {
-            //Do mongo full-text search, add resultant score field
-            if(filter.search) {
-                query = this.aggregate([
-                    { $match: { $text: { $search: filter.search } } },
-                    { $addFields: { score: { $meta: "textScore" } } }
-                ]);
-            }
+        //APPLY THE FILTERS
+        //Do mongo full-text search, add resultant score field
+        if(search) {
+            query = this.aggregate([
+                { $match: { $text: { $search: search } } },
+                { $addFields: { score: { $meta: "textScore" } } }
+            ]);
+        }
+        else query = this.aggregate([]);
 
-            //Filter the resultant devices
-            if(filter.date) {
-                const minD = new Date(filter.date.min);
-                const maxD = new Date(filter.date.max);
-                const params = {}
-                if(+minD) params.$gte = minD;
-                if(+maxD) params.$lte = maxD;
-                query.match({ createdAt: params });
-            }
-            if(filter.code) query.match({ code: { $in: filter.code } });
-            if(filter.type) query.match({ type: { $in: filter.type } });
-            if(filter.subtype) query.match({ subtype: { $in: filter.subtype } });
-            if(filter.value) {
-                const params = {}
-                if(+filter.value.min) params.$gte = +filter.value.min;
-                if(+filter.value.max) params.$lte = +filter.value.max;
-                query.match({ estValue: params });
-            }
+        //Filter the resultant devices
+        if(minDate || maxDate) {
+            const minD = new Date(minDate);
+            const maxD = new Date(maxDate);
+            const params = {}
+            if(+minD) params.$gte = minD;
+            if(+maxD) params.$lte = maxD;
+            query.match({ createdAt: params });
+        }
+        if(code) query.match({ code: { $in: code } });
+        if(type) query.match({ type: { $in: type } });
+        if(subtype) query.match({ subtype: { $in: subtype } });
+        if(minValue || maxValue) {
+            const params = {}
+            if(+minValue) params.$gte = +minValue;
+            if(+maxValue) params.$lte = +maxValue;
+            query.match({ estValue: params });
         }
 
         //Deal with tokens/paging if it is requested
-        if(token) {
-            const id = new mongoose.Types.ObjectId(token.id); //convert token id to valid mongo ObjectId
+        if(tokenDirection) {
+            const id = new mongoose.Types.ObjectId(tokenID); //convert token id to valid mongo ObjectId
 
             //Define query params depend on after or before token
             let queryParams;
-            if(token.direction === "after") queryParams = { order: -1, compare: "$lt" };
-            else if(token.direction === "before") queryParams = { order: 1, compare: "$gt" };
+            if(tokenDirection === "after") queryParams = { order: -1, compare: "$lt" };
+            else if(tokenDirection === "before") queryParams = { order: 1, compare: "$gt" };
 
             //Perform page query
             query.sort({ score: queryParams.order , _id: queryParams.order });
-            if(token.score) {
+            if(tokenScore) {
                 //Filter by token score, use token id if multiple documents same score
                 query.match({ 
                     $or: [
-                        { score: { [queryParams.compare]: token.score } },
+                        { score: { [queryParams.compare]: tokenScore } },
                         {
-                            score: token.score,
+                            score: tokenScore,
                             _id: { [queryParams.compare]: id },
                         }
                     ]
@@ -201,22 +180,22 @@ deviceSchema.statics.listDevices = async function(items, token, filter) {
         query.limit(items); //limit to requested number of devices
 
         const devices = await query.exec();
-        if(token && token.direction === "before") devices.reverse(); //put docs back in right order if scrolling up
+        if(tokenDirection === "before") devices.reverse(); //put docs back in right order if scrolling up
         const data = { devices: devices };
 
         // generate the tokens
         if(devices.length > 1) {
             const before = { 
-                direction: "before", 
-                id: devices[0]._id.toString(),
+                tokenDirection: "before", 
+                tokenID: devices[0]._id.toString(),
             }
             const after = {
-                direction: "after",
-                id: devices[devices.length - 1]._id.toString(),
+                tokenDirection: "after",
+                tokenID: devices[devices.length - 1]._id.toString(),
             }
-            if(filter && filter.search) {
-                before.score = devices[0].score;
-                after.score = devices[devices.length - 1].score;
+            if(search) {
+                before.tokenScore = devices[0].score;
+                after.tokenScore = devices[devices.length - 1].score;
             }
             data.before = before;
             data.after = after;

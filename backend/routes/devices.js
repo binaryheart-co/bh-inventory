@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../setup/passport");
 const DeviceModel = require("../models/device");
-const { body, validationResult } = require('express-validator/check');
+const { body, query, validationResult } = require('express-validator/check');
 const ObjectId = require("mongoose").Types.ObjectId;
 
 //{ type, subtype, code, note, description, estValue }
@@ -52,29 +52,6 @@ router.post("/",
     }
 );
 
-
-// {
-//     "items": 50,
-//     "token": {
-//         "direction": "before",
-//         "score": 1.1,
-//         "id": "5c5fc12e52466eb092738529",
-//     }
-//     "filters": {
-//         "search": "battery",
-//         "date": {
-//             "min" : "2019-02-07T23:51:58.479Z",
-//             "max" : "2019-02-07T23:53:37.554Z",
-//         },
-//         "code": [2,3,4,5],
-//         "type": ["A", "W", "I"],
-//         "subtype": ["L", "D"],
-//         "value": {
-//             "min": 150,
-//             "max": 1200
-//         }
-//     }
-// }
 // {
 //     "items": 50,
 //     "tokenDirection": "before",
@@ -83,58 +60,71 @@ router.post("/",
 //     "search": "battery",
 //     "minDate": "2019-02-07T23:51:58.479Z",
 //     "maxDate": "2019-02-07T23:53:37.554Z",
-//     "code": [2,3,4,5],
-//     "type": ["A", "W", "I"],
-//     "subtype": ["L", "D"],
+//     "code[]": 4, "code[]": 5,
+//     "type[]": "A", "type[]": "W",
+//     "subtype[]": "L", "subtype[]": "D",
 //     "minValue": 150,
 //     "maxValue": 1200
 // }
 // Return: { devices: [], before: {direction, score, id}, after: {direction, score, id} }
+
+//GET / Helper functions
+const isValidDate = v => {
+    let date;
+    try { date = new Date(v) } 
+    catch { return false }
+    if(!+date) return false; //check for NaN, + tries to convert to number
+    return true;
+}
+
+const isValidNumber = v => {
+    if(+v) return true;
+    return false;
+}
+
 router.get("/", 
     [
-        body("items", "Item limit must be between 10 and 100").isInt({min: 10, max: 100}),
-        body("filters.search").optional().isString().isLength({min: 1}),
-        body("filters.date").optional().custom(v => {
-            let min, max;
-            try { min = new Date(v.min); max = new Date(v.max); }
-            catch { throw new Error("A valid min or max date are needed."); }
-            if(!+min && !+max) throw new Error("A valid min or max date is needed."); //check for NaN, + tries to convert to number
+        query("items", "Item limit must be int between 10 and 100").custom(v => {
+            //Check that items is valid int between 10 and 100
+            if(Number.isInteger(+v)) return +v >= 10 && +v <= 100;
+            return false;
+        }),
+        query("tokenDirection").optional({nullable: false}).isIn(["before", "after"]),
+        query("tokenID").custom((v, { req }) => {
+            //Check that tokenID is valid if a tokenDirection is supplied
+            try { if(req.query.tokenDirection && (!v || !ObjectId(v))) return false }
+            catch { return false }
             return true;
         }),
-        body("filters.code", "An array with valid status codes is needed.").optional({nullable: false})
+        query("tokenScore", "Must be valid number").optional({nullable: false}).custom(isValidNumber),
+        query("search").optional().isString(),
+        query("minDate").optional().custom(isValidDate),
+        query("maxDate").optional().custom(isValidDate),
+        query("code", "An array with valid status codes is needed.").optional({nullable: false})
             .isArray().isLength({min: 1}),
-        body("filters.type", "An array with valid types is needed.").optional({nullable: false})
+        query("type", "An array with valid types is needed.").optional({nullable: false})
             .isArray().isLength({min: 1}),
-        body("filters.subtype", "An array with valid subtypes is needed.").optional({nullable: false})
+        query("subtype", "An array with valid subtypes is needed.").optional({nullable: false})
             .isArray().isLength({min: 1}),
-        body("filters.value").optional({nullable: false}).custom(v => {
-            let min, max;
-            try { min = v.min; max = v.max; }
-            catch { throw new Error("Valid min or max values are needed."); }
-            if(!+min && !+max) throw new Error("Valid min or max values are needed.");
-            return true;
-        }),
-        body("token").optional({nullable: false}).custom(v => {
-            try {
-                if(!["before", "after"].includes(v.direction)) throw new Error();
-                if(v.score && !+v.score) throw new Error();
-                if(!ObjectId(v.id)) throw new Error();
-            }
-            catch {
-                throw new Error("Token requires valid direction, date, score, and id.");
-            }
-            return true;
-        })
+        query("minValue").optional({nullable: false}).custom(isValidNumber),
+        query("maxValue").optional({nullable: false}).custom(isValidNumber),
     ],
     ensureAuthenticated, 
     async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
 
-        let { items, token, filters } = req.body;
+        let { 
+            items, tokenDirection, tokenScore, tokenID, search, minDate, 
+            maxDate, code, type, subtype, minValue, maxValue
+        } = req.query;
+        if(code) code = code.map(Number);
 
         try {
-            const devices = await DeviceModel.listDevices(items, token, filters);
+            const devices = await DeviceModel.listDevices(
+                +items, tokenDirection, +tokenScore, tokenID, search, minDate, maxDate, code,
+                type, subtype, +minValue, +maxValue
+            );
             return res.json(devices);
         }
         catch(e) {
