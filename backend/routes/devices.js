@@ -137,4 +137,43 @@ router.get("/",
     }
 );
 
+// {
+//     "code": 3,
+//     "note": "battery added",
+//     "description": "Apple iMac",
+//     "estValue": 444,
+//     "receiver": "23455874A",
+//     "updatedAt": "2019-02-07T23:51:58.479Z"
+// }
+// Return: { updated: {//device here} } or { errors: [{ msg, updated: {//device here} }] } if bad updatedAt
+router.put("/:fullID", 
+    [
+        body("code", "Status codes range from -4 to 5").optional({nullable: false}).isInt({min: -4, max: 5}),
+        body("note").optional({nullable: false}).isString().isLength({min: 1}),
+        body("description").optional({nullable: false}).isString(),
+        body("estValue").optional({nullable: false}).isFloat({min: 0}),
+        body("receiver").optional({nullable: false}).isString(),
+        body("updatedAt").custom(isValidDate),
+    ],
+    ensureAuthenticated,
+    async(req, res, next) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) return next({validation: errors.array()});
+
+        let { code, note, description, estValue, receiver, updatedAt } = req.body;
+        let fullID = req.params.fullID;
+
+        try {
+            const device = await DeviceModel.findOne({fullID: fullID}).exec();
+            if(!device) return next({errors: [{msg: `Can't find device ${fullID}`}]});
+            if(await device.updateDevice(code, note, description, estValue, receiver, updatedAt, next)) {
+                res.status(200).json({updated: device});
+            }
+        }
+        catch(e) {
+            return next({catch: e});
+        }
+    }
+);
+
 module.exports = router;

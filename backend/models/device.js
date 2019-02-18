@@ -64,10 +64,6 @@ const deviceSchema = new Schema({
         },
         receiver: {
             type: String,
-            validate: {
-                validator: (v) => /^(D[0-9]{7})$/.test(v),
-                message: "Format like D2418004."
-            },
         },
         estValue: {
             type: Number,
@@ -205,6 +201,27 @@ deviceSchema.statics.listDevices = async function(
     }
     catch(error) {
         throw new Error(error);
+    }
+}
+
+deviceSchema.methods.updateDevice = async function(code, note, description, estValue, receiver, updatedAt, next) {
+    //If the device has been updated since the client refreshed the page, send them the new device version
+    const updated = new Date(updatedAt);
+    if(this.updatedAt > updated) return next({validation: [{msg: "Out of date client device", updated: this}]});
+
+    //!== undefined bc status 0 would return false
+    if(code !== undefined) this.code = code;
+    if(note !== undefined) this.notes.push({note: note, code: this.code});
+    if(description !== undefined) this.description = description;
+    if(estValue !== undefined) this.estValue = estValue;
+    if(receiver !== undefined) this.receiver = receiver;
+
+    try {
+        await this.save();
+        return true;
+    } 
+    catch (error) {
+        return next({catch: error});
     }
 }
 
