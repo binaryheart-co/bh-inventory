@@ -54,29 +54,29 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="card">
+            <div className="card" id="loginCard">
                 <div className="notification is-danger" style={{display: this.state.hideNotify ? "none" : "block"}}>
                     <button className="delete" onClick={this.hideNotification}></button>
                     <strong>{this.state.message}</strong>
                 </div>
-                <a href="https://binaryheart.org"><img src={logo} alt="binaryheart.org"/></a>
-                <div className="field">
+                <a href="https://binaryheart.org"><img id="bhLogo" src={logo} alt="binaryheart.org"/></a>
+                <div className="field loginField">
                     <p className="control has-icons-left">
-                        <input value={this.state.email} name="email" onChange={this.handleChange} id="emailInput" className="input is-size-4" type="email" placeholder="Email"/>
+                        <input value={this.state.email} name="email" onChange={this.handleChange} id="emailInput" className="input is-size-4 loginInput" type="email" placeholder="Email"/>
                         <span id="emailIcon" className="icon is-size-4 is-left">
                             <FontAwesomeIcon icon="envelope"/>
                         </span>
                     </p>
                 </div>
-                <div className="field">
+                <div className="field loginField">
                     <p className="control has-icons-left">
-                        <input value={this.state.password} name="password" onChange={this.handleChange} id="passwordInput" className="input is-size-4" type="password" placeholder="Password"/>
+                        <input value={this.state.password} name="password" onChange={this.handleChange} id="passwordInput" className="input is-size-4 loginInput" type="password" placeholder="Password"/>
                         <span id="passwordIcon" className="icon is-size-4 is-left">
                             <FontAwesomeIcon icon="lock"/>
                         </span>
                     </p>
                 </div>
-                <div className="buttons is-centered">
+                <div className="buttons is-centered loginButtons">
                     <div id="backButton" className="button is-size-4 is-rounded">
                         <span id="backIcon" className="icon">
                             <FontAwesomeIcon icon="angle-double-left"/>
