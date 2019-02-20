@@ -24,7 +24,7 @@ Rate limit configuration code:
 ```nginx
 #...
 
-limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
 
 server {
     #...
@@ -32,7 +32,7 @@ server {
     location / {
         #...
 
-        limit_req zone=one;
+        limit_req zone=one burst=20 nodelay;
     }
 }
 #...

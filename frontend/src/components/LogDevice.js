@@ -10,14 +10,19 @@ class LogDevice extends Component {
             code: 0,
             note: "",
             description: "",
-            estValue: 0,
+            estValue: "",
         }
         this.getData = this.getData.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
     handleChange(e) {
         this.setState({[e.target.name]: e.target.value});
+    }
+
+    resetForm() {
+        this.setState({type: "", subtype: "", code: 0, note: "", description: "", estValue: ""});
     }
 
     async getData() {
@@ -45,6 +50,7 @@ class LogDevice extends Component {
                 return alert(JSON.stringify(resData.errors));
             }
             else if(response.status === 200) {
+                this.resetForm();
                 return alert(resData.fullID);
             }
         }
@@ -59,11 +65,11 @@ class LogDevice extends Component {
                 <div className="button"><Link to="/inventory">{"<"} Inventory</Link></div>
 				<h1 className="title is-1" style={{fontFamily:'Garamond'}}> >> log() new Device</h1>
 				<div className="control" style={{display:'inline-flex'}}>
-					<input name="type" onChange={this.handleChange} className="input is-primary" type="text" placeholder="type" />
-					<input name="subtype" onChange={this.handleChange} className="input is-info" type="text" placeholder="subtype" />
+					<input name="type" onChange={this.handleChange} value={this.state.type} className="input is-primary" type="text" placeholder="type"/>
+					<input name="subtype" onChange={this.handleChange} value={this.state.subtype} className="input is-info" type="text" placeholder="subtype" />
                     <div className="control">
                         <div className="select">
-                            <select name="code" defaultValue={0} onChange={this.handleChange}>
+                            <select name="code" value={this.state.code} onChange={this.handleChange}>
                                 <option value={-4}>-4</option><option value={-3}>-3</option><option value={-2}>-2</option>
                                 <option value={-1}>-1</option><option value={0}>0</option><option value={1}>1</option>
                                 <option value={2}>2</option><option value={3}>3</option><option value={4}>4</option>
@@ -71,9 +77,9 @@ class LogDevice extends Component {
                             </select>
                         </div>
                     </div>
-                    <input name="note" onChange={this.handleChange} className="input is-info" type="text" placeholder="note" />
-                    <input name="description" onChange={this.handleChange} className="input is-info" type="text" placeholder="description" />
-					<input name="estValue" onChange={this.handleChange} className="input is-success" type="text" placeholder="estimated value" />
+                    <input name="note" onChange={this.handleChange} value={this.state.note} className="input is-info" type="text" placeholder="note" />
+                    <input name="description" onChange={this.handleChange} value={this.state.description} className="input is-info" type="text" placeholder="description" />
+					<input name="estValue" onChange={this.handleChange} value={this.state.estValue} className="input is-success" type="text" placeholder="estimated value" />
 				</div>
 				<input className="button is-dark is-fullwidth" type="submit" value="Add" onClick={this.getData}/>
 			</div>
