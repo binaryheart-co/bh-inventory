@@ -22,7 +22,7 @@ class Inventrow extends Component {
 					)
 				)
 			)
-		const note = this.state.clicked === true ? <input class="input" type="text" value={JSON.stringify(i.notes)}/> : JSON.stringify(i.notes);
+		const note = this.state.clicked === true ? <input class="input" type="text" value={JSON.stringify(i.notes)}/> : i.notes;
         
         const date = new Date(i.createdAt);
         const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;

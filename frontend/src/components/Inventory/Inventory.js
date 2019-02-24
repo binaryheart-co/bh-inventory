@@ -5,6 +5,7 @@ import logo from './binaryheartWhite.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
 import Inventrow from "./Inventrow";
+import tempd from "./nikita.json";
 
 class Inventory extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Inventory extends Component {
 
     render() {
         const rows = [];
-  		this.state.devices.forEach((i) => {
+  		tempd.forEach((i) => {
 			rows.push(
 				<Inventrow i={i} key={i.fullID} />
 			);
@@ -57,7 +58,7 @@ class Inventory extends Component {
                 </div>
 				<table className="mainTable">
 				  <thead>
-					<tr>
+					<tr className="roundy">
 					  <th width="6%">Date</th>
 					  <th width="10%">ID</th>
 					  <th width="5%">Code</th>

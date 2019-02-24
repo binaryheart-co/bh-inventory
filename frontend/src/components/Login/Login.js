@@ -48,7 +48,7 @@ class Login extends Component {
             }
         }
         catch(e) {
-            this.setState({ hideNotify: false, message: e });
+            this.setState({ hideNotify: false, message: String(e) });
         }
     }
 
