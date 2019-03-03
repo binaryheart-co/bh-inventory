@@ -39,7 +39,7 @@ class Login extends Component {
                 }
             });
             const resData = await response.json();
-            console.log(resData);
+			console.log(resData);
             if(resData.errors) {
                 this.setState({ hideNotify: false, message: resData.errors[0].msg });
             }
