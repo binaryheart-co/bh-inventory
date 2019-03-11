@@ -52,10 +52,12 @@ class Inventory extends Component {
 					<div className="ico">
 					<img alt="BinaryHeart logo" className="icon" src={logo}/>
 					<FontAwesomeIcon icon="tasks" color="white" className="iconic"/>
-					<br/>
 					<FontAwesomeIcon icon="box-open" color="white" className="iconic"/>
 					</div>
                 </div>
+				<br/>
+				<br/>
+				<div className="wrapper">
 				<table className="mainTable">
 				  <thead>
 					<tr className="roundy">
@@ -74,6 +76,7 @@ class Inventory extends Component {
 					{rows}
 				  </tbody>
 				</table>
+				</div>
                 <div className="down">
                   <FontAwesomeIcon icon="angle-down" id="downArrow"/>
                 </div>

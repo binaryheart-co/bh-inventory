@@ -53,7 +53,7 @@ class AddTask extends Component {
                 <div className="button"><Link to="/tasks">{"<"} Tasks</Link></div>
 				<h1 className="title is-1" style={{fontFamily:'Garamond'}}> >> Add new Task</h1>
 				<div className="control">
-					<input name="deviceid" style={{width:'auto', textAlign:'center'}} onChange={this.handleChange} className="input is-primary" type="text" placeholder="Device ID" />
+					<input name="deviceid" style={{width:'auto', textAlign:'center', margin:'auto', display:'block'}} onChange={this.handleChange} className="input is-primary" type="text" placeholder="Device ID" />
 					<input name="task" onChange={this.handleChange} className="input is-info" type="text" placeholder="Task" />
                     <div className="control">
                         <div className="select">
