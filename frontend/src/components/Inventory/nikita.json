@@ -1,750 +1,750 @@
 [
  {
-   "date": "Oct-18",
-   "id": "4218008W",
+   "createdAt": "Oct-18",
+   "fullID": "4218008W",
    "code": 5,
    "user": "",
    "status": "Device & Charger Stickered",
    "notes": "10/24/18: N/A\n10/31/18: Os is activate\n11/7/18: Screen is not centered",
    "description": "Compaq CQ5210Y Desktop",
    "receiver": "D5118005",
-   "money": "$100 "
+   "estValue": "100"
  },
  {
-   "date": "Oct-18",
-   "id": "4218009W",
+   "createdAt": "Oct-18",
+   "fullID": "4218009W",
    "code": -2,
    "user": "",
    "status": "Salvaged",
    "notes": "11/7/18: none",
    "description": "HP Compaq ms6000\n",
    "receiver": "",
-   "money": "$2,000 "
+   "estValue": "2,000"
  },
  {
-   "date": "Oct-18",
-   "id": "4218010W",
+   "createdAt": "Oct-18",
+   "fullID": "4218010W",
    "code": 1,
    "user": "",
    "status": "Needs Repair",
    "notes": "10/24/18: Need charger for Chromebook \n11/28/18: Missing\n11/28/18: Charger was not found, computer won't turn on.",
    "description": "Asus C201P notebook\n",
    "receiver": "",
-   "money": "$500 "
+   "estValue": "500"
  },
  {
-   "date": "Nov-18",
-   "id": "4518001I",
+   "createdAt": "Nov-18",
+   "fullID": "4518001I",
    "code": 5,
    "user": "",
    "status": "Device & Charger Stickered",
    "notes": "11/28/18: Device has been set up (IN ENGLISH) and works perfectly (no passcode)",
    "description": "Apple ipad A1458",
    "receiver": "",
-   "money": "$1,000 "
+   "estValue": "1,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4518002A",
+   "createdAt": "Nov-18",
+   "fullID": "4518002A",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "11/28/18: Mark Kaplan owned this computer and has a folder labeled �Katy perry�\n12/5/18: cant install os\n1/9/19: Can't find",
    "description": "Apple laptop a1133",
    "receiver": "",
-   "money": "$250 "
+   "estValue": "250"
  },
  {
-   "date": "Nov-18",
-   "id": "4518003A",
+   "createdAt": "Nov-18",
+   "fullID": "4518003A",
    "code": 2,
    "user": "",
    "status": "Works",
    "notes": "12/3/18: os being installed, left out on table\n12/5/18: OS needs to be installed",
    "description": "Apple desktop a1278",
    "receiver": "",
-   "money": "$1,000 "
+   "estValue": "1,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4518004A",
+   "createdAt": "Nov-18",
+   "fullID": "4518004A",
    "code": 4,
    "user": "",
    "status": "OS Activated",
    "notes": "11/28/18: Turns on\n12/5/18: Installed OS and activated \n12/5/18: Had to wipe previous user data in order to install new OS",
    "description": "Apple desktop a1312",
    "receiver": "",
-   "money": "$3,000 "
+   "estValue": "3,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4518005A",
+   "createdAt": "Nov-18",
+   "fullID": "4518005A",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "Apple desktop A1316\n12/5/18: This is a monitor not regular desktop (needs desktop to connect)",
    "description": "Apple desktop A1316",
    "receiver": "",
-   "money": "$3,000 "
+   "estValue": "3,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4518006W",
+   "createdAt": "Nov-18",
+   "fullID": "4518006W",
    "code": 2,
    "user": "",
    "status": "Works",
    "notes": "11/28/18: Need os installed\n12/5/18: No driver detected\n12/12/18: Update OS to Win10",
    "description": "Dell inspiron 537S desktop",
    "receiver": "",
-   "money": "$700 "
+   "estValue": "700"
  },
  {
-   "date": "Nov-18",
-   "id": "4518007W",
+   "createdAt": "Nov-18",
+   "fullID": "4518007W",
    "code": 1,
    "user": "",
    "status": "Needs Repair",
    "notes": "11/28/18: Needs os\n12/5/18: OS could not be installed",
    "description": "Acerpower fh desktop \n",
    "receiver": "",
-   "money": "$150 "
+   "estValue": "150"
  },
  {
-   "date": "Nov-18",
-   "id": "4518008W",
+   "createdAt": "Nov-18",
+   "fullID": "4518008W",
    "code": 1,
    "user": "",
    "status": "Needs Repair",
    "notes": "12/5/18: No OS found, possible dead HDD\n12/12/18: It just needs some simple setup and troubleshooting to work. I installed the missing hard drive and removed the friend CD box.",
    "description": "Lenovo ibm thinkcentre zk5 desktop",
    "receiver": "",
-   "money": "$1,000 "
+   "estValue": "1,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4518009W",
+   "createdAt": "Nov-18",
+   "fullID": "4518009W",
    "code": -2,
    "user": "Samuel\nT39",
    "status": "Salvaged",
    "notes": "11/28/18: Needs OS\n12/5/18: Need OS install (CD)\n12/12/18: Horribly slow and won�t boot from usb\n1/16/19: Completed salvage successfully.\n1/16/19: I can't find it\n1/16/19: Update on this computer: it was in the pile, someone forgot to log it",
    "description": "HP Compaq DXX2300 microtower desktop",
    "receiver": "",
-   "money": "$1,500 "
+   "estValue": "1,500"
  },
  {
-   "date": "Nov-18",
-   "id": "4518010W",
+   "createdAt": "Nov-18",
+   "fullID": "4518010W",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "11/28/18: Bad hard drive\n12/5/18: HDD installed\n\n12/5/18: Installed Hard Drive and replaced RAM\n12/12/18: Does not post",
    "description": "HP Pavillion 6535 desktop",
    "receiver": "",
-   "money": "$100 "
+   "estValue": "100"
  },
  {
-   "date": "Nov-18",
-   "id": "4518011W",
+   "createdAt": "Nov-18",
+   "fullID": "4518011W",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "12/5/18: Doesn�t acknowledge usb drive\n12/12/18: Doesnt exist",
    "description": "Lenovo IBM Thnkcentre sk5 desktop",
    "receiver": "",
-   "money": "$3,000 "
+   "estValue": "3,000"
  },
  {
-   "date": "Nov-18",
-   "id": "4618001W",
+   "createdAt": "Nov-18",
+   "fullID": "4618001W",
    "code": 2,
    "user": "",
    "status": "Works",
    "notes": "11/28/18: Needs os install.\n12/5/18: Problems installing OS",
    "description": "Dell Dimension 2400 Desktop",
    "receiver": "",
-   "money": "$119 "
+   "estValue": "119"
  },
  {
-   "date": "Nov-18",
-   "id": "4618002W",
+   "createdAt": "Nov-18",
+   "fullID": "4618002W",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "11/28/18: No hard drive\n12/12/18: Installed HDD",
    "description": "Dell Optiplex 740 Desktop",
    "receiver": "",
-   "money": "$195 "
+   "estValue": "195"
  },
  {
-   "date": "Nov-18",
-   "id": "4618003W",
+   "createdAt": "Nov-18",
+   "fullID": "4618003W",
    "code": 1,
    "user": "isabella & irene\nT44",
    "status": "Needs Repair",
    "notes": "11/28/18: No OS, no hard drive\n12/5/18: Needs OS install \n12/5/18: Needs OS install \n12/12/18: Ran into an error with the floppy disk drive upon startup each time\n1/30/19: Floppy diskette failure",
    "description": "Dell Optiplex GX 620 Desktop",
    "receiver": "",
-   "money": "$199 "
+   "estValue": "199"
  },
  {
-   "date": "Nov-18",
-   "id": "4618004W",
+   "createdAt": "Nov-18",
+   "fullID": "4618004W",
    "code": 3,
    "user": "RESERVED\nT45",
    "status": "OS Installed",
    "notes": "11/28/18: Lacks Hard drive. seems to need unique video cable\n12/5/18: Put in hard drive. Not tested yet. Added a Gb of RAM.\n12/12/18: Needs new hard drive:(\n1/16/19: Install os\n1/16/19: OS installed",
    "description": "HP Pavillion A1747C desktop computer",
    "receiver": "",
-   "money": "$22 "
+   "estValue": "22"
  },
  {
-   "date": "Nov-18",
-   "id": "4618005W",
+   "createdAt": "Nov-18",
+   "fullID": "4618005W",
    "code": 1,
    "user": "RESERVED\nT46",
    "status": "Needs Repair",
    "notes": "11/28/18: This computer does not turn on",
    "description": "Dell Studio Slim 540s desktop",
    "receiver": "",
-   "money": "$199 "
+   "estValue": "199"
  },
  {
-   "date": "Nov-18",
-   "id": "4618006W",
+   "createdAt": "Nov-18",
+   "fullID": "4618006W",
    "code": 3,
    "user": "RESERVED\nT38",
    "status": "OS Installed",
    "notes": "11/28/18: Lacks hard drive. couldnt boot for this reason. seems to work otherwise\n12/12/18: Needs hard drive to be connected, but sata cable is too short.\n12/12/18: HDD installed\n1/9/19: OS installed, on getting ready screen",
    "description": "Dell Vostro 200\n",
    "receiver": "",
-   "money": "$340 "
+   "estValue": "340"
  },
  {
-   "date": "Nov-18",
-   "id": "4618007A",
+   "createdAt": "Nov-18",
+   "fullID": "4618007A",
    "code": 2,
    "user": "RESERVED\nT37",
    "status": "Works",
    "notes": "11/28/18: works but is a tad slow, also still logged in on previous owner login.",
    "description": "Apple Macbook A1181",
    "receiver": "",
-   "money": "$75 "
+   "estValue": "75"
  },
  {
-   "date": "Nov-18",
-   "id": "4618008W",
+   "createdAt": "Nov-18",
+   "fullID": "4618008W",
    "code": 0,
    "user": "Caleb\nT43",
    "status": "Unknown",
    "notes": "11/28/18: OS needs to be installed \n11/28/18: Needs OS installation\n12/12/18: No hard drive installed\n1/16/19: Might need Graphics card, VGA port not working\n1/16/19: Missing",
    "description": "Dell Optiplex 320",
    "receiver": "",
-   "money": "$30 "
+   "estValue": "30"
  },
  {
-   "date": "Nov-18",
-   "id": "4618009W",
+   "createdAt": "Nov-18",
+   "fullID": "4618009W",
    "code": 0,
    "user": "Liam\nT27",
    "status": "Unknown",
    "notes": "12/5/18: Refuses to display anything\n1/9/19: Missing",
    "description": "HP Compaq NX7400 Laptop",
    "receiver": "",
-   "money": "$76 "
+   "estValue": "76"
  },
  {
-   "date": "Nov-18",
-   "id": "4618010A",
+   "createdAt": "Nov-18",
+   "fullID": "4618010A",
    "code": 2,
    "user": "RESERVED\nT36",
    "status": "Works",
    "notes": "11/28/18: won't turn on and key board N key has broken off and some letter keys have scrached off the letter name. \n1/9/19: World fine, needs data wiped",
    "description": "Apple Maxbook Model A1181",
    "receiver": "",
-   "money": "$199 "
+   "estValue": "199"
  },
  {
-   "date": "Nov-18",
-   "id": "4618011W",
+   "createdAt": "Nov-18",
+   "fullID": "4618011W",
    "code": 4,
    "user": "",
    "status": "OS Activated",
    "notes": "11/28/18: OS was not present when turned on\n11/28/18: Boots to Vista Buisness\n1/9/19: OS Activated",
    "description": "LEnovo ThinkCentre M58e 7279",
    "receiver": "",
-   "money": "$125 "
+   "estValue": "125"
  },
  {
-   "date": "Nov-18",
-   "id": "4618012W",
+   "createdAt": "Nov-18",
+   "fullID": "4618012W",
    "code": 2,
    "user": "isabella & irene\nT42",
    "status": "Works",
    "notes": "12/5/18: Won�t turn on. Plugged into monitor but monitor stays black.\n1/16/19: Yeet\n1/16/19: Using windows XP. Says system voltage low\n1/16/19: needs os update",
    "description": "Dell Optiplex GX520 Desktop",
    "receiver": "",
-   "money": "$24 "
+   "estValue": "24"
  },
  {
-   "date": "Nov-18",
-   "id": "4618013W",
+   "createdAt": "Nov-18",
+   "fullID": "4618013W",
    "code": 3,
    "user": "RESERVED\nT35",
    "status": "OS Installed",
    "notes": "11/28/18: Works good\n12/5/18: Runs very, very slow",
    "description": "HP Pavillion M9252p desktop",
    "receiver": "",
-   "money": "$125 "
+   "estValue": "125"
  },
  {
-   "date": "Nov-18",
-   "id": "4618014W",
+   "createdAt": "Nov-18",
+   "fullID": "4618014W",
    "code": 3,
    "user": "Caleb/Ethan\nT34",
    "status": "OS Installed",
    "notes": "11/28/18: runs windows 7\n1/16/19: None\n1/16/19: OS was installed on the computer, needs to be activated",
    "description": "Dell Optiplex 7010",
    "receiver": "",
-   "money": "$350 "
+   "estValue": "350"
  },
  {
-   "date": "Nov-18",
-   "id": "4618015W",
+   "createdAt": "Nov-18",
+   "fullID": "4618015W",
    "code": 3,
    "user": "RESERVED\nT33",
    "status": "OS Installed",
    "notes": "11/28/18: Has windows 7 professional installed, seems like the person who donated this attempted to wipe all of their data\n12/5/18: Was already activated.\n1/16/19: K",
    "description": "Dell Optiplex 7010 desktop\n",
    "receiver": "",
-   "money": "$190 "
+   "estValue": "190"
  },
  {
-   "date": "Nov-18",
-   "id": "4618016W",
+   "createdAt": "Nov-18",
+   "fullID": "4618016W",
    "code": 4,
    "user": "",
    "status": "OS Activated",
    "notes": "Sattellite L305-S5919\n12/5/18: Everything works",
    "description": "Sattellite L305-S5919",
    "receiver": "",
-   "money": "$125 "
+   "estValue": "125"
  },
  {
-   "date": "Nov-18",
-   "id": "4618017W",
+   "createdAt": "Nov-18",
+   "fullID": "4618017W",
    "code": 0,
    "user": "Liam\nT26",
    "status": "Unknown",
    "notes": "11/28/18: Refuses to turn on for any length of time. suspect battery damage\n1/9/19: Unable to locate",
    "description": "Gateway Model 450Rog",
    "receiver": "",
-   "money": "$150 "
+   "estValue": "150"
  },
  {
-   "date": "Nov-18",
-   "id": "4618018W",
+   "createdAt": "Nov-18",
+   "fullID": "4618018W",
    "code": -2,
    "user": "RESERVED\nT41",
    "status": "Salvaged",
    "notes": "11/28/18: Will not display\n1/16/19: Power supply wasn't working; no replacement; okayed by Simon",
    "description": "Dell Vostro 230",
    "receiver": "",
-   "money": "$7 "
+   "estValue": "7"
  },
  {
-   "date": "Nov-18",
-   "id": "4618019W",
+   "createdAt": "Nov-18",
+   "fullID": "4618019W",
    "code": 2,
    "user": "isabella & irene\nT40",
    "status": "Works",
    "notes": "11/28/18: unable to find a suitable converter for one of the plugs because had a different port than the plug provided.\n1/16/19: installed a vga card, needs os update",
    "description": "Dell XPS 410",
    "receiver": "",
-   "money": "$90 "
+   "estValue": "90"
  },
  {
-   "date": "Nov-18",
-   "id": "4618020W",
+   "createdAt": "Nov-18",
+   "fullID": "4618020W",
    "code": 4,
    "user": "",
    "status": "OS Activated",
    "notes": "11/28/18: Works\n12/5/18: Worked without an issue, had to leave urgently so computer is sitting at the table.\n1/9/19: Yes",
    "description": "Dell optiplex 380 dekstop",
    "receiver": "",
-   "money": "$60 "
+   "estValue": "60"
  },
  {
-   "date": "Nov-18",
-   "id": "4618021W",
+   "createdAt": "Nov-18",
+   "fullID": "4618021W",
    "code": 3,
    "user": "RESERVED\nT31",
    "status": "OS Installed",
    "notes": "11/28/18: No display shown when computer connected\n12/5/18: It didnt have any ram so we installed some ram\n1/9/19: J",
    "description": "Dell Optiplex 3010",
    "receiver": "",
-   "money": "$130 "
+   "estValue": "130"
  },
  {
-   "date": "Nov-18",
-   "id": "4618022W",
+   "createdAt": "Nov-18",
+   "fullID": "4618022W",
    "code": 3,
    "user": "RESERVED\nT32",
    "status": "OS Installed",
    "notes": "11/28/18: not appropriate graphics cable\n12/5/18: No graphics card\n12/12/18: OS needs to be activated",
    "description": "Dell optiplex 780 desktop",
    "receiver": "",
-   "money": "$165 "
+   "estValue": "165"
  },
  {
-   "date": "Nov-18",
-   "id": "4818001W",
+   "createdAt": "Nov-18",
+   "fullID": "4818001W",
    "code": 0,
    "user": "Andrew\nT25",
    "status": "Unknown",
    "notes": "1/16/19: Laptop, AC Adapter missing",
    "description": "Hp Pavillion dv9000 laptop",
    "receiver": "",
-   "money": "$1,000 "
+   "estValue": "1,000"
  },
  {
-   "date": "Dec-18",
-   "id": "4918001W",
+   "createdAt": "Dec-18",
+   "fullID": "4918001W",
    "code": 2,
    "user": "",
    "status": "Works",
    "notes": "1/9/19: None",
    "description": "HP chromebook 2 laptop",
    "receiver": "",
-   "money": "$700 "
+   "estValue": "700"
  },
  {
-   "date": "Dec-18",
-   "id": "4918002A",
+   "createdAt": "Dec-18",
+   "fullID": "4918002A",
    "code": 2,
    "user": "",
    "status": "Works",
    "notes": "1/16/19: The battery still works.",
    "description": "Apple A1133 laptop",
    "receiver": "",
-   "money": "$250 "
+   "estValue": "250"
  },
  {
-   "date": "Dec-18",
-   "id": "5018001W",
+   "createdAt": "Dec-18",
+   "fullID": "5018001W",
    "code": 0,
    "user": "Caleb\nT29",
    "status": "Unknown",
    "notes": "1/9/19: computer works, can log in\n1/16/19: Cannot find computer. Another computer exists with the ID 5018011w and isn't logged and doesnt have a sticker so maybe it was a misprint?",
    "description": "Computer works, can log in",
    "receiver": "",
-   "money": "$200 "
+   "estValue": "200"
  },
  {
-   "date": "Dec-18",
-   "id": "5018002W",
+   "createdAt": "Dec-18",
+   "fullID": "5018002W",
    "code": 1,
    "user": "Dean\nT20",
    "status": "Needs Repair",
    "notes": "1/16/19: PC turns on but does not post",
    "description": "Dell Inspiron 530",
    "receiver": "",
-   "money": "$45 "
+   "estValue": "45"
  },
  {
-   "date": "Dec-18",
-   "id": "5018003A",
+   "createdAt": "Dec-18",
+   "fullID": "5018003A",
    "code": 0,
    "user": "RESERVED\nT21",
    "status": "Unknown",
    "notes": "1/16/19: would turn on after it being plugged in for a while and the apple loading screen would show, but would turn off whenever the cord was moved. screen too dim to see very clearly.",
    "description": "Apple Macbook Air A1466",
    "receiver": "",
-   "money": "$500 "
+   "estValue": "500"
  },
  {
-   "date": "Dec-18",
-   "id": "5018004I",
+   "createdAt": "Dec-18",
+   "fullID": "5018004I",
    "code": 0,
    "user": "RESERVED\nT22",
    "status": "Unknown",
    "notes": "",
    "description": "IPad 16GB A1416",
    "receiver": "",
-   "money": "$100 "
+   "estValue": "100"
  },
  {
-   "date": "Dec-18",
-   "id": "5018005W",
+   "createdAt": "Dec-18",
+   "fullID": "5018005W",
    "code": 2,
    "user": "Andrew\nT23",
    "status": "Works",
    "notes": "1/16/19: Windows 7 already installed. Needs Windows 10\n1/30/19: Works, needs OS installed",
    "description": "N150 Plus",
    "receiver": "",
-   "money": "$70 "
+   "estValue": "70"
  },
  {
-   "date": "Dec-18",
-   "id": "5018006W",
+   "createdAt": "Dec-18",
+   "fullID": "5018006W",
    "code": 3,
    "user": "Holden\nT28",
    "status": "OS Installed",
    "notes": "1/9/19: Needs windows installed\n1/30/19: Resolution is very small",
    "description": "Dell Vostro i3 3700",
    "receiver": "",
-   "money": "$1,000 "
+   "estValue": "1,000"
  },
  {
-   "date": "Dec-18",
-   "id": "5018007W",
+   "createdAt": "Dec-18",
+   "fullID": "5018007W",
    "code": 2,
    "user": "jen & michelle\nT1",
    "status": "Works",
    "notes": "1/16/19: computer turns on, can log in using \"guest user\" w/o password, OS is lubuntu",
    "description": "HP Pavillon g6",
    "receiver": "",
-   "money": "$587 "
+   "estValue": "587"
  },
  {
-   "date": "Dec-18",
-   "id": "5018008W",
+   "createdAt": "Dec-18",
+   "fullID": "5018008W",
    "code": 0,
    "user": "RESERVED\nT2",
    "status": "Unknown",
    "notes": "",
    "description": "Samsung Series 5 Ultra NP540U3C",
    "receiver": "",
-   "money": "$128 "
+   "estValue": "128"
  },
  {
-   "date": "Dec-18",
-   "id": "5018009W",
+   "createdAt": "Dec-18",
+   "fullID": "5018009W",
    "code": 0,
    "user": "RESERVED\nT3",
    "status": "Unknown",
    "notes": "",
    "description": "Toshiba Satellite R15-S822",
    "receiver": "",
-   "money": "$1,250 "
+   "estValue": "1,250"
  },
  {
-   "date": "Dec-18",
-   "id": "5018010W",
+   "createdAt": "Dec-18",
+   "fullID": "5018010W",
    "code": 0,
    "user": "jen & michelle\nT4",
    "status": "Unknown",
    "notes": "Can be detached from Keyboard\n1/16/19: it's an old asus tablet laptop, we can't find the charger.",
    "description": "ASUS Transformer Series TF101",
    "receiver": "",
-   "money": "$160 "
+   "estValue": "160"
  },
  {
-   "date": "Dec-18",
-   "id": "5018011W",
+   "createdAt": "Dec-18",
+   "fullID": "5018011W",
    "code": 0,
    "user": "RESERVED\nT5",
    "status": "Unknown",
    "notes": "",
    "description": "computer works, can log in",
    "receiver": "",
-   "money": "$300 "
+   "estValue": "300"
  },
  {
-   "date": "Dec-18",
-   "id": "5018012W",
+   "createdAt": "Dec-18",
+   "fullID": "5018012W",
    "code": 0,
    "user": "Chris N\nT6",
    "status": "Unknown",
    "notes": "1/16/19: I couldnt find it",
    "description": "Kindle Fire 7 with USB brick and cable",
    "receiver": "",
-   "money": "$200 "
+   "estValue": "200"
  },
  {
-   "date": "Jan-19",
-   "id": "0219001W",
+   "createdAt": "Jan-19",
+   "fullID": "0219001W",
    "code": 2,
    "user": "Bennett\nT7",
    "status": "Works",
    "notes": "1/30/19: Very slow",
    "description": "Lenovo IdeaPad z575",
    "receiver": "",
-   "money": "$70 "
+   "estValue": "70"
  },
  {
-   "date": "Jan-19",
-   "id": "0219002W",
+   "createdAt": "Jan-19",
+   "fullID": "0219002W",
    "code": 0,
    "user": "Chris N\nT8",
    "status": "Unknown",
    "notes": "",
    "description": "Dell DMC Desktop",
    "receiver": "",
-   "money": "$70 "
+   "estValue": "70"
  },
  {
-   "date": "Jan-19",
-   "id": "0219003W",
+   "createdAt": "Jan-19",
+   "fullID": "0219003W",
    "code": 2,
    "user": "RESERVED\nT9",
    "status": "Works",
    "notes": "1/16/19: Need to wipe hard drive",
    "description": "Dell DMC Desktop",
    "receiver": "",
-   "money": "$70 "
+   "estValue": "70"
  },
  {
-   "date": "Jan-19",
-   "id": "0219004W",
+   "createdAt": "Jan-19",
+   "fullID": "0219004W",
    "code": 0,
    "user": "RESERVED\nT10",
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
    "receiver": "",
-   "money": "$450 "
+   "estValue": "450"
  },
  {
-   "date": "Jan-19",
-   "id": "0219005W",
+   "createdAt": "Jan-19",
+   "fullID": "0219005W",
    "code": 0,
    "user": "RESERVED\nT11",
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
    "receiver": "",
-   "money": "$450 "
+   "estValue": "450"
  },
  {
-   "date": "Jan-19",
-   "id": "0219006W",
+   "createdAt": "Jan-19",
+   "fullID": "0219006W",
    "code": 0,
    "user": "RESERVED\nT12",
    "status": "Unknown",
    "notes": "",
    "description": "Dell Optiplex 980",
    "receiver": "",
-   "money": "$450 "
+   "estValue": "450"
  },
  {
-   "date": "Jan-19",
-   "id": "0219007W",
+   "createdAt": "Jan-19",
+   "fullID": "0219007W",
    "code": 2,
    "user": "Andrew\nT13",
    "status": "Works",
    "notes": "1/16/19: Works, needs OS installed.",
    "description": "Dell Optiplex 990",
    "receiver": "",
-   "money": "$750 "
+   "estValue": "750"
  },
  {
-   "date": "Jan-19",
-   "id": "0219008W",
+   "createdAt": "Jan-19",
+   "fullID": "0219008W",
    "code": 2,
    "user": "Andrew\nT14",
    "status": "Works",
    "notes": "1/16/19: works. needs OS installed",
    "description": "Dell Optiplex 990",
    "receiver": "",
-   "money": "$770 "
+   "estValue": "770"
  },
  {
-   "date": "Jan-19",
-   "id": "0219011W",
+   "createdAt": "Jan-19",
+   "fullID": "0219011W",
    "code": 1,
    "user": "Samuel\nT15",
    "status": "Needs Repair",
    "notes": "1/30/19: Needs a new graphics card, VGA port won't work",
    "description": "Dell Optiplex 980",
    "receiver": "",
-   "money": "$449 "
+   "estValue": "449"
  },
  {
-   "date": "Jan-19",
-   "id": "0219014W",
+   "createdAt": "Jan-19",
+   "fullID": "0219014W",
    "code": 0,
    "user": "RESERVED\nT16",
    "status": "Unknown",
    "notes": "",
    "description": "Dell Laptop PP08L",
    "receiver": "",
-   "money": "$600 "
+   "estValue": "600"
  },
  {
-   "date": "Jan-19",
-   "id": "0219012W",
+   "createdAt": "Jan-19",
+   "fullID": "0219012W",
    "code": 0,
    "user": "RESERVED\nT17",
    "status": "Unknown",
    "notes": "",
    "description": "Gateway MFATXNIN ES3 3000 desktop",
    "receiver": "",
-   "money": "$0 "
+   "estValue": "0"
  },
  {
-   "date": "Jan-19",
-   "id": "0219009W",
+   "createdAt": "Jan-19",
+   "fullID": "0219009W",
    "code": 2,
    "user": "Chris\nT18",
    "status": "Works",
    "notes": "1/16/19: No video out",
    "description": "IBCM x Series 100 E4U\nIBM x Series 100 E4U",
    "receiver": "",
-   "money": "$964 "
+   "estValue": "964"
  },
  {
-   "date": "Jan-19",
-   "id": "0219010W",
+   "createdAt": "Jan-19",
+   "fullID": "0219010W",
    "code": 0,
    "user": "RESERVED\nT19",
    "status": "Unknown",
    "notes": "",
    "description": "Lenovo Thinsktation S30 4L0\nLenovo Thinkstation S30 4L0",
    "receiver": "",
-   "money": "$3,170 "
+   "estValue": "3,170"
  },
  {
-   "date": "Jan-19",
-   "id": "0219013W",
+   "createdAt": "Jan-19",
+   "fullID": "0219013W",
    "code": -2,
    "user": "",
    "status": "Salvaged",
    "notes": "1/16/19: Was almost completely empty upon induction. Only had a cd drive and some cables inside",
    "description": "HP Pavillion a250y",
    "receiver": "",
-   "money": "$150 "
+   "estValue": "150"
  },
  {
-   "date": "Jan-19",
-   "id": "0219015W",
+   "createdAt": "Jan-19",
+   "fullID": "0219015W",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "",
    "description": "Dell studio 1537 PP33L",
    "receiver": "",
-   "money": "$60 "
+   "estValue": "60"
  },
  {
-   "date": "Jan-19",
-   "id": "0219016A",
+   "createdAt": "Jan-19",
+   "fullID": "0219016A",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "",
    "description": "Apple laptop A1181",
    "receiver": "",
-   "money": "$880 "
+   "estValue": "880"
  },
  {
-   "date": "Jan-19",
-   "id": "0219017A",
+   "createdAt": "Jan-19",
+   "fullID": "0219017A",
    "code": 0,
    "user": "",
    "status": "Unknown",
    "notes": "",
    "description": "Apple laptop A1055",
    "receiver": "",
-   "money": "$68 "
+   "estValue": "68"
  }
 ]

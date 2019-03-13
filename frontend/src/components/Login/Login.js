@@ -39,16 +39,16 @@ class Login extends Component {
                 }
             });
             const resData = await response.json();
-            console.log(resData);
+			console.log(resData);
             if(resData.errors) {
                 this.setState({ hideNotify: false, message: resData.errors[0].msg });
             }
             else if(response.status === 200) {
-                this.props.history.push("/inventory");
+                this.props.history.push("/dashboard");
             }
         }
         catch(e) {
-            this.setState({ hideNotify: false, message: e });
+            this.setState({ hideNotify: false, message: String(e) });
         }
     }
 

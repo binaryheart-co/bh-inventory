@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../Inventory/binaryheartWhite.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import t from './Tasks.json';
 
@@ -103,14 +104,25 @@ class Tasks extends Component {
     render() {
         return (
 			<div>
+			
 				<div className="notification is-link" style={{display: this.state.hideNotify ? "none" : "block", textAlign: "center"}}>
 					<button className="delete" onClick={this.hideNotification}></button>
 					<strong>Returning Member</strong>: Complete attendance form at <strong>
 					<a href="http://binaryheart.org/here" onClick={this.hideNotification}>binaryheart.org/here</a></strong>
 				</div>
+				<div className="bar">
+					<div className="ico">
+						<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
+						<br/>
+						<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
+						<br/>
+						<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="white" className="iconic"/></Link>
+					</div>
+				</div>
+				<center>
 				<div>
 					{this.state.data}
-					<FontAwesomeIcon icon="tasks"/>
+					<Link to="/addtask"><FontAwesomeIcon icon="tasks"/></Link>
 				</div>
 				<div>
 				    <table className="table">
@@ -124,6 +136,7 @@ class Tasks extends Component {
 							<Tasktable name={this.state.subject} tasks={t} />
 					</table>
 				</div>
+				</center>
 			</div>
         );
     }
