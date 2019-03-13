@@ -40,8 +40,22 @@ class Inventory extends Component {
     render() {
         const rows = [];
   		tempd.forEach((i) => {
+			
+			const coding =
+            i.code === -4 ? "#E0666":
+            i.code === -3 ? "#F6B26B":
+            i.code === -2 ? "#E0666":
+            i.code === -1 ? "#F6B26B":
+            i.code === 0 ? "#FFFFF":
+            i.code === 1 ? "#FFD966":
+            i.code === 2 ? "#A4C2F4":
+            i.code === 3 ? "#A64D79":
+            i.code === 4 ? "#674EA7":
+            i.code === 5 ? "#FF00FF":
+            "#183A5F";
+			
 			rows.push(
-				<Inventrow i={i} key={i.fullID} />
+				<Inventrow i={i} key={i.fullID} coding={coding}/>
 			);
   		});
 
@@ -50,9 +64,11 @@ class Inventory extends Component {
                 <div className="button" style={{float: "right"}}><Link to="/logdevice">Log new Device</Link></div>
                 <div className="bar">
 					<div className="ico">
-					<img alt="BinaryHeart logo" className="icon" src={logo}/>
-					<FontAwesomeIcon icon="tasks" color="white" className="iconic"/>
-					<FontAwesomeIcon icon="box-open" color="white" className="iconic"/>
+						<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
+						<br/>
+						<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
+						<br/>
+						<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="white" className="iconic"/></Link>
 					</div>
                 </div>
 				<br/>

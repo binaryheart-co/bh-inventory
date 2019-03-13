@@ -10,18 +10,11 @@ class Inventrow extends Component {
 
 	render() {
 		const i = this.props.i;
-		const coding = i.code === 1
-			? <td bgcolor="#57BB8A">1</td>
-			: ( i.code === 2
-				? <td bgcolor="#F7B96A">2</td>
-				: ( i.code === 3
-					? <td bgcolor="#EF9B6E">3</td>
-					: ( i.code === 4
-						? <td bgcolor="#E67C73">4</td>
-						: <td>{i.code}</td>
-					)
-				)
-			)
+		
+		const coding =
+
+            <td>{i.code}</td>;	
+
 		const note = this.state.clicked === true ? <textarea class="input" type="text">{i.notes}</textarea> : i.notes;
         
         const date = new Date(i.createdAt);
@@ -41,7 +34,7 @@ class Inventrow extends Component {
             "Unknown";
 
 		return (
-			<tr bgcolor="#96bde8">
+			<tr bgcolor={this.props.coding}>
 				<td>{dateText}</td>
 				<td>{i.fullID}</td>
 				{coding}

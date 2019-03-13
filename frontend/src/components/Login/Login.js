@@ -44,7 +44,7 @@ class Login extends Component {
                 this.setState({ hideNotify: false, message: resData.errors[0].msg });
             }
             else if(response.status === 200) {
-                this.props.history.push("/inventory");
+                this.props.history.push("/dashboard");
             }
         }
         catch(e) {

@@ -53,18 +53,18 @@ class SubmitTask extends Component {
         return (
 		<div>
 			<div className="bar">
-			<div className="ico">
-			<img alt="BinaryHeart logo" className="icon" src={logo}/>
-			<br/>
-			<FontAwesomeIcon icon="tasks" color="white" className="iconic"/>
-			<br/>
-			<FontAwesomeIcon icon="box-open" color="white" className="iconic"/>
-			</div>
+				<div className="ico">
+					<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
+					<br/>
+					<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
+					<br/>
+					<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="white" className="iconic"/></Link>
+				</div>
 			</div>
 			<center>
 			<div className="mainScreen">
-			  <button className="quitButton">Quit Task</button>
-			  <button className="helpButton">I need help</button>
+			  <Link to="dashboard"><button className="quitButton">Quit Task</button></Link>
+			  <button className="helpButton" onClick={() => window.location = "http://binaryheart.miraheze.org"}>I need help</button>
 			  <table className="table">
 			  <tbody>
 				<tr>
