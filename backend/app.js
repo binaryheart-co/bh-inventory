@@ -26,8 +26,12 @@ require("./setup/db");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+//Trust HTTP headers from Nginx are authentic
+if(isProduction) {
+    app.set("trust proxy", true);
+}
+
 //Express Session
-app.set("trust proxy", true);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     name: "session1",

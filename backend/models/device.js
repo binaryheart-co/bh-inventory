@@ -23,12 +23,10 @@ const deviceSchema = new Schema({
         weekYr: {
             type: String,
             required: [true, "A week-year is required."],
-            index: true,
         },
         weekDevice: {
             type: Number,
             required: [true, "A week-device number is required."],
-            index: true,
         },
         uniqueID: {
             type: String,
@@ -56,7 +54,6 @@ const deviceSchema = new Schema({
         },
         notes: {
             type: [notesSchema],
-            index: true,
         },
         description: {
             type: String,
@@ -68,6 +65,9 @@ const deviceSchema = new Schema({
         estValue: {
             type: Number,
             required: [true, "A price estimate is required."],
+            min: 0,
+            max: Number.MAX_SAFE_INTEGER,
+            index: true,
         },
         user: String,
         donor: String,

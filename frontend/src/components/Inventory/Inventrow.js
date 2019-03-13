@@ -50,9 +50,10 @@ class Inventrow extends Component {
 				<td onClick={() => this.setState({clicked:true}) }>{note}</td>
 				<td>{i.description}</td>
 				<td>{i.receiver}</td>
-				<td>{`$${i.estValue.toLocaleString()}`}</td>
+				<td>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</td>
 			</tr>
-		);
+        );
+        //make sure .toLocalString isn't called on null or NaN
 	}
 }
 
