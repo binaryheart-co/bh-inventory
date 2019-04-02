@@ -22,7 +22,17 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         required: [true, "A last name is required."],
-    }
+    },
+    skill: {
+        type: Number,
+        required: [true, "A skill level is required."],
+        default: 0,
+    },
+    clearance: {
+        type: Number,
+        required: [true, "An clearance level is required."],
+        default: 1,
+    },
 });
 
 //use regular function and not arrow function to work properly

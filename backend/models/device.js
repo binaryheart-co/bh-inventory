@@ -77,6 +77,7 @@ const deviceSchema = new Schema({
     }
 );
 
+//special index for text search
 deviceSchema.index({ fullID: "text", description: "text", "notes.note": "text", receiver: "text" });
 
 Date.prototype.getWeekYr = function() {

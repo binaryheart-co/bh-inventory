@@ -67,6 +67,9 @@ router.use("/user", user);
 const devices = require("./routes/devices");
 router.use("/devices", devices);
 
+const tasks = require("./routes/tasks");
+router.use("/tasks", tasks);
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 })
