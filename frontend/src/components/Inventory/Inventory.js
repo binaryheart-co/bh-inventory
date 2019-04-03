@@ -12,6 +12,8 @@ class Inventory extends Component {
         super(props);
         this.state = {
             devices: [],
+			items: 10,
+			loadingState: false
         }
     }
 
@@ -34,8 +36,31 @@ class Inventory extends Component {
     }
 
     componentDidMount() {
-        this.getData().then();
+        this.getData().then()
+		window.addEventListener("scroll", () => {
+		  if(this.refs.iScroll.scrollTop+this.refs.iScroll.clientHeight >= this.refs.iScroll.scrollHeight){
+			alert("hi");
+			this.loadMoreItems();
+		  }
+		});
     }
+
+
+	displayItems() {
+		var items = [];
+		for (var i = 0; i < this.state.items; i++) {
+		  items.push(<li key={i}>Item {i}</li>);
+		}
+		return items;
+	}
+
+	loadMoreItems() {
+		this.setState({ loadingState: true });
+		setTimeout(() => {
+		  this.setState({ items: this.state.items + 10, loadingState: false });
+		}, 3000);
+	}
+
 
     render() {
         const rows = [];
@@ -68,13 +93,12 @@ class Inventory extends Component {
 						<br/>
 						<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
 						<br/>
-						<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="white" className="iconic"/></Link>
+						<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="crimson" className="iconic"/></Link>
 					</div>
                 </div>
 				<br/>
 				<br/>
-				<div className="wrapper">
-				<table className="mainTable">
+				<table className="mainTable" ref="iScroll">
 				  <thead>
 					<tr className="roundy">
 					  <th width="6%">Date</th>
@@ -88,11 +112,11 @@ class Inventory extends Component {
 					  <th>Money</th>
 					</tr>
 				  </thead>
-				  <tbody>
+				  <tbody style={{overflow:"auto"}}>
 					{rows}
 				  </tbody>
 				</table>
-				</div>
+				{this.state.loadingState ? <p className="loading"> loading More Items..</p> : ""}
                 <div className="down">
                   <FontAwesomeIcon icon="angle-down" id="downArrow"/>
                 </div>

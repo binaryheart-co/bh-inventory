@@ -4,18 +4,20 @@ class Inventrow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-			clicked: false
+			coder: false,
+			noter: false,
+			describer: false,
+			receiver: false
         }
     }
 
 	render() {
 		const i = this.props.i;
 		
-		const coding =
-
-            <td>{i.code}</td>;	
-
-		const note = this.state.clicked === true ? <textarea class="input" type="text">{i.notes}</textarea> : i.notes;
+		const coding = this.state.coder === true ? <textarea className="input" type="text" defaultValue={i.code}/> : i.code;
+		const noting = this.state.noter === true ? <textarea className="input" type="text" defaultValue={i.notes}/> : i.notes;
+		const describing = this.state.describer === true ? <textarea className="input" type="text" defaultValue={i.description}/> : i.description;
+		const receiving = this.state.receiver === true ? <textarea className="input" type="text" defaultValue={i.receiver}/> : i.receiver;
         
         const date = new Date(i.createdAt);
         const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -37,12 +39,12 @@ class Inventrow extends Component {
 			<tr bgcolor={this.props.coding}>
 				<td>{dateText}</td>
 				<td>{i.fullID}</td>
-				{coding}
+				<td onClick={() => this.setState({coder:true}) }>{coding}</td>
 				<td>{i.user}</td>
 				<td>{status}</td>
-				<td onClick={() => this.setState({clicked:true}) }>{note}</td>
-				<td>{i.description}</td>
-				<td>{i.receiver}</td>
+				<td onClick={() => this.setState({noter:true}) }>{noting}</td>
+				<td onClick={() => this.setState({describer:true}) }>{describing}</td>
+				<td onClick={() => this.setState({receiver:true}) }>{receiving}</td>
 				<td>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</td>
 			</tr>
         );

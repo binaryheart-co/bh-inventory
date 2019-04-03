@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import logo from '../Inventory/binaryheartWhite.png';
+import logo from './binaryheart.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Dashboard extends Component {
@@ -82,7 +82,8 @@ class Dashboard extends Component {
 		<div>
 			<div className="bar">
 				<div className="ico">
-					<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
+					<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo} /></Link>
+					{/*style={{filter: "brightness(50%) sepia(100) saturate(100) hue-rotate(20deg)"}}*/}
 					<br/>
 					<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
 					<br/>
@@ -121,7 +122,6 @@ class Dashboard extends Component {
 				<div className="level-item has-text-centered">
 					<input className="button is-dark" type="submit" value="Log Out" onClick={() => alert("Say bye to Marzuk")}/>
 				</div>
-
 			</nav>
 		</div>
         );
