@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const { maxTaskPartners, skillAuthorizations } = require("../config");
 
 const notesSchema = new Schema({
         note: {
@@ -69,7 +70,11 @@ const deviceSchema = new Schema({
             max: Number.MAX_SAFE_INTEGER,
             index: true,
         },
-        user: String,
+        volunteers: {
+            type: [String],
+            maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
+            index: true,
+        },
         donor: String,
     },
     {
@@ -223,6 +228,33 @@ deviceSchema.methods.updateDevice = async function(code, note, description, estV
     } 
     catch (error) {
         return next({catch: error});
+    }
+}
+
+//TASK CODE:
+
+//adds user to existing task, or creates new task
+deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
+    try {
+        //select open task if availible
+        let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
+
+        //if no open tasks, select a new task
+        if (goodTask === null) {
+            const authorizedCodes = skillAuthorizations[volunteerSkill];
+            goodTask = await this.findOne({volunteers: {$size: 0}, code: {$in: authorizedCodes } }).exec();
+        }
+
+        //if a task was selected, add the user to it and return it
+        if (goodTask != null) {
+            goodTask.volunteers.push(volunteerID);
+            await goodTask.save();
+            return { task: goodTask };
+        }
+        else return { task: null } //if no task selected, return null
+    } 
+    catch (error) {
+        return { error };
     }
 }
 

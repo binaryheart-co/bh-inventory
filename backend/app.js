@@ -78,6 +78,9 @@ app.use(function(err, req, res, next) {
     if(err.validation) {
         return res.status(err.code ? err.code : 400).json({errors: err.validation});
     }
+    else if (err.msg && err.code) {
+        return res.status(err.code).json({errors: [{msg: err.msg}]});
+    }
     return res.status(500).json({errors: [{msg: "There was a server error :("}]});
 });
 
