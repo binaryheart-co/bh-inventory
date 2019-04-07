@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../setup/passport");
-const { validationResult } = require('express-validator/check');
-const { modifyValidator } = require("../utilities/validators");
+const { validationResult, modifyValidator } = require("../utilities/validators");
 const DeviceModel = require('../models/device');
 
 //returns a list of current tasks the user is undertaking
