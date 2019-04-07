@@ -23,7 +23,7 @@ router.get("/",
 );
 
 //request a new task for the user
-router.put("/",
+router.post("/",
     ensureAuthenticated, 
     async (req, res, next) => {
         try {
@@ -32,6 +32,26 @@ router.put("/",
             else if(!task.task) return res.json({ msg: "No availible tasks." }); //else, return no availible tasks
             else return next({catch: task.error}); // in case of server error
         } 
+        catch (error) {
+            return next({catch: error});
+        }
+    }
+);
+
+//quit a task
+router.delete("/:fullID",
+    ensureAuthenticated,
+    async(req, res, next) => {
+        const fullID = req.params.fullID;
+        const user = req.user._id;
+
+        try {
+            const task = await DeviceModel.findOne({fullID: fullID, volunteers: user}).update(
+                { $pull: { volunteers: user } }
+            ).exec(); //find the task with given ID that user is working on, remove them from it
+            if(task.nModified == 1) return res.json({success: true}); //if user was removed, return success
+            else return res.status(400).json({msg: `The user is not working on device ${fullID}`}); //else send error
+        }
         catch (error) {
             return next({catch: error});
         }

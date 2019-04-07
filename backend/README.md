@@ -15,6 +15,9 @@ register user | `/auth/register` | `POST` | `email`, `password`, `firstName`, `l
 log new device | `/devices` | `POST` | `type`, `subtype`, `code`, `description`, `estValue` | `note`
 request device list | `/devices` | `GET` || `items`, `tokenDirection`, `tokenID`, `tokenScore`, `search`, `minDate`, `maxDate`, `code`, `type`, `subtype`, `minValue`, `maxValue`| Parameters in query not body. If the `tokenDirection` field is included, `tokenID` must be supplied.
 modify device | `/devices/:fullID` | `PUT` | `updatedAt` | `code`, `note`, `description`, `estValue`, `receiver`
+request individual task list | `/tasks` | `GET`
+sign up new task | `/tasks` | `POST`
+quit task | `/tasks/:fullID` | `DELETE`
 
 ## NGINX Reverse Proxy
 From the NGINX Documention:
