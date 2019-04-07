@@ -74,6 +74,7 @@ const deviceSchema = new Schema({
             type: [String],
             maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
             index: true,
+            default: [],
         },
         donor: String,
     },
@@ -237,12 +238,20 @@ deviceSchema.methods.updateDevice = async function(code, note, description, estV
 deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
     try {
         //select open task if availible
-        let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
+        // let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
+        // let goodTask = await this.findOne({ volunteers: {$exists: true} }).$where(function() {
+        //     return this.volunteers.length > 0 && this.volunteers.length < maxTaskPartners;
+        // });
+        let goodTask = await this.findOne({$and: [
+            {[`volunteers.${maxTaskPartners - 1}`]: {$exists: false}}, //size less than maxTaskPartners
+            {[`volunteers.0`]: {$exists: true}}, //size greater than 0
+            { volunteers: { $ne: volunteerID }}, //volunteer not already doing task
+        ]}).exec();
 
         //if no open tasks, select a new task
         if (goodTask === null) {
             const authorizedCodes = skillAuthorizations[volunteerSkill];
-            goodTask = await this.findOne({volunteers: {$size: 0}, code: {$in: authorizedCodes } }).exec();
+            goodTask = await this.findOne({"volunteers.0": {$exists: false}, code: { $in: authorizedCodes } }).exec();
         }
 
         //if a task was selected, add the user to it and return it
