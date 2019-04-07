@@ -18,6 +18,7 @@ modify device | `/devices/:fullID` | `PUT` | `updatedAt` | `code`, `note`, `desc
 request individual task list | `/tasks` | `GET`
 sign up new task | `/tasks` | `POST`
 quit task | `/tasks/:fullID` | `DELETE`
+task completion | `/tasks/:fullID` | `PUT` | `updatedAt` | `code`, `note`, `description`, `estValue`
 
 ## NGINX Reverse Proxy
 From the NGINX Documention:

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../setup/passport");
-// const { body, query, validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
+const { modifyValidator } = require("../utilities/validators");
 const DeviceModel = require('../models/device');
 
 //returns a list of current tasks the user is undertaking
@@ -50,12 +51,43 @@ router.delete("/:fullID",
                 { $pull: { volunteers: user } }
             ).exec(); //find the task with given ID that user is working on, remove them from it
             if(task.nModified == 1) return res.json({success: true}); //if user was removed, return success
-            else return res.status(400).json({msg: `The user is not working on device ${fullID}`}); //else send error
+            else return next({code: 400, msg: `The user is not working on device ${fullID}`}); //else send error
         }
         catch (error) {
             return next({catch: error});
         }
     }
 );
+
+//complete a task, task submission form
+router.put("/:fullID",
+    modifyValidator,
+    ensureAuthenticated,
+    async(req, res, next) => {
+        //validate and store json parameters
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) return next({validation: errors.array()});
+        const { code, note, description, estValue, updatedAt } = req.body;
+
+        //id and user parameters
+        const fullID = req.params.fullID;
+        const user = req.user._id;
+
+        try {
+            const device = await DeviceModel.findOne({fullID: fullID, volunteers: user}).exec();
+            if(!device) return next({code: 400, msg: `The user is not working on device ${fullID}`});
+
+            //update the device and clear the volunteers
+            if(await device.updateDevice(code, note, description, estValue, undefined, updatedAt, next)) {
+                device.clearVolunteers();
+                await device.save();
+                return res.status(200).json({updated: device});
+            }
+        }
+        catch (error) {
+            return next({catch: error});
+        }
+    }
+)
 
 module.exports = router;

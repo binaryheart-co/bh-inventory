@@ -267,4 +267,9 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
     }
 }
 
+//remove volunteers from completed task
+deviceSchema.methods.clearVolunteers = async function() {
+    this.volunteers = [];
+}
+
 module.exports = mongoose.model("Device", deviceSchema);
