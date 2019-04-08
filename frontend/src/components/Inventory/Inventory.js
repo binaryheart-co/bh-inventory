@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import Inventrow from "./Inventrow";
 // import tempd from "./nikita.json";
 
+const itemsAtTime = 10;
+
 class Inventory extends Component {
     constructor(props) {
         super(props);
         this.state = {
             devices: [],
-            items: 10,
+            afterToken: {},
+            items: itemsAtTime,
             loadingState: false
         }
         this.onScroll = this.onScroll.bind(this);
@@ -20,15 +23,31 @@ class Inventory extends Component {
 
     async getData() {
         try {
-            const response = await fetch("/api/devices", {
+
+            //Add token to device url if there is a token
+            let deviceURL = `/api/devices?items=${itemsAtTime}`;
+            if(this.state.afterToken.tokenDirection && this.state.afterToken.tokenID) {
+                deviceURL += `&tokenDirection=${this.state.afterToken.tokenDirection}`;
+                deviceURL += `&tokenID=${this.state.afterToken.tokenID}`;
+            }
+
+            const response = await fetch(deviceURL, {
                 method: "GET"
             });
+
             const resData = await response.json();
             if(response.status === 401) {
                 this.props.history.push("/");
             }
             else if(response.status === 200) {
-                return this.setState({ devices: resData.devices });
+                const joined = this.state.devices.concat(resData.devices);
+                console.log(joined);
+                return this.setState({ 
+                    devices: joined, 
+                    afterToken: resData.after, 
+                    loadingState: false, 
+                    items: this.state.items + itemsAtTime,
+                });
             }
         }
         catch(e) {
@@ -46,16 +65,15 @@ class Inventory extends Component {
     }
 
     onScroll() {
-      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)){
-        this.setState({ loadingState: true });
-        this.loadMoreItems();
-
-      }
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)){
+            this.setState({ loadingState: true });
+            this.getData();
+        }
       
-      // if(tempd.length < this.state.items){ //nikita.json
-      if(this.state.devices.length < this.state.items){
-        window.removeEventListener("scroll", this.onScroll);
-      }
+        // if(tempd.length < this.state.items){ //nikita.json
+        if(this.state.devices.length < this.state.items){
+            window.removeEventListener("scroll", this.onScroll);
+        }
     }
 
 
@@ -85,9 +103,11 @@ class Inventory extends Component {
     }
 
     loadMoreItems() {
-        setTimeout(() => {
-          this.setState({ items: this.state.items + 5, loadingState: false });
-        }, 1000);
+
+        this.setState({ items: this.state.items + itemsAtTime });
+        // setTimeout(() => {
+        //   this.setState({ items: this.state.items + 5, loadingState: false });
+        // }, 1000);
     }
 
 
@@ -124,7 +144,7 @@ class Inventory extends Component {
                     {this.displayItems()}
                   </tbody>
                 </table>
-                {this.state.loadingState ? <p className="loading" style={{textAlign:"center"}}>Loading {this.state.items} Items..</p> : ""}
+                {this.state.loadingState ? <p className="loading" style={{textAlign:"center"}}>Loading {itemsAtTime} more items...</p> : ""}
                 <div className="down">
                   <FontAwesomeIcon icon="angle-down" id="downArrow"/>
                 </div>

@@ -14,7 +14,6 @@ class Inventrow extends Component {
 	render() {
         const i = this.props.i;
         
-        console.log(i);
         const coding = this.state.coder === true ? <textarea className="input" type="text" defaultValue={i.code}/> : i.code;
 
         //Note code
