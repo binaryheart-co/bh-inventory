@@ -15,6 +15,7 @@ class Inventory extends Component {
 			items: 10,
 			loadingState: false
         }
+		this.onScroll = this.onScroll.bind(this);
     }
 
     async getData() {
@@ -36,35 +37,29 @@ class Inventory extends Component {
     }
 
     componentDidMount() {
-        this.getData().then()
-		window.addEventListener("scroll", () => {
-		  if(this.refs.iScroll.scrollTop+this.refs.iScroll.clientHeight >= this.refs.iScroll.scrollHeight){
-			alert("hi");
-			this.loadMoreItems();
-		  }
-		});
+		window.addEventListener("scroll", this.onScroll);
     }
+	
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.onScroll);
+	}
+
+	onScroll() {
+	  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)){
+		this.setState({ loadingState: true });
+		this.loadMoreItems();
+
+	  }
+	  
+	  if(tempd.length < this.state.items){
+		window.removeEventListener("scroll", this.onScroll);
+	  }
+	}
 
 
 	displayItems() {
-		var items = [];
-		for (var i = 0; i < this.state.items; i++) {
-		  items.push(<li key={i}>Item {i}</li>);
-		}
-		return items;
-	}
-
-	loadMoreItems() {
-		this.setState({ loadingState: true });
-		setTimeout(() => {
-		  this.setState({ items: this.state.items + 10, loadingState: false });
-		}, 3000);
-	}
-
-
-    render() {
         const rows = [];
-  		tempd.forEach((i) => {
+  		tempd.slice(0,this.state.items).forEach((i, n) => {
 			
 			const coding =
             i.code === -4 ? "#E0666":
@@ -80,10 +75,20 @@ class Inventory extends Component {
             "#183A5F";
 			
 			rows.push(
-				<Inventrow i={i} key={i.fullID} coding={coding}/>
+				<Inventrow i={i} key={i.fullID} coding={coding} n={n}/>
 			);
   		});
+		return rows;
+	}
 
+	loadMoreItems() {
+		setTimeout(() => {
+		  this.setState({ items: this.state.items + 5, loadingState: false });
+		}, 1000);
+	}
+
+
+    render() {
         return (
             <div>
                 <div className="button" style={{float: "right"}}><Link to="/logdevice">Log new Device</Link></div>
@@ -98,7 +103,7 @@ class Inventory extends Component {
                 </div>
 				<br/>
 				<br/>
-				<table className="mainTable" ref="iScroll">
+				<table className="mainTable" id="iScroll">
 				  <thead>
 					<tr className="roundy">
 					  <th width="6%">Date</th>
@@ -113,10 +118,10 @@ class Inventory extends Component {
 					</tr>
 				  </thead>
 				  <tbody style={{overflow:"auto"}}>
-					{rows}
+					{this.displayItems()}
 				  </tbody>
 				</table>
-				{this.state.loadingState ? <p className="loading"> loading More Items..</p> : ""}
+				{this.state.loadingState ? <p className="loading" style={{textAlign:"center"}}>Loading {this.state.items} Items..</p> : ""}
                 <div className="down">
                   <FontAwesomeIcon icon="angle-down" id="downArrow"/>
                 </div>
