@@ -46,7 +46,13 @@ class Inventory extends Component {
 
 	onScroll() {
 	  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)){
+		this.setState({ loadingState: true });
 		this.loadMoreItems();
+
+	  }
+	  
+	  if(tempd.length < this.state.items){
+		window.removeEventListener("scroll", this.onScroll);
 	  }
 	}
 
@@ -76,10 +82,9 @@ class Inventory extends Component {
 	}
 
 	loadMoreItems() {
-		this.setState({ loadingState: true });
 		setTimeout(() => {
-		  this.setState({ items: this.state.items + 10, loadingState: false });
-		}, 3000);
+		  this.setState({ items: this.state.items + 5, loadingState: false });
+		}, 1000);
 	}
 
 
