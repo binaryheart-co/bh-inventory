@@ -6,7 +6,7 @@ const DeviceModel = require('../models/device');
 
 //returns a list of current tasks the user is undertaking
 router.get("/",
-    ensureAuthenticated, 
+    ensureAuthenticated(1), 
     async (req, res, next) => {
         try {
             //try to find a list of tasks for the user
@@ -24,7 +24,7 @@ router.get("/",
 
 //request a new task for the user
 router.post("/",
-    ensureAuthenticated, 
+    ensureAuthenticated(1), 
     async (req, res, next) => {
         try {
             const task = await DeviceModel.assignTask(req.user.skill, req.user._id); //adds user to existing task, or creates new task
@@ -40,7 +40,7 @@ router.post("/",
 
 //quit a task
 router.delete("/:fullID",
-    ensureAuthenticated,
+    ensureAuthenticated(1),
     async(req, res, next) => {
         const fullID = req.params.fullID;
         const user = req.user._id;
@@ -61,7 +61,7 @@ router.delete("/:fullID",
 //complete a task, task submission form
 router.put("/:fullID",
     modifyValidator,
-    ensureAuthenticated,
+    ensureAuthenticated(1),
     async(req, res, next) => {
         //validate and store json parameters
         const errors = validationResult(req);

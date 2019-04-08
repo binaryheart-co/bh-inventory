@@ -8,7 +8,7 @@ const { validationResult, modifyValidator, queryValidator, newDeviceValidator } 
 //RETURN: { fullID: 0119001A }
 router.post("/", 
     newDeviceValidator,
-    ensureAuthenticated, 
+    ensureAuthenticated(1), 
     async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
@@ -54,7 +54,7 @@ router.post("/",
 // Return: { devices: [], before: {direction, score, id}, after: {direction, score, id} }
 router.get("/", 
     queryValidator,
-    ensureAuthenticated, 
+    ensureAuthenticated(1), 
     async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
@@ -90,7 +90,7 @@ router.get("/",
 // Return: { updated: {//device here} } or { errors: [{ msg, updated: {//device here} }] } if bad updatedAt
 router.put("/:fullID", 
     modifyValidator,
-    ensureAuthenticated,
+    ensureAuthenticated(0),
     async(req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});

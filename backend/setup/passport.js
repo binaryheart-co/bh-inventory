@@ -36,11 +36,13 @@ passport.deserializeUser(async (id, done) => {
 });
 
 module.exports = {
-    ensureAuthenticated: function(req, res, next) {
-        if(req.isAuthenticated()) return next();
-        return next({
-            validation: [{msg: "Ah ah ah, you didn't say the magic word!"}],
-            code: 401,
-        });
+    ensureAuthenticated: function(clearance) {
+        return function(req, res, next) {
+            if(req.isAuthenticated() && req.user.clearance <= clearance) return next();
+            return next({
+                validation: [{msg: "Ah ah ah, you didn't say the magic word!"}],
+                code: 401,
+            });
+        }
     }
 }
