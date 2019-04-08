@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const { maxTaskPartners, skillAuthorizations } = require("../config");
 
 const notesSchema = new Schema({
         note: {
@@ -69,7 +70,12 @@ const deviceSchema = new Schema({
             max: Number.MAX_SAFE_INTEGER,
             index: true,
         },
-        user: String,
+        volunteers: {
+            type: [String],
+            maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
+            index: true,
+            default: [],
+        },
         donor: String,
     },
     {
@@ -77,6 +83,7 @@ const deviceSchema = new Schema({
     }
 );
 
+//special index for text search
 deviceSchema.index({ fullID: "text", description: "text", "notes.note": "text", receiver: "text" });
 
 Date.prototype.getWeekYr = function() {
@@ -223,6 +230,46 @@ deviceSchema.methods.updateDevice = async function(code, note, description, estV
     catch (error) {
         return next({catch: error});
     }
+}
+
+//TASK CODE:
+
+//adds user to existing task, or creates new task
+deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
+    try {
+        //select open task if availible
+        // let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
+        // let goodTask = await this.findOne({ volunteers: {$exists: true} }).$where(function() {
+        //     return this.volunteers.length > 0 && this.volunteers.length < maxTaskPartners;
+        // });
+        let goodTask = await this.findOne({$and: [
+            {[`volunteers.${maxTaskPartners - 1}`]: {$exists: false}}, //size less than maxTaskPartners
+            {[`volunteers.0`]: {$exists: true}}, //size greater than 0
+            { volunteers: { $ne: volunteerID }}, //volunteer not already doing task
+        ]}).exec();
+
+        //if no open tasks, select a new task
+        if (goodTask === null) {
+            const authorizedCodes = skillAuthorizations[volunteerSkill];
+            goodTask = await this.findOne({"volunteers.0": {$exists: false}, code: { $in: authorizedCodes } }).exec();
+        }
+
+        //if a task was selected, add the user to it and return it
+        if (goodTask != null) {
+            goodTask.volunteers.push(volunteerID);
+            await goodTask.save();
+            return { task: goodTask };
+        }
+        else return { task: null } //if no task selected, return null
+    } 
+    catch (error) {
+        return { error };
+    }
+}
+
+//remove volunteers from completed task
+deviceSchema.methods.clearVolunteers = async function() {
+    this.volunteers = [];
 }
 
 module.exports = mongoose.model("Device", deviceSchema);

@@ -67,6 +67,9 @@ router.use("/user", user);
 const devices = require("./routes/devices");
 router.use("/devices", devices);
 
+const tasks = require("./routes/tasks");
+router.use("/tasks", tasks);
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 })
@@ -74,6 +77,9 @@ app.get("*", (req, res) => {
 app.use(function(err, req, res, next) {
     if(err.validation) {
         return res.status(err.code ? err.code : 400).json({errors: err.validation});
+    }
+    else if (err.msg && err.code) {
+        return res.status(err.code).json({errors: [{msg: err.msg}]});
     }
     return res.status(500).json({errors: [{msg: "There was a server error :("}]});
 });
