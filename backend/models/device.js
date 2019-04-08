@@ -76,6 +76,12 @@ const deviceSchema = new Schema({
             index: true,
             default: [],
         },
+        names: {
+            type: [String],
+            maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
+            index: true,
+            default: [],
+        },
         donor: String,
     },
     {
@@ -235,7 +241,7 @@ deviceSchema.methods.updateDevice = async function(code, note, description, estV
 //TASK CODE:
 
 //adds user to existing task, or creates new task
-deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
+deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID, volunteerName) {
     try {
         //select open task if availible
         // let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
@@ -257,6 +263,7 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
         //if a task was selected, add the user to it and return it
         if (goodTask != null) {
             goodTask.volunteers.push(volunteerID);
+            goodTask.names.push(volunteerName);
             await goodTask.save();
             return { task: goodTask };
         }
@@ -270,6 +277,7 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
 //remove volunteers from completed task
 deviceSchema.methods.clearVolunteers = async function() {
     this.volunteers = [];
+    this.names = [];
 }
 
 module.exports = mongoose.model("Device", deviceSchema);
