@@ -12,10 +12,20 @@ class Inventrow extends Component {
     }
 
 	render() {
-		const i = this.props.i;
-		
-		const coding = this.state.coder === true ? <textarea className="input" type="text" defaultValue={i.code}/> : i.code;
-		const noting = this.state.noter === true ? <textarea className="input" type="text" defaultValue={i.notes}/> : i.notes;
+        const i = this.props.i;
+        
+        console.log(i);
+        const coding = this.state.coder === true ? <textarea className="input" type="text" defaultValue={i.code}/> : i.code;
+
+        //Note code
+        let noteText = "";
+        for(let n = 0; n < i.notes.length; n++) {
+            const date = new Date(i.notes[n].createdAt);
+            const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+            noteText += `${dateText}: ${i.notes[n].note}\n`;
+        }
+        const noting = this.state.noter === true ? <textarea className="input" type="text" defaultValue={noteText}/> : noteText;
+
 		const describing = this.state.describer === true ? <textarea className="input" type="text" defaultValue={i.description}/> : i.description;
 		const receiving = this.state.receiver === true ? <textarea className="input" type="text" defaultValue={i.receiver}/> : i.receiver;
         
