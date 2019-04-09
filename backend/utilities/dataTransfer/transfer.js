@@ -59,6 +59,7 @@ const saveDevices = async () => {
                 description: e.description,
                 estValue: e.price
             };
+            if(e.receiver !== "") dData.receiver = e.receiver;
             const device = new DeviceModel(dData);
             await device.save();
         });
