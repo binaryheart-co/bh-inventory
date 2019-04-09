@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const { maxTaskPartners, skillAuthorizations } = require("../config");
+const UserModel = require('./user');
 
 const notesSchema = new Schema({
         note: {
@@ -45,9 +46,12 @@ const deviceSchema = new Schema({
             type: String,
             required: [true, "A device type is required."],
         },
-        subtype: {
+        location: {
             type: String,
         },
+        // subtype: {
+        //     type: String,
+        // },
         code: {
             type: Number,
             required: [true, "A status code is required."],
@@ -71,6 +75,12 @@ const deviceSchema = new Schema({
             index: true,
         },
         volunteers: {
+            type: [String],
+            maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
+            index: true,
+            default: [],
+        },
+        names: {
             type: [String],
             maxlength: [maxTaskPartners, `Only ${maxTaskPartners} volunteers can do a single task.`],
             index: true,
@@ -115,7 +125,7 @@ deviceSchema.statics.getUniqueID = async function(next) {
 
 deviceSchema.statics.listDevices = async function(
     items, tokenDirection, tokenScore, tokenID, search, minDate, maxDate, 
-    code, type, subtype, minValue, maxValue
+    code, type, minValue, maxValue
 ){
     try {
         let query;
@@ -141,7 +151,6 @@ deviceSchema.statics.listDevices = async function(
         }
         if(code) query.match({ code: { $in: code } });
         if(type) query.match({ type: { $in: type } });
-        if(subtype) query.match({ subtype: { $in: subtype } });
         if(minValue || maxValue) {
             const params = {}
             if(+minValue) params.$gte = +minValue;
@@ -235,7 +244,7 @@ deviceSchema.methods.updateDevice = async function(code, note, description, estV
 //TASK CODE:
 
 //adds user to existing task, or creates new task
-deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
+deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID, volunteerName) {
     try {
         //select open task if availible
         // let goodTask = await this.findOne({volunteers: {$size: {$gt: 0, $lt: maxTaskPartners} } }).exec();
@@ -257,6 +266,7 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
         //if a task was selected, add the user to it and return it
         if (goodTask != null) {
             goodTask.volunteers.push(volunteerID);
+            goodTask.names.push(volunteerName);
             await goodTask.save();
             return { task: goodTask };
         }
@@ -267,9 +277,22 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID) {
     }
 }
 
+deviceSchema.pre("save", async function() {
+    try {
+        if(!this.isModified("volunteers") || this.names === []) return;
+        const names = await UserModel.idNames(this.volunteers);
+        this.names = names.names;
+        return;
+    }
+    catch(e) {
+        throw new Error(e);
+    }
+});
+
 //remove volunteers from completed task
 deviceSchema.methods.clearVolunteers = async function() {
     this.volunteers = [];
+    this.names = [];
 }
 
 module.exports = mongoose.model("Device", deviceSchema);

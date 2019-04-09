@@ -10,10 +10,19 @@ router.get("/",
     async (req, res, next) => {
         try {
             //try to find a list of tasks for the user
-            let tasks = await DeviceModel.find({volunteers: req.user._id}).exec();
+            let tasks = await DeviceModel.find({volunteers: req.user._id}).lean().exec();
 
             //return the list, or return [] if there are no tasks
             if(tasks === null || tasks.length === 0) tasks = [];
+            // else { //add volunteer names to the returned tasks
+            //     tasks = tasks.map(async function(element) {
+            //         const names = await UserModel.idNames(element.volunteers);
+            //         element.names = names.names;
+            //         return element;
+            //     });
+            // }
+            
+            // return res.json({ tasks: await Promise.all(tasks) });
             return res.json({ tasks });
         }
         catch (error) {
@@ -27,7 +36,8 @@ router.post("/",
     ensureAuthenticated(1), 
     async (req, res, next) => {
         try {
-            const task = await DeviceModel.assignTask(req.user.skill, req.user._id); //adds user to existing task, or creates new task
+            const fullname = `${req.user.firstName} ${req.user.lastName}`;
+            const task = await DeviceModel.assignTask(req.user.skill, req.user._id, fullname); //adds user to existing task, or creates new task
             if(!task.error && task.task) return res.json({ task: task.task }); //if successful, return the new task
             else if(!task.task) return res.json({ msg: "No availible tasks." }); //else, return no availible tasks
             else return next({catch: task.error}); // in case of server error
@@ -46,10 +56,13 @@ router.delete("/:fullID",
         const user = req.user._id;
 
         try {
-            const task = await DeviceModel.findOne({fullID: fullID, volunteers: user}).update(
-                { $pull: { volunteers: user } }
-            ).exec(); //find the task with given ID that user is working on, remove them from it
-            if(task.nModified == 1) return res.json({success: true}); //if user was removed, return success
+            const task = await DeviceModel.findOne({fullID: fullID, volunteers: user}).exec(); //find the task with given ID that user is working on
+            if(task !== null) {
+                const index = task.volunteers.indexOf(user);
+                if (index > -1) task.volunteers.splice(index, 1);
+                await task.save();
+                return res.json({success: true});
+            }
             else return next({code: 400, msg: `The user is not working on device ${fullID}`}); //else send error
         }
         catch (error) {

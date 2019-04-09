@@ -4,7 +4,7 @@ const { ensureAuthenticated } = require("../setup/passport");
 const DeviceModel = require("../models/device");
 const { validationResult, modifyValidator, queryValidator, newDeviceValidator } = require("../utilities/validators");
 
-//{ type, subtype, code, note, description, estValue }
+//{ type, code, note, description, estValue }
 //RETURN: { fullID: 0119001A }
 router.post("/", 
     newDeviceValidator,
@@ -13,19 +13,18 @@ router.post("/",
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
 
-        let {type, subtype, code, note, description, estValue} = req.body;
+        let {type, code, note, description, estValue} = req.body;
         type = String(type).toUpperCase();
-        subtype = String(subtype).toUpperCase();
 
         try {
             const {weekYr, weekDevice, uniqueID} = await DeviceModel.getUniqueID(next);
-            const fullID = uniqueID + type + subtype;
+            const fullID = uniqueID + type;
 
             let notes;
             if(note) notes = [{note, code}];
 
             const device = new DeviceModel({
-                weekYr, weekDevice, uniqueID, fullID, type, subtype, code, 
+                weekYr, weekDevice, uniqueID, fullID, type, code, 
                 notes, description, estValue
             });
             await device.save();
@@ -47,7 +46,6 @@ router.post("/",
 //     "maxDate": "2019-02-07T23:53:37.554Z",
 //     "code[]": 4, "code[]": 5,
 //     "type[]": "A", "type[]": "W",
-//     "subtype[]": "L", "subtype[]": "D",
 //     "minValue": 150,
 //     "maxValue": 1200
 // }
@@ -61,7 +59,7 @@ router.get("/",
 
         let { 
             items, tokenDirection, tokenScore, tokenID, search, minDate, 
-            maxDate, code, type, subtype, minValue, maxValue
+            maxDate, code, type, minValue, maxValue
         } = req.query;
         if(code) code = code.map(Number);
         if(!items) items = 50;
@@ -69,7 +67,7 @@ router.get("/",
         try {
             const devices = await DeviceModel.listDevices(
                 +items, tokenDirection, +tokenScore, tokenID, search, minDate, maxDate, code,
-                type, subtype, +minValue, +maxValue
+                type, +minValue, +maxValue
             );
             return res.json(devices);
         }

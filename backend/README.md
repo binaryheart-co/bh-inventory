@@ -12,8 +12,8 @@ purpose | endpoint | HTTP Method | required parameters | optional parameters | n
 login user | `/auth/login` | `POST` | `email`, `password`
 logout user | `/auth/logout` | `DELETE`
 register user | `/auth/register` | `POST` | `email`, `password`, `firstName`, `lastName`
-log new device | `/devices` | `POST` | `type`, `subtype`, `code`, `description`, `estValue` | `note`
-request device list | `/devices` | `GET` || `items`, `tokenDirection`, `tokenID`, `tokenScore`, `search`, `minDate`, `maxDate`, `code`, `type`, `subtype`, `minValue`, `maxValue`| Parameters in query not body. If the `tokenDirection` field is included, `tokenID` must be supplied.
+log new device | `/devices` | `POST` | `type`, `code`, `description`, `estValue` | `note`
+request device list | `/devices` | `GET` || `items`, `tokenDirection`, `tokenID`, `tokenScore`, `search`, `minDate`, `maxDate`, `code`, `type`, `minValue`, `maxValue`| Parameters in query not body. If the `tokenDirection` field is included, `tokenID` must be supplied.
 modify device | `/devices/:fullID` | `PUT` | `updatedAt` | `code`, `note`, `description`, `estValue`, `receiver`
 request individual task list | `/tasks` | `GET`
 sign up new task | `/tasks` | `POST`
