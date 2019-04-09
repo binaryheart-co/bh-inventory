@@ -46,9 +46,12 @@ const deviceSchema = new Schema({
             type: String,
             required: [true, "A device type is required."],
         },
-        subtype: {
+        location: {
             type: String,
         },
+        // subtype: {
+        //     type: String,
+        // },
         code: {
             type: Number,
             required: [true, "A status code is required."],
@@ -122,7 +125,7 @@ deviceSchema.statics.getUniqueID = async function(next) {
 
 deviceSchema.statics.listDevices = async function(
     items, tokenDirection, tokenScore, tokenID, search, minDate, maxDate, 
-    code, type, subtype, minValue, maxValue
+    code, type, minValue, maxValue
 ){
     try {
         let query;
@@ -148,7 +151,6 @@ deviceSchema.statics.listDevices = async function(
         }
         if(code) query.match({ code: { $in: code } });
         if(type) query.match({ type: { $in: type } });
-        if(subtype) query.match({ subtype: { $in: subtype } });
         if(minValue || maxValue) {
             const params = {}
             if(+minValue) params.$gte = +minValue;

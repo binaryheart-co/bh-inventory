@@ -12,6 +12,7 @@ class Dashboard extends Component {
         }
         this.getTasks = this.getTasks.bind(this);
         this.claimTask = this.claimTask.bind(this);
+        this.logout = this.logout.bind(this);
         this.whoAmI = this.whoAmI.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -80,23 +81,21 @@ class Dashboard extends Component {
         }
     }
 
-    // async logout() {
-    //     try {
-    //         const response = await fetch("/api/user/protected", {
-    //             method: "GET",
-    //         });
-    //         const resData = await response.json();
-    //         if(response.status === 401) {
-    //             this.props.history.push("/");
-    //         }
-    //         else if(response.status === 200) {
-    //             return this.setState({ subject: resData.firstName });
-    //         }
-    //     }
-    //     catch(e) {
-    //         console.error(e);
-    //     }
-    // }
+    async logout() {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "DELETE",
+            });
+            const resData = await response.json();
+            if(response.status === 200) {
+                this.props.history.push("/");
+            }
+            else return alert(JSON.stringify(resData.errors));
+        }
+        catch(e) {
+            console.error(e);
+        }
+    }
 
     componentDidMount() {
         this.whoAmI();
@@ -167,7 +166,7 @@ class Dashboard extends Component {
                         </div>
                         <div className="level-right">
                             <div className="level-item has-text-centered">
-                                <input className="button is-dark" type="submit" value="Log Out" onClick={() => alert("Say bye to Marzuk")}/>
+                                <input className="button is-dark" type="submit" value="Log Out" onClick={this.logout}/>
                             </div>
                         </div>
                     </nav>

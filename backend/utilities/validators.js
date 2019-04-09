@@ -49,23 +49,23 @@ module.exports = {
             .isArray().isLength({min: 1}),
         query("type", "An array with valid types is needed.").optional({nullable: false})
             .isArray().isLength({min: 1}),
-        query("subtype", "An array with valid subtypes is needed.").optional({nullable: false})
-            .isArray().isLength({min: 1}),
+        // query("subtype", "An array with valid subtypes is needed.").optional({nullable: false})
+        //     .isArray().isLength({min: 1}),
         query("minValue").optional({nullable: false}).custom(isValidNumber),
         query("maxValue").optional({nullable: false}).custom(isValidNumber),
     ],
 
     newDeviceValidator: [
         body("type", "A,C,I, and W are valid device types.").isIn(["A", "a", "C", "c", "I", "i", "W", "w"]),
-        body("subtype").custom((v, { req }) => {
-            if(["A", "a", "W", "w"].includes(req.body.type)) {
-                if(!v) throw new Error("Types A and W require a subtype.");
-                else if(!["L", "l", "D", "d"].includes(v)) throw new Error("L and D are valid device subtypes.");
-                else return true;
-            }
-            else if(v) throw new Error("Only types A and W should have a subtype.");
-            return true;
-        }),
+        // body("subtype").custom((v, { req }) => {
+        //     if(["A", "a", "W", "w"].includes(req.body.type)) {
+        //         if(!v) throw new Error("Types A and W require a subtype.");
+        //         else if(!["L", "l", "D", "d"].includes(v)) throw new Error("L and D are valid device subtypes.");
+        //         else return true;
+        //     }
+        //     else if(v) throw new Error("Only types A and W should have a subtype.");
+        //     return true;
+        // }),
         body("code", "Status codes range from -4 to 5").isInt({min: -4, max: 5}),
         body("note").optional().isString().isLength({min: 1}),
         body("description").isString().isLength({min: 1}),
