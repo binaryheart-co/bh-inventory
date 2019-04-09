@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Inventrow from "./Inventrow";
 // import tempd from "./nikita.json";
 
-const itemsAtTime = 10;
+const itemsAtTime = 50;
 
 class Inventory extends Component {
     constructor(props) {
@@ -132,7 +132,7 @@ class Inventory extends Component {
                       <th width="6%">Date</th>
                       <th width="10%">ID</th>
                       <th width="5%">Code</th>
-                      <th>User</th>
+                      <th>Users</th>
                       <th>Status</th>
                       <th width="30%">Notes</th>
                       <th>Description</th>

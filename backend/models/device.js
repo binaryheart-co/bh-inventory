@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const { maxTaskPartners, skillAuthorizations } = require("../config");
+const UserModel = require('./user');
 
 const notesSchema = new Schema({
         note: {
@@ -273,6 +274,18 @@ deviceSchema.statics.assignTask = async function(volunteerSkill, volunteerID, vo
         return { error };
     }
 }
+
+deviceSchema.pre("save", async function() {
+    try {
+        if(!this.isModified("volunteers") || this.names === []) return;
+        const names = await UserModel.idNames(this.volunteers);
+        this.names = names.names;
+        return;
+    }
+    catch(e) {
+        throw new Error(e);
+    }
+});
 
 //remove volunteers from completed task
 deviceSchema.methods.clearVolunteers = async function() {

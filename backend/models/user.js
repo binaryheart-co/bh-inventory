@@ -62,19 +62,19 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
     }
 }
 
-// userSchema.statics.idNames = async function(volunteerIDs) {
-//     try {
-//         let names = [];
-//         for(let i = 0; i < volunteerIDs.length; i++)
-//         {
-//             let name = await this.findOne({ _id: volunteerIDs[i] });
-//             names.push(`${name.firstName} ${name.lastName}`);
-//         }
-//         return { names };
-//     } 
-//     catch (error) {
-//         return { error };
-//     }
-// }
+userSchema.statics.idNames = async function(volunteerIDs) {
+    try {
+        let names = [];
+        for(let i = 0; i < volunteerIDs.length; i++)
+        {
+            let name = await this.findOne({ _id: volunteerIDs[i] });
+            names.push(`${name.firstName} ${name.lastName}`);
+        }
+        return { names };
+    } 
+    catch (error) {
+        return { error };
+    }
+}
 
 module.exports = mongoose.model("User", userSchema);

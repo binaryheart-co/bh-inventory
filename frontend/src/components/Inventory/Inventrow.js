@@ -44,12 +44,14 @@ class Inventrow extends Component {
             i.code === 5 ? "100% Ready for Donation" :
             "Unknown";
 
+        const user = i.names ? i.names.join(", ") : "";
+
 		return (
 			<tr bgcolor={this.props.coding}>
 				<td>{dateText}</td>
 				<td>{i.fullID}</td>
 				<td onClick={() => this.setState({coder:true}) }>{coding}</td>
-				<td>{i.user}</td>
+				<td>{user}</td>
 				<td>{status}</td>
 				<td onClick={() => this.setState({noter:true}) }>{noting}</td>
 				<td onClick={() => this.setState({describer:true}) }>{describing}</td>

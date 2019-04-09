@@ -80,6 +80,24 @@ class Dashboard extends Component {
         }
     }
 
+    // async logout() {
+    //     try {
+    //         const response = await fetch("/api/user/protected", {
+    //             method: "GET",
+    //         });
+    //         const resData = await response.json();
+    //         if(response.status === 401) {
+    //             this.props.history.push("/");
+    //         }
+    //         else if(response.status === 200) {
+    //             return this.setState({ subject: resData.firstName });
+    //         }
+    //     }
+    //     catch(e) {
+    //         console.error(e);
+    //     }
+    // }
+
     componentDidMount() {
         this.whoAmI();
         this.getTasks();
