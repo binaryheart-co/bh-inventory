@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-
 import logo from  "./binaryHeartLogo80.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./style.scss";
 
-class Login extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
             password: "",
+			firstName: "",
+			lastName: "",
             message: "",
+			skill: 0,
             hideNotify: true,
         }
 
         this.handleChange = this.handleChange.bind(this);
-        this.login = this.login.bind(this);
+        this.register = this.register.bind(this);
         this.hideNotification = this.hideNotification.bind(this);
     }
 
@@ -28,10 +30,10 @@ class Login extends Component {
         this.setState({ hideNotify: true });
     }
 
-    async login() {
+    async register() {
         try {
-            const data = {email: this.state.email, password: this.state.password};
-            const response = await fetch("/api/auth/login", {
+            const data = {email: this.state.email, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName, skill: this.state.skill};
+            const response = await fetch("/api/auth/register", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -43,7 +45,7 @@ class Login extends Component {
                 this.setState({ hideNotify: false, message: resData.errors[0].msg });
             }
             else if(response.status === 200) {
-                this.props.history.push("/dashboard");
+                this.props.history.push("/");
             }
         }
         catch(e) {
@@ -59,6 +61,12 @@ class Login extends Component {
                     <strong>{this.state.message}</strong>
                 </div>
                 <a href="https://binaryheart.org"><img id="bhLogo" src={logo} alt="binaryheart.org"/></a>
+                <div className="field loginField">
+                    <p className="control">
+                        <input value={this.state.firstName} name="firstName" onChange={this.handleChange} id="firstInput" className="input is-size-4 loginInput" type="text" placeholder="First Name"/>
+                        <input value={this.state.lastName} name="lastName" onChange={this.handleChange} id="lastInput" className="input is-size-4 loginInput" type="text" placeholder="Last Name"/>
+                    </p>
+                </div>
                 <div className="field loginField">
                     <p className="control has-icons-left">
                         <input value={this.state.email} name="email" onChange={this.handleChange} id="emailInput" className="input is-size-4 loginInput" type="email" placeholder="Email"/>
@@ -82,8 +90,8 @@ class Login extends Component {
                         </span>
                         <span>Back</span>
                     </div>
-                    <div onClick={this.login} id="loginButton" className="button is-size-4 is-rounded">
-                        Login
+                    <div onClick={this.register} id="loginButton" className="button is-size-4 is-rounded">
+                        Register
                     </div>
                 </div>
             </div>
@@ -91,4 +99,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;

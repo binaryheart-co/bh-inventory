@@ -41,7 +41,6 @@ class Inventory extends Component {
             }
             else if(response.status === 200) {
                 const joined = this.state.devices.concat(resData.devices);
-                console.log(joined);
                 return this.setState({ 
                     devices: joined, 
                     afterToken: resData.after, 

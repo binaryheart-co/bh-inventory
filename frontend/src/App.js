@@ -8,6 +8,7 @@ import Tasks from "./components/Tasks/Tasks";
 import AddTask from "./components/Tasks/AddTask";
 import SubmitTask from "./components/Tasks/SubmitTask";
 import Dashboard from "./components/Login/Dashboard";
+import Register from "./components/Login/Register";
 import Error404 from "./components/Error404";
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
 					<Route path="/addtask" component={AddTask}/>
 					<Route path="/submit" component={SubmitTask}/>
 					<Route path="/dashboard" component={Dashboard}/>
+					<Route path="/register" component={Register}/>
                     <Route component={Error404}/>
                 </Switch>
             </BrowserRouter>
