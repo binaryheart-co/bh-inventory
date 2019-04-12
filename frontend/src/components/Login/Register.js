@@ -10,6 +10,7 @@ class Register extends Component {
         this.state = {
             email: "",
             password: "",
+            passwordConfirm: "",
 			firstName: "",
 			lastName: "",
             message: "",
@@ -20,6 +21,7 @@ class Register extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.register = this.register.bind(this);
         this.hideNotification = this.hideNotification.bind(this);
+        this.backToLogin = this.backToLogin.bind(this);
     }
 
     handleChange(e) {
@@ -31,6 +33,10 @@ class Register extends Component {
     }
 
     async register() {
+        if(this.state.password !== this.state.passwordConfirm) {
+            this.setState({ hideNotify: false, message: "The passwords do not match! Please try again." });
+            return;
+        }
         try {
             const data = {email: this.state.email, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName, skill: this.state.skill};
             const response = await fetch("/api/auth/register", {
@@ -51,6 +57,10 @@ class Register extends Component {
         catch(e) {
             this.setState({ hideNotify: false, message: String(e) });
         }
+    }
+
+    backToLogin() {
+        this.props.history.push("/");
     }
 
     render() {
@@ -83,8 +93,26 @@ class Register extends Component {
                         </span>
                     </p>
                 </div>
+                <div className="field loginField">
+                    <p className="control has-icons-left">
+                        <input value={this.state.passwordConfirm} name="passwordConfirm" onChange={this.handleChange} id="passwordInput" className="input is-size-4 loginInput" type="password" placeholder="Confirm Password"/>
+                        <span id="passwordIcon" className="icon is-size-4 is-left">
+                            <FontAwesomeIcon icon="lock"/>
+                        </span>
+                    </p>
+                </div>
+                <div className="control">
+                        <div className="select">
+                            <select name="skill" value={this.state.skill} onChange={this.handleChange}>
+                                <option value={0}>0 - Noob</option>
+                                <option value={1}>1 - Learning the Ropes</option>
+                                <option value={2}>2 - Tech Guru</option>
+                                <option value={3}>3 - Partner</option>
+                            </select>
+                        </div>
+                    </div>
                 <div className="buttons is-centered loginButtons">
-                    <div id="backButton" className="button is-size-4 is-rounded">
+                    <div id="backButton" className="button is-size-4 is-rounded" onClick={this.backToLogin}>
                         <span id="backIcon" className="icon">
                             <FontAwesomeIcon icon="angle-double-left"/>
                         </span>

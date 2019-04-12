@@ -18,6 +18,7 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
         this.hideNotification = this.hideNotification.bind(this);
+        this.register = this.register.bind(this);
     }
 
     handleChange(e) {
@@ -51,6 +52,10 @@ class Login extends Component {
         }
     }
 
+    register() {
+        this.props.history.push("/register");
+    }
+
     render() {
         return (
             <div className="card" id="loginCard">
@@ -76,11 +81,11 @@ class Login extends Component {
                     </p>
                 </div>
                 <div className="buttons is-centered loginButtons">
-                    <div id="backButton" className="button is-size-4 is-rounded">
+                    <div id="backButton" className="button is-size-4 is-rounded" onClick={this.register}>
                         <span id="backIcon" className="icon">
                             <FontAwesomeIcon icon="angle-double-left"/>
                         </span>
-                        <span>Back</span>
+                        <span>Register</span>
                     </div>
                     <div onClick={this.login} id="loginButton" className="button is-size-4 is-rounded">
                         Login
