@@ -7,7 +7,8 @@ class Inventrow extends Component {
 			coder: false,
 			noter: false,
 			describer: false,
-			receiver: false
+			receiver: false,
+			valuer: false
         }
     }
 
@@ -27,6 +28,7 @@ class Inventrow extends Component {
 
 		const describing = this.state.describer === true ? <textarea className="input" type="text" defaultValue={i.description}/> : i.description;
 		const receiving = this.state.receiver === true ? <textarea className="input" type="text" defaultValue={i.receiver}/> : i.receiver;
+		const valuing = this.state.valuer === true ? <textarea className="input" type="text" defaultValue={i.estValue}/> : <tr>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</tr>;
         
         const date = new Date(i.createdAt);
         const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -56,7 +58,7 @@ class Inventrow extends Component {
 				<td onClick={() => this.setState({noter:true}) }>{noting}</td>
 				<td onClick={() => this.setState({describer:true}) }>{describing}</td>
 				<td onClick={() => this.setState({receiver:true}) }>{receiving}</td>
-				<td>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</td>
+				<td onClick={() => this.setState({valuer:true}) }>{valuing}</td>
 			</tr>
         );
         //make sure .toLocalString isn't called on null or NaN
