@@ -15,7 +15,6 @@ class Inventory extends Component {
         this.state = {
             devices: [],
             afterToken: {},
-            items: itemsAtTime,
             loadingState: false
         }
         this.onScroll = this.onScroll.bind(this);
@@ -46,7 +45,6 @@ class Inventory extends Component {
                     devices: joined, 
                     afterToken: resData.after, 
                     loadingState: false, 
-                    items: this.state.items + itemsAtTime,
                 });
             }
         }
@@ -65,14 +63,9 @@ class Inventory extends Component {
     }
 
     onScroll() {
-        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)){
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1) && !this.state.loadingState && this.state.afterToken) {
             this.setState({ loadingState: true });
             this.getData();
-        }
-      
-        // if(tempd.length < this.state.items){ //nikita.json
-        if(this.state.devices.length < this.state.items){
-            window.removeEventListener("scroll", this.onScroll);
         }
     }
 
@@ -80,7 +73,7 @@ class Inventory extends Component {
     displayItems() {
         const rows = [];
         // tempd.slice(0,this.state.items).forEach((i, n) => { //Dev: nikita.json
-        this.state.devices.slice(0,this.state.items).forEach((i, n) => {
+        this.state.devices.slice(0,this.state.devices.length).forEach((i, n) => {
             
             const coding =
             i.code === -4 ? "#E0666":
@@ -101,15 +94,6 @@ class Inventory extends Component {
           });
         return rows;
     }
-
-    loadMoreItems() {
-
-        this.setState({ items: this.state.items + itemsAtTime });
-        // setTimeout(() => {
-        //   this.setState({ items: this.state.items + 5, loadingState: false });
-        // }, 1000);
-    }
-
 
     render() {
         return (

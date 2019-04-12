@@ -23,14 +23,15 @@ router.post('/register',
             }),
         body("firstName").isString().isLength({min: 1}),
         body("lastName").isString().isLength({min: 1}),
+        body("skill").isNumeric({min: 0, max: 3}),
     ], 
     async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) return next({validation: errors.array()});
-        const { email, password, firstName, lastName } = req.body;
+        const { email, password, skill, firstName, lastName } = req.body;
 
         try {
-            const userDocument = new UserModel({ email, password, firstName, lastName });
+            const userDocument = new UserModel({ email, password, skill, firstName, lastName });
             await userDocument.save();
             return res.status(200).send({email});
         }
