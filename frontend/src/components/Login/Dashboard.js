@@ -103,6 +103,7 @@ class Dashboard extends Component {
     }
 
     render() {
+        const subButt = this.state.tasks.length === 0 ? <input className="button" defaultValue="Submit Task" disabled/> : <Link to="/submit"><input className="button is-success" defaultValue="Submit Task"/></Link>;
         const taskRows = this.state.tasks.map((element) => {
             let noteText = "";
             for(let n = 0; n < element.notes.length; n++) {
@@ -126,7 +127,7 @@ class Dashboard extends Component {
 			<div className="bar">
 				<div className="ico">
 					<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo} /></Link>
-					{/*style={{filter: "brightness(50%) sepia(100) saturate(100) hue-rotate(20deg)"}}*/}
+                   {/*style={{filter: "brightness(50%) sepia(100) saturate(100) hue-rotate(20deg)"}}*/}
 					<br/>
 					<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
 					<br/>
@@ -157,7 +158,7 @@ class Dashboard extends Component {
                     <nav className="level">
                         <div className="level-left">
                             <div className="level-item has-text-centered">
-                                <Link to="/submit"><input className="button is-success" defaultValue="Submit Task"/></Link>
+                                {subButt}
                             </div>
                             
                             <div className="level-item has-text-centered">
