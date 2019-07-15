@@ -6,6 +6,7 @@ The goal of the document is to outline any relevant information for the ZNS back
 After `cd` into the backend directory, run `npm run start` to start the backend server.
 
 * **Windows `CMD` Users** must input `set SESSION_SECRET`=`yourSecret` in exact form before starting backend.
+* Any `Powershell` users should likewise input `$env:SESSION_SECRET`=`"yourSecret"`. 
 
  All endpoints are accessed off of  `http://localhost:3001/api/` For example: the login endpoint is at `http://localhost:3001/api/auth/login`
 
