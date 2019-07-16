@@ -59,7 +59,7 @@ router.get("/",
 
         let { 
             items, tokenDirection, tokenScore, tokenID, search, minDate, 
-            maxDate, code, type, minValue, maxValue
+            maxDate, code, type, minValue, maxValue, sort
         } = req.query;
         if(code) code = code.map(Number);
         if(!items) items = 50;
@@ -67,7 +67,7 @@ router.get("/",
         try {
             const devices = await DeviceModel.listDevices(
                 +items, tokenDirection, +tokenScore, tokenID, search, minDate, maxDate, code,
-                type, +minValue, +maxValue
+                type, +minValue, +maxValue, sort
             );
             return res.json(devices);
         }

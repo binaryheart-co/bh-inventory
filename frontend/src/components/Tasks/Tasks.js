@@ -114,7 +114,7 @@ class Tasks extends Component {
 					<div className="ico">
 						<Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
 						<br/>
-						<Link to="/tasks"><FontAwesomeIcon icon="tasks" color="crimson" className="iconic"/></Link>
+						<FontAwesomeIcon icon="tasks" color="crimson"/>
 						<br/>
 						<Link to="/inventory"><FontAwesomeIcon icon="box-open" color="white" className="iconic"/></Link>
 					</div>

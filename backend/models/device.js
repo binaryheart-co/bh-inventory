@@ -125,8 +125,7 @@ deviceSchema.statics.getUniqueID = async function(next) {
 
 deviceSchema.statics.listDevices = async function(
     items, tokenDirection, tokenScore, tokenID, search, minDate, maxDate, 
-    code, type, minValue, maxValue
-){
+    code, type, minValue, maxValue, sort){
     try {
         let query;
 
@@ -186,7 +185,11 @@ deviceSchema.statics.listDevices = async function(
             }
         }
         else {
-            query.sort({ score: -1, _id: -1 }); //default sorting
+            if(sort==="old"){
+                query.sort({ score: -1, _id: 1 }); //oldest ones on top
+            }else{
+                query.sort({ score: -1, _id: -1 }); //default sorting
+            }
         }
 
         query.limit(items); //limit to requested number of devices

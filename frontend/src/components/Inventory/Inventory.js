@@ -15,6 +15,7 @@ class Inventory extends Component {
         this.state = {
             devices: [],
             afterToken: {},
+            sorts: "new",
             loadingState: false
         }
         this.onScroll = this.onScroll.bind(this);
@@ -24,10 +25,12 @@ class Inventory extends Component {
         try {
 
             //Add token to device url if there is a token
-            let deviceURL = `/api/devices?items=${itemsAtTime}`;
-            if(this.state.afterToken.tokenDirection && this.state.afterToken.tokenID) {
-                deviceURL += `&tokenDirection=${this.state.afterToken.tokenDirection}`;
-                deviceURL += `&tokenID=${this.state.afterToken.tokenID}`;
+            let deviceURL = `/api/devices?sort=${this.state.sorts}&items=${itemsAtTime}`;
+            if(this.state.afterToken){
+                if(this.state.afterToken.tokenDirection && this.state.afterToken.tokenID) {
+                    deviceURL += `&tokenDirection=${this.state.afterToken.tokenDirection}`;
+                    deviceURL += `&tokenID=${this.state.afterToken.tokenID}`;
+                }
             }
 
             const response = await fetch(deviceURL, {
@@ -56,7 +59,7 @@ class Inventory extends Component {
         this.getData();
         window.addEventListener("scroll", this.onScroll);
     }
-    
+
     componentWillUnmount() {
         window.removeEventListener("scroll", this.onScroll);
     }
@@ -64,10 +67,31 @@ class Inventory extends Component {
     onScroll() {
         if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1) && !this.state.loadingState && this.state.afterToken) {
             this.setState({ loadingState: true });
-            this.getData();
+            this.getData(this.state.sorts);
         }
     }
 
+    async sortDate() {
+        let sort;
+        if(this.state.sorts==="new"){
+            this.setState({devices:[], sorts:"old"});
+            sort="old";
+        }else{
+            this.setState({devices:[], sorts:"new"});
+            sort="new"
+        }
+
+        const response = await fetch(`/api/devices?sort=${sort}&items=${itemsAtTime}`, {
+            method: "GET"
+        });
+        const resData = await response.json();
+        const joined = this.state.devices.concat(resData.devices);
+        return this.setState({ 
+            devices: joined, 
+            afterToken: resData.after, 
+            loadingState: false, 
+        });
+    }
 
     displayItems() {
         const rows = [];
@@ -97,14 +121,14 @@ class Inventory extends Component {
     render() {
         return (
             <div>
-                <div className="button" style={{float: "right"}}><Link to="/logdevice">Log new Device</Link></div>
+                <div className="button" style={{right: 0, position: "fixed"}}><Link to="/logdevice">Log new Device</Link></div>
                 <div className="bar">
                     <div className="ico">
                         <Link to="/dashboard"><img alt="BinaryHeart logo" className="icon" src={logo}/></Link>
                         <br/>
                         <Link to="/tasks"><FontAwesomeIcon icon="tasks" color="white" className="iconic"/></Link>
                         <br/>
-                        <Link to="/inventory"><FontAwesomeIcon icon="box-open" color="crimson" className="iconic"/></Link>
+                        <FontAwesomeIcon icon="box-open" color="crimson"/>
                     </div>
                 </div>
                 <br/>
@@ -112,7 +136,8 @@ class Inventory extends Component {
                 <table className="mainTable" id="iScroll">
                   <thead>
                     <tr className="roundy">
-                      <th width="6%">Date</th>
+                      <th width="6%"><label htmlFor="checkbox"><input type="checkbox" id="checkbox"/>
+                        <FontAwesomeIcon onClick={() => {this.sortDate()}} icon="angle-down" id="downArrow"/></label> Date </th>
                       <th width="10%">ID</th>
                       <th width="5%">Code</th>
                       <th>Users</th>
@@ -120,7 +145,7 @@ class Inventory extends Component {
                       <th width="30%">Notes</th>
                       <th>Description</th>
                       <th width="7%">Receiver</th>
-                      <th>Money</th>
+                      <th width="5%">Money</th>
                     </tr>
                   </thead>
                   <tbody style={{overflow:"auto"}}>
@@ -128,11 +153,6 @@ class Inventory extends Component {
                   </tbody>
                 </table>
                 {this.state.loadingState ? <p className="loading" style={{textAlign:"center"}}>Loading {itemsAtTime} more items...</p> : ""}
-                <div className="down">
-                  <FontAwesomeIcon icon="angle-down" id="downArrow"/>
-                </div>
-                <div className="dim" id="dim">
-                </div>
             </div>
         );
     }

@@ -1,83 +1,9 @@
-  .dim{
-	position:absolute;
-	top:0;
-	width:100%;
-	height:100vh;
-	background-color:black;
-	opacity:0.8;
-	visibility:hidden;
-  }
-
-  .popup{
-	position:absolute;
-	top:25vh;
-	left:32%;
-	width:30%;
-	height:50vh;
-	background-color: white;
-	border-radius:30px;
-	visibility:visible;
-  }
-
-  .popup  p{
-	font-size:40px;
-	text-align:center;
-	color:#183A5F;
-	margin-left:auto;
-	margin-right:auto;
-	font-family: 'Lato', sans-serif;
-	transition:1s;
-	box-shadow:0 0 25px gray;
-  }
-
-  .organization{
-	visibility:hidden;
-  }
-
-  .organization button{
-	position:relative;
-	display:block;
-	margin-top:2vh;
-	height:60px;
-	width:190px;
-	border-radius:50px;
-	border:none;
-	color:white;
-	font-size:30px;
-  }
-
-  .popup button{
-	margin-left:auto;
-	margin-right:auto;
-	background-color:#FF0141;
-	outline:none;
-	cursor:pointer;
-	transition:.1s;
-	opacity:0.85;
-  }
-
-  .popup button:hover{
-	width:210px;
-	transition:.3s;
-	opacity:1;
-  }
-
-  .popup button:active{
-	background-color:#ce0031;
-  }
-
-  .down{
-	position:absolute;
-	margin-left:300px;
-	top:10px;
-  }
-
   .bar{
 	position:fixed;
 	background-color:#FF0141;
 	width:6em;
 	top:0;
-	height:100vh;
+	height:99%;
 	box-shadow:0 0 25px black;
 	border-radius: 0px 30px 30px 0px;
   }
@@ -95,7 +21,6 @@
 	border-radius: 10px;
   }
 
-
   .mainTable{
 	position:relative;
 	left:8em;
@@ -109,7 +34,6 @@
 	height:3.5em;
 	padding: 1em;
 	font-size:1em;
-	
   }
 
   td{
@@ -120,15 +44,10 @@
   table tbody{
 	overflow:auto;
 	box-shadow:0 0 25px black;
-	border-radius: 0px 0px 2em 2em;
   }
 
   th:first-child {
 	border-radius: 2em 0 0 0;
-  }
-
-  th:last-child {
-	border-radius: 0 2em 0 0;
   }
 
   .icon{	
@@ -138,19 +57,19 @@
 
   .icon:hover{
 	transition:.4s;
-	transform: scale(1.4,1.4)
+	transform: scale(1.3)
   }
 
   .ico{
 	position:absolute;
-	top:4vh;
+	top:0.4em;
 	text-align:center;
-	font-size:7vh;
+	font-size:3em;
   }
   
   .iconic:hover{
 	transition:.5s;
-	font-size:9vh;
+	transform: scale(1.3);
   }
   
   .input{
@@ -161,6 +80,18 @@
 	color:white;
   }
   
+  #checkbox {
+	display: none;
+  }
+  
+  #downArrow {
+	transition: 0.75s 0.25s;
+  }
+  
+  #checkbox:checked + #downArrow {
+	transform: rotate(183deg);
+  }
+
   html{
 	overflow:auto
   }

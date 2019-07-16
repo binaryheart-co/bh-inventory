@@ -15,7 +15,7 @@ class Inventrow extends Component {
 	render() {
         const i = this.props.i;
         
-        const coding = this.state.coder === true ? <textarea className="input" type="text" defaultValue={i.code}/> : i.code;
+        const coding = this.state.coder === true ? <textarea rows="1" maxLength="2" className="input" defaultValue={i.code}/> : i.code;
 
         //Note code
         let noteText = "";
@@ -24,11 +24,11 @@ class Inventrow extends Component {
             const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
             noteText += `${dateText}: ${i.notes[n].note}\n`;
         }
-        const noting = this.state.noter === true ? <textarea className="input" type="text" defaultValue={noteText}/> : noteText;
+        const noting = this.state.noter === true ? <textarea readOnly className="input" defaultValue={noteText}/> : noteText;
 
-		const describing = this.state.describer === true ? <textarea className="input" type="text" defaultValue={i.description}/> : i.description;
-		const receiving = this.state.receiver === true ? <textarea className="input" type="text" defaultValue={i.receiver}/> : i.receiver;
-		const valuing = this.state.valuer === true ? <textarea className="input" type="text" defaultValue={i.estValue}/> : <tr>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</tr>;
+		const describing = this.state.describer === true ? <textarea className="input" defaultValue={i.description}/> : i.description;
+		const receiving = this.state.receiver === true ? <textarea disabled className="input" defaultValue={i.receiver}/> : i.receiver;
+		const valuing = this.state.valuer === true ? <td><textarea rows="1" className="input" defaultValue={i.estValue}/></td> : <td onClick={() => this.setState({valuer:true}) }>{`$${+i.estValue ? (+i.estValue).toLocaleString() : 0}`}</td>;
         
         const date = new Date(i.createdAt);
         const dateText = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -58,7 +58,7 @@ class Inventrow extends Component {
 				<td onClick={() => this.setState({noter:true}) }>{noting}</td>
 				<td onClick={() => this.setState({describer:true}) }>{describing}</td>
 				<td onClick={() => this.setState({receiver:true}) }>{receiving}</td>
-				<td onClick={() => this.setState({valuer:true}) }>{valuing}</td>
+				{valuing}
 			</tr>
         );
         //make sure .toLocalString isn't called on null or NaN
