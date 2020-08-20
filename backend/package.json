@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/marzukr/bh-inventory#readme",
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^5.0.0",
     "bloomfilter": "0.0.18",
     "connect-mongo": "^2.0.3",
     "express": "^4.16.4",
