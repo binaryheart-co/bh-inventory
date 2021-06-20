@@ -7,6 +7,7 @@ mongoose.promise = global.Promise;
 mongoose.connect(dbURL, {
     useCreateIndex: true,
     useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 // CONNECTION EVENTS

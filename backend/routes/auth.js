@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const UserModel = require('../models/user');
 
-const { body, validationResult } = require('express-validator/check');
+const { body, validationResult } = require('express-validator');
 const commonList = require("../utilities/passwordCheck/passwordCheck");
 
 const router = express.Router();

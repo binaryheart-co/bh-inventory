@@ -1,4 +1,4 @@
-const { body, query, validationResult } = require('express-validator/check');
+const { body, query, validationResult } = require('express-validator');
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const isValidDate = v => {

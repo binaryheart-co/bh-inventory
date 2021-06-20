@@ -7,12 +7,12 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require('passport');
 const mongoose = require("mongoose");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const path = require("path");
 const helmet = require("helmet");
 
 //Constants
-const { serverPort } = require("./config");
+const { serverPort, dbURL } = require("./config");
 const isProduction = process.env.NODE_ENV === "production";
 
 //Helmet - for security
@@ -44,7 +44,7 @@ app.use(session({
         domain: isProduction ? "binaryheart.org" : undefined,
         sameSite: isProduction,
     },
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: MongoStore.create({ mongoUrl: dbURL }),
 }));
 
 //Passport Middleware

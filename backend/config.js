@@ -1,5 +1,5 @@
 module.exports = {
-    dbURL: "mongodb://localhost/zns",
+    dbURL: "mongodb+srv://binaryheart:mah(enter mahboi founder)@zns.5xol5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     passwordHashCost: 10,
     serverPort: 3001,
     maxTaskPartners: 2,
